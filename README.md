@@ -6,11 +6,19 @@
 The system works as follows:
 
 	Administrator may login to the system.
+
 	He may then manage and check employee salaries due date and payment to be made.
+
 	The system also keeps track of inventory coming in.
+
 	An employee login is also present for customer billing.
+
 	As the employee enters various services, the system calculates the bill and generates the bill.
+
 	This customer data is also separately stored in a database.
+
 	Appointment Scheduling: User may book online appointment for 3 slots.
+
 	System manages various appointments and blocks booked appointments to be rebooked.
-	System allows administrator to check various scheduled appoinements.
+
+	System allows administrator to check various scheduled appointments.
