@@ -14,9 +14,11 @@ class CreateCustomersTable extends Migration
     public function up()
     {
         Schema::create('customers', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('user_id');
-            $table->string('phone_number', 20);
+            $table->bigIncrements('id');
+            $table->bigInteger('user_id')
+                ->unsigned();
+            $table->string('phone_number', 20)
+                ->nullable();
             $table->timestamps();
 
             // create foreign keys
