@@ -3,8 +3,9 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use phpDocumentor\Reflection\Types\Nullable;
 
-class CreateServicesTable extends Migration
+class CreateEmployeesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +14,11 @@ class CreateServicesTable extends Migration
      */
     public function up()
     {
-        Schema::create('services', function (Blueprint $table) {
+        Schema::create('employees', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('id_customer')->unsigned();
-            $table->bigInteger('service_type_id')->unsigned();
-            $table->bigInteger('employee_id')->unsigned();
-            $table->float('price')->nullable();
+            $table->bigInteger('user_id')->unsigned();
+            $table->string('phone')->nullable();
+            $table->string('payroll')->nullable();
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ class CreateServicesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('services');
+        Schema::dropIfExists('employees');
     }
 }

@@ -20,6 +20,12 @@ class CreateServiceTypesTable extends Migration
             $table->string('duration')->nullable();
             $table->float('rates')->nullable();
             $table->timestamps();
+
+            // create foreign keys
+            $table->foreign('id', "service_type_foreign")
+                ->references('id')
+                ->on('services')
+                ->onDelete("cascade");
         });
     }
 
