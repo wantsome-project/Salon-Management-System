@@ -14,7 +14,7 @@ class AlterUsersTableAddUserRole extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->tinyInteger('user_role')
+            $table->tinyInteger('user_role_id')
                 ->unsigned()
                 ->after('id');
         });
@@ -28,7 +28,7 @@ class AlterUsersTableAddUserRole extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('user_role');
+            $table->dropColumn('user_role_id');
         });
     }
 }
