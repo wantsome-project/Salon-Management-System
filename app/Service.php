@@ -8,8 +8,14 @@ class Service extends Model
 {
     protected $table = "services";
 
-    public function service()
+    public function serviceType()
     {
         return $this->hasOne(ServiceType::class, "service_type_id", "id");
     }
+
+    public function employee()
+    {
+        return $this->belongsTo(Employee::class, "employee_id", "id");
+    }
+}
 }
