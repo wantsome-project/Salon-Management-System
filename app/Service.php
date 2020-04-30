@@ -10,7 +10,7 @@ class Service extends Model
 
     public function serviceType()
     {
-        return $this->hasOne(ServiceType::class, "service_type_id", "id");
+        return $this->belongsTo(ServiceType::class, "service_type_id", "id");
     }
 
     public function employee()

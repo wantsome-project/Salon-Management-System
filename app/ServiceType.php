@@ -10,6 +10,6 @@ class ServiceType extends Model
 
     public function service()
     {
-        return $this->belongsTo(Service::class, "id", "service_type_id");
+        return $this->hasMany(Service::class, "service_type_id", "id");
     }
 }
