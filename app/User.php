@@ -7,11 +7,19 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\UserRoles;
 
+/**
+ * Class User
+ * @package App
+ * @property integer $user_role_id
+ * @property string $name
+ * @property string $email
+ * @property string $password
+ */
 class User extends Authenticatable
 {
     use Notifiable;
 
-    protected $table = "customers";
+    protected $table = "users";
 
     /**
      * The attributes that are mass assignable.
