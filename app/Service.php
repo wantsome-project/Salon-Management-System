@@ -18,4 +18,3 @@ class Service extends Model
         return $this->belongsTo(Employee::class, "employee_id", "id");
     }
 }
-}
