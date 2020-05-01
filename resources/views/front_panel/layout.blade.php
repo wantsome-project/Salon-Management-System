@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
@@ -8,16 +10,12 @@
     <title>Laravel Project</title>
     <link rel="stylesheet" href="/assets/fontawesome_5.13/css/all.css">
 
-    @extends("back_panel.layout_head")
+    @include("front_panel.layout_head")
 </head>
 
 <body>
     @include("front_panel.layout_topbar")
-
-    @include("front_panel.layout_content")
-
-    @include("front_panel.layout_cards")
-
+    @yield('content')
     @include("front_panel.layout_footer")
 </body>
 @extends("back_panel.layout_scripts")
