@@ -5,7 +5,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
         <title>Laravel Project</title>
-        <link rel="stylesheet" href="/assets/fontawesome_5.13/css/all.css">
 
         @include("back_panel.layout_head")
     </head>
