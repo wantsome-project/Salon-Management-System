@@ -1,4 +1,5 @@
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 {{--        <link rel="canonical" href="https://getbootstrap.com/docs/4.4/examples/dashboard/">--}}
 <style>
     .bd-placeholder-img {
@@ -35,8 +36,10 @@
         top: 0;
         bottom: 0;
         left: 0;
-        z-index: 100; /* Behind the navbar */
-        padding: 48px 0 0; /* Height of navbar */
+        z-index: 100;
+        /* Behind the navbar */
+        padding: 48px 0 0;
+        /* Height of navbar */
         box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
     }
 
@@ -46,7 +49,8 @@
         height: calc(100vh - 48px);
         padding-top: .5rem;
         overflow-x: hidden;
-        overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+        overflow-y: auto;
+        /* Scrollable contents if viewport is shorter than content. */
     }
 
     @supports ((position: -webkit-sticky) or (position: sticky)) {
@@ -85,12 +89,14 @@
      */
 
     [role="main"] {
-        padding-top: 133px; /* Space for fixed navbar */
+        padding-top: 133px;
+        /* Space for fixed navbar */
     }
 
     @media (min-width: 768px) {
         [role="main"] {
-            padding-top: 48px; /* Space for fixed navbar */
+            padding-top: 48px;
+            /* Space for fixed navbar */
         }
     }
 
@@ -123,4 +129,39 @@
         box-shadow: 0 0 0 3px rgba(255, 255, 255, .25);
     }
 
+    html {
+        font-size: 14px;
+    }
+
+    @media (min-width: 768px) {
+        html {
+            font-size: 16px;
+        }
+    }
+
+    .container {
+        max-width: 960px;
+    }
+
+    .pricing-header {
+        max-width: 700px;
+    }
+
+    .card-deck .card {
+        min-width: 220px;
+    }
+
+    .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+
+    @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+            font-size: 3.5rem;
+        }
 </style>
