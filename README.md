@@ -22,3 +22,5 @@ The system works as follows:
 	System manages various appointments and blocks booked appointments to be rebooked.
 
 	System allows administrator to check various scheduled appointments.
+
+https://drive.google.com/file/d/16_2YDi0zb4lEys7_UUqCaMf1RS4LlNDK/view?usp=sharing
