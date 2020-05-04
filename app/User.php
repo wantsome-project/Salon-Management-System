@@ -10,6 +10,7 @@ use App\UserRoles;
 /**
  * Class User
  * @package App
+ * @property integer $id
  * @property integer $user_role_id
  * @property string $name
  * @property string $email
