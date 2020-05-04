@@ -30,3 +30,29 @@ Route::get('/dashboard', function () {
 Route::get('/frontpanel', function () {
     return view('front_panel.layout');
 });
+
+Route::prefix('back_panel')->group(function () {
+    Route::prefix('product')->group(function () {
+        Route::get('/', function () {
+            return view('back_panel.example_form');
+        });
+    });
+
+    Route::prefix('service_type')->group(function () {
+        Route::get('/', function () {
+            return "to do";
+        });
+    });
+
+    Route::prefix('customer')->group(function () {
+        Route::get('/', function () {
+            return "to do";
+        });
+    });
+    Route::prefix('employee')->group(function () {
+        Route::get('/', function () {
+            return "to do";
+        });
+    });
+
+});
