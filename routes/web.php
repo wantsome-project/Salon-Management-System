@@ -54,5 +54,23 @@ Route::prefix('back_panel')->group(function () {
             return "to do";
         });
     });
+});
 
+Route::get('/contact', function () {
+    return view('front_panel.layout_contact');
+});
+
+
+Route::get('/staff', function () {
+    return view('front_panel.layout_staff');
+});
+
+
+Route::get('/products', function () {
+    return view('front_panel.layout_products');
+});
+
+
+Route::get('/services', function () {
+    return view('front_panel.layout_services');
 });
