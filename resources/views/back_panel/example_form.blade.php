@@ -21,7 +21,7 @@
         <div class="form-group row">
             {!! Form::label("name", "Name", ["class" =>"col-sm-2 col-form-label"]) !!}
             <div class="col-sm-10">
-                {!! Form::text("name", $value = null, ["class"=>"form-control".($errors->has("name") ? "is-invalid" : "")]) !!}
+                {!! Form::text("name", $value = null, ["class"=>"form-control ".($errors->has("name") ? "is-invalid" : "")]) !!}
                 @error("name")
                 <div class="invalid-feedback">{{ $message }}</div>
                 @enderror

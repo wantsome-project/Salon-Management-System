@@ -15,10 +15,10 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link ">
                     <span data-feather="users"></span>
                     <i class="fas fa-users"></i>
-                    Customers
+                   Customers
                 </a>
             </li>
             <li class="nav-item">
@@ -29,7 +29,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link active" href="{{ route("products.index") }}">
                     <span data-feather="shopping-cart"></span>
                     <i class="fas fa-cart-plus"></i>
                     Products

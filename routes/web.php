@@ -20,7 +20,8 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index')
+    ->name('home');
 
 Route::get('/dashboard', function () {
     return view('back_panel.layout');
@@ -31,28 +32,46 @@ Route::get('/frontpanel', function () {
     return view('front_panel.layout');
 });
 
-Route::prefix('back_panel')->group(function () {
-    Route::prefix('product')->group(function () {
-        Route::get('/', function () {
-            return view('back_panel.example_form');
-        });
+Route::prefix('back_panel')
+    ->group(function () {
+    Route::prefix('products')
+        ->group(function () {
+            Route::get('/example', function () {
+                return view('back_panel.example_form');
+            });
+            Route::get('/', 'ProductController@index')
+                ->name('products.index');
+            Route::get('/create', 'ProductController@create')
+                ->name('products.create');
+            Route::post('/','ProductController@store')
+                ->name('products.store');
+            Route::get('/{product}/edit', 'ProductController@edit')
+                ->name('products.edit');
+            Route::put('/{product}', 'ProductController@update')
+                ->name('products.update');
+            Route::delete('/{product}', 'ProductController@destroy')
+                ->name('products.destroy');
+
     });
 
-    Route::prefix('service_type')->group(function () {
-        Route::get('/', function () {
-            return "to do";
-        });
+    Route::prefix('service_type')
+        ->group(function () {
+            Route::get('/', function () {
+                return "to do";
+            });
     });
 
-    Route::prefix('customer')->group(function () {
-        Route::get('/', function () {
-            return "to do";
-        });
+    Route::prefix('customer')
+        ->group(function () {
+            Route::get('/', function () {
+                return "to do";
+            });
     });
-    Route::prefix('employee')->group(function () {
-        Route::get('/', function () {
-            return "to do";
-        });
+    Route::prefix('employee')
+        ->group(function () {
+            Route::get('/', function () {
+                return "to do";
+            });
     });
 
 });
