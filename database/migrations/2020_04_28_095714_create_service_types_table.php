@@ -16,16 +16,14 @@ class CreateServiceTypesTable extends Migration
         Schema::create('service_types', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
-            $table->text('description')->nullable();
-            $table->string('duration')->nullable();
-            $table->float('rates')->nullable();
+            $table->text('description')
+                ->nullable();
+            $table->string('duration')
+                ->nullable();
+            $table->float('price')
+                ->nullable();
             $table->timestamps();
 
-            // create foreign keys
-            $table->foreign('id', "service_type_foreign")
-                ->references('id')
-                ->on('services')
-                ->onDelete("cascade");
         });
     }
 

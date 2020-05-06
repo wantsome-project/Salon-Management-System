@@ -24,11 +24,16 @@ class StoreRequest extends FormRequest
     public function rules()
     {
         return [
-            "product_type" => [
+            "type" => [
                 "required",
             ],
-            "product_brand" => [
+            "brand" => [
                 "required",
+            ],
+            "quantity" => [
+                "required",
+                "numeric",
+                "min:0",
             ],
             "price" => [
                 "required",
@@ -41,7 +46,7 @@ class StoreRequest extends FormRequest
     public function attributes()
     {
         return [
-            "product_type" => "product type",
+            "type" => "product type",
         ];
     }
 }

@@ -78,8 +78,8 @@ class ProductController extends Controller
      */
     public function update(UpdateRequest $request, Product $product)
     {
-        $product->product_type = request("product_type");
-        $product->product_brand = request("product_brand");
+        $product->type = request("type");
+        $product->brand = request("brand");
         $product->price = request("price");
         $product->save();
         return redirect()

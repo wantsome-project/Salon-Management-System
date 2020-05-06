@@ -10,11 +10,13 @@ use App\UserRoles;
 /**
  * Class User
  * @package App
- * @property integer $id
- * @property integer $user_role_id
- * @property string $name
- * @property string $email
- * @property string $password
+ * @property integer  $id
+ * @property integer  $role_id
+ * @property string   $name
+ * @property string   $email
+ * @property string   $password
+ * @property Employee $employee
+ * @property Customer $customer
  */
 class User extends Authenticatable
 {
@@ -52,11 +54,16 @@ class User extends Authenticatable
 
     public function getRole()
     {
-        return UserRoles::getUserRole($this->user_role_id);
+        return UserRoles::getUserRole($this->role_id);
     }
 
     public function customer()
     {
         return $this->hasOne(Customer::class, 'user_id', 'id');
+    }
+
+    public function employee()
+    {
+        return $this->hasOne(Employee::class, 'user_id', 'id');
     }
 }

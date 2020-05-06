@@ -17,7 +17,7 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
         $user = new User([
-            'user_role_id' => UserRoles::EMPLOYEE,
+            'role_id' => UserRoles::EMPLOYEE,
             'name' => Str::random(10),
             'email' => Str::random(10).'@gmail.com',
             'email_verified_at' => now(),
@@ -26,7 +26,7 @@ class UsersTableSeeder extends Seeder
         $user->save();
 
         $user = new User([
-            'user_role_id' => UserRoles::CUSTOMER,
+            'role_id' => UserRoles::CUSTOMER,
             'name' => Str::random(10),
             'email' => Str::random(10).'@gmail.com',
             'email_verified_at' => now(),

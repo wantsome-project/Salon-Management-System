@@ -18,19 +18,23 @@ class AlterUsersTableAddUserRole extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->tinyInteger('user_role_id')
+            $table->tinyInteger('role_id')
                 ->unsigned()
                 ->after('id');
         });
-        // set random password
+
+        // Set email and random password for administrator
+        $email = "admin@admin.com";
         $password = Str::random(8);
+
+        echo "Administrator email is: ".$email."\n";
         echo "Administrator password is: ".$password."\n";
 
         // create first admin
         $admin_user = new User();
-        $admin_user->user_role_id = UserRoles::ADMIN;
+        $admin_user->role_id = UserRoles::ADMIN;
         $admin_user->name = "admin";
-        $admin_user->email = "admin@admin.com";
+        $admin_user->email = $email;
         $admin_user->password = Hash::make($password);
         $admin_user->save();
     }
@@ -43,7 +47,7 @@ class AlterUsersTableAddUserRole extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('user_role_id');
+            $table->dropColumn('role_id');
         });
     }
 }

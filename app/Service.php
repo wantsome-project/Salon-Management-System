@@ -3,10 +3,23 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+/**
+ * Class Service
+ * @package App
+ * @property integer      $id
+ * @property integer      $customer_id
+ * @property integer      $service_type_id
+ * @property integer      $employee_id
+ * @property integer      $price
+ * @property ServiceType  $serviceType
+ * @property Employee     $employee
+ * @property Customer     $customer
+ */
 
 class Service extends Model
 {
     protected $table = "services";
+
 
     public function serviceType()
     {
@@ -17,4 +30,9 @@ class Service extends Model
     {
         return $this->belongsTo(Employee::class, "employee_id", "id");
     }
+    public function customer()
+    {
+        return $this->belongsTo(Customer::class, "customer_id", "id");
+    }
+
 }

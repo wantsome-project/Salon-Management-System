@@ -16,7 +16,7 @@ class ServiceTypesTableSeeder extends Seeder
             'name' => 'Tuns',
             'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
             'duration' => '30',
-            'rates' => '50'
+            'price' => '50'
         ]);
         $serviceType->save();
 
@@ -24,7 +24,7 @@ class ServiceTypesTableSeeder extends Seeder
             'name' => 'Coafat',
             'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
             'duration' => '50',
-            'rates' => '100'
+            'price' => '100'
         ]);
         $serviceType->save();
 
@@ -32,7 +32,7 @@ class ServiceTypesTableSeeder extends Seeder
             'name' => 'Machiat',
             'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
             'duration' => '120',
-            'rates' => '150'
+            'price' => '150'
         ]);
         $serviceType->save();
     }

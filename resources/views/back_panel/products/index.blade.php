@@ -17,6 +17,7 @@
                     <th>Id</th>
                     <th>Product type</th>
                     <th>Product brand</th>
+                    <th>Quantity</th>
                     <th>Price</th>
                     <th></th>
                     <th></th>
@@ -24,8 +25,9 @@
                 @foreach($products as $product)
                     <tr>
                         <th>{{ $product->id }}</th>
-                        <td>{{ $product->product_type }}</td>
-                        <td>{{ $product->product_brand }}</td>
+                        <td>{{ $product->type }}</td>
+                        <td>{{ $product->brand }}</td>
+                        <td>{{ $product->quantity }}</td>
                         <td>{{ $product->price }}</td>
                         <td><a href="{{ route('products.edit', $product) }}"><i class="fas fa-edit"></i></a></td>
                         <td>

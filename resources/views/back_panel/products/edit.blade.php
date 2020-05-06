@@ -12,23 +12,32 @@
             {!! Form::open(['url' => route('products.update',[$product])]) !!}
                 @method("PUT")
                 <div class="form-group row">
-                    {!! Form::label("product_type", "Product type", ["class" =>"col-sm-2 col-form-label"]) !!}
+                    {!! Form::label("type", "Product type", ["class" =>"col-sm-2 col-form-label"]) !!}
                     <div class="col-sm-4">
-                        {!! Form::text("product_type", $product->product_type, ["class"=>"form-control ".($errors->has("product_type") ? "is-invalid" : "")]) !!}
-                        @error("product_type")
+                        {!! Form::text("type", $product->type, ["class"=>"form-control ".($errors->has("type") ? "is-invalid" : "")]) !!}
+                        @error("type")
                         <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
                 </div>
                 <div class="form-group row">
-                    {!! Form::label("product_brand", "Product brand", ["class" =>"col-sm-2 col-form-label"]) !!}
+                    {!! Form::label("brand", "Product brand", ["class" =>"col-sm-2 col-form-label"]) !!}
                     <div class="col-sm-4">
-                        {!! Form::text("product_brand", $product->product_brand, ["class"=>"form-control ".($errors->has("product_brand") ? "is-invalid" : "")]) !!}
-                        @error("product_brand")
+                        {!! Form::text("brand", $product->brand, ["class"=>"form-control ".($errors->has("brand") ? "is-invalid" : "")]) !!}
+                        @error("brand")
                         <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
                 </div>
+            <div class="form-group row">
+                {!! Form::label("quantity", "Quantity", ["class" =>"col-sm-2 col-form-label"]) !!}
+                <div class="col-sm-4">
+                    {!! Form::number("quantity", $product->quantity, ["class"=>"form-control ".($errors->has("quantity") ? "is-invalid" : ""), "min"=>0]) !!}
+                    @error("quantity")
+                    <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+            </div>
                 <div class="form-group row">
                     {!! Form::label("price", "Price", ["class" =>"col-sm-2 col-form-label"]) !!}
                     <div class="col-sm-4">

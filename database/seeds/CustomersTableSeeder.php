@@ -18,7 +18,7 @@ class CustomersTableSeeder extends Seeder
     public function run()
     {
         $user = new User([
-            'user_role_id' => UserRoles::EMPLOYEE,
+            'role_id' => UserRoles::CUSTOMER,
             'name' => Str::random(10),
             'email' => Str::random(10).'@gmail.com',
             'email_verified_at' => now(),
@@ -28,12 +28,12 @@ class CustomersTableSeeder extends Seeder
 
         $customer = new Customer([
             'user_id' => $user->id,
-            'phone_number' => '0749851345'
+            'phone' => '0749851345'
         ]);
         $customer->save();
 
         $user = new User([
-            'user_role_id' => UserRoles::CUSTOMER,
+            'role_id' => UserRoles::CUSTOMER,
             'name' => Str::random(10),
             'email' => Str::random(10).'@gmail.com',
             'email_verified_at' => now(),
@@ -43,7 +43,7 @@ class CustomersTableSeeder extends Seeder
 
         $customer = new Customer([
             'user_id' => $user->id,
-            'phone_number' => '074983413'
+            'phone' => '074983413'
         ]);
         $customer->save();
     }

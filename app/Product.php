@@ -8,8 +8,9 @@ use Illuminate\Database\Eloquent\Model;
  * Class Product
  * @package App
  *
- * @property string $product_type
- * @property string $product_brand
+ * @property string  $type
+ * @property string  $brand
+ * @property integer $quantity
  * @property integer $price
  */
 class Product extends Model
@@ -21,6 +22,9 @@ class Product extends Model
      * @var array
      */
     protected $fillable = [
-        'product_type', 'product_brand', 'price',
+        'type',
+        'brand',
+        'quantity',
+        'price',
     ];
 }

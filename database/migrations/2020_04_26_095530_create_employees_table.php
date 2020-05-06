@@ -16,10 +16,19 @@ class CreateEmployeesTable extends Migration
     {
         Schema::create('employees', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('user_id')->unsigned();
-            $table->string('phone')->nullable();
-            $table->string('payroll')->nullable();
+            $table->bigInteger('user_id')
+                ->unsigned()
+                ->unique();
+            $table->string('phone', 20)
+                ->nullable();
+            $table->string('payroll')
+                ->nullable();
             $table->timestamps();
+
+            $table->foreign('user_id', "user_employee_foreign")
+                ->references('id')
+                ->on('users')
+                ->onDelete("cascade");
         });
     }
 
