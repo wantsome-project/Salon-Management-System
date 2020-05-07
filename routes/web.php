@@ -30,7 +30,7 @@ Route::get('/dashboard', function () {
 
 Route::get('/frontpanel', function () {
     return view('front_panel.layout');
-});
+})->name('frontpanel');
 
 Route::prefix('back_panel')
     ->group(function () {
@@ -73,5 +73,23 @@ Route::prefix('back_panel')
                 return "to do";
             });
     });
-
 });
+
+Route::get('/contact', function () {
+    return view('front_panel.layout_contact');
+})->name('contact');
+
+
+Route::get('/staff', function () {
+    return view('front_panel.layout_staff');
+})->name('staff');
+
+
+Route::get('/products', function () {
+    return view('front_panel.layout_products');
+})->name('products');
+
+
+Route::get('/services', function () {
+    return view('front_panel.layout_services');
+})->name('ServicesType');
