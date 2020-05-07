@@ -6,7 +6,7 @@
         <a class="p-2 text-dark" href="#">Support</a>
         <a class="p-2 text-dark" href="#">Pricing</a>
     </nav>
-        <!-- Authentication Links -->
+    <!-- Authentication Links -->
     @guest
         <a class="btn btn-outline-primary mr-2" href="{{ route('login') }}">{{ __('Login') }}</a>
         @if (Route::has('register'))
