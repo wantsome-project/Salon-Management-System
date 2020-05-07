@@ -69,9 +69,18 @@ Route::prefix('back_panel')
     });
     Route::prefix('employee')
         ->group(function () {
-            Route::get('/', function () {
-                return "to do";
-            });
+            Route::get('/', 'EmployeeController@index')
+                ->name('employees.index');
+            Route::get('/create', 'EmployeeController@create')
+                ->name('employees.create');
+            Route::post('/','EmployeeController@store')
+                ->name('employees.store');
+            Route::get('/{employee}/edit', 'EmployeeController@edit')
+                ->name('employees.edit');
+            Route::put('/{employee}', 'EmployeeController@update')
+                ->name('employees.update');
+            Route::delete('/{employee}', 'EmployeeController@destroy')
+                ->name('employees.destroy');
     });
 });
 

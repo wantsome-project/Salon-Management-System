@@ -8,25 +8,24 @@
     </nav>
     <!-- Authentication Links -->
     @guest
-    <a class="btn btn-outline-primary mr-2" href="{{ route('login') }}">{{ __('Login') }}</a>
-    @if (Route::has('register'))
-    <a class="btn btn-outline-primary" href="{{ route('register') }}">{{ __('Register') }}</a>
-    @endif
+        <a class="btn btn-outline-primary mr-2" href="{{ route('login') }}">{{ __('Login') }}</a>
+        @if (Route::has('register'))
+            <a class="btn btn-outline-primary" href="{{ route('register') }}">{{ __('Register') }}</a>
+        @endif
     @else
-    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
-        aria-haspopup="true" aria-expanded="false" v-pre>
-        {{ Auth::user()->name }} <span class="caret"></span>
-    </a>
-
-    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-        <a class="btn btn-outline-primary" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                             document.getElementById('logout-form').submit();">
-            {{ __('Logout') }}
+        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false" v-pre>
+            {{ Auth::user()->name }} <span class="caret"></span>
         </a>
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+            <a class="btn btn-outline-primary" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                 document.getElementById('logout-form').submit();">
+                {{ __('Logout') }}
+            </a>
 
-        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-            @csrf
-        </form>
-    </div>
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                @csrf
+            </form>
+        </div>
     @endguest
 </div>

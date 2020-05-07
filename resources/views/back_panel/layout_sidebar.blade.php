@@ -8,7 +8,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link active" href="{{ route("employees.index") }}">
                     <span data-feather="users"></span>
                     <i class="fas fa-user-friends"></i>
                     Employees

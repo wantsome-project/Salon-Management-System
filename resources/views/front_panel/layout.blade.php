@@ -10,12 +10,12 @@
 </head>
 
 <body>
-    @include("front_panel.layout_topbar")
-    <div class="container">
-        <h1 class="h2">@yield('header', "To do content")</h1>
-        @yield('content')
-        @include("front_panel.layout_footer")
-    </div>
+@include("front_panel.layout_topbar")
+<div class="container">
+    <h1 class="h2">@yield('header', "To do content")</h1>
+    @yield('content')
+    @include("front_panel.layout_footer")
+</div>
 </body>
 @extends("back_panel.layout_scripts")
 
