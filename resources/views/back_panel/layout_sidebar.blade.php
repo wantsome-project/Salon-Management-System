@@ -2,7 +2,7 @@
     <div class="sidebar-sticky">
         <ul class="nav flex-column">
             <li class="nav-item">
-                <a class="nav-link active" href="#">
+                <a class="nav-link {{ request()->routeIs('back_panel.dashboard') ? 'active' : ""}} " href="{{ route("back_panel.dashboard") }}">
                     <span data-feather="home"></span>
                     Dashboard <span class="sr-only">(current)</span>
                 </a>
