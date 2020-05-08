@@ -2,7 +2,7 @@
 
 @section("header")
     List of products
-    <a href="{{ route("products.create") }}" class="btn btn-primary float-right">Add new product</a>
+    <a href="{{ route("back_panel.products.create") }}" class="btn btn-primary float-right">Add new product</a>
 @endsection
 
 @section("content")
@@ -29,9 +29,9 @@
                         <td>{{ $product->brand }}</td>
                         <td>{{ $product->quantity }}</td>
                         <td>{{ $product->price }}</td>
-                        <td><a href="{{ route('products.edit', $product) }}"><i class="fas fa-edit"></i></a></td>
+                        <td><a href="{{ route('back_panel.products.edit', $product) }}"><i class="fas fa-edit"></i></a></td>
                         <td>
-                            {!! Form::open(['url' => route('products.destroy',[$product])]) !!}
+                            {!! Form::open(['url' => route('back_panel.products.destroy',[$product])]) !!}
                                 @csrf
                                 @method("delete")
                                 <button type="submit" class="btn btn-danger btn-sm"><i class="far fa-trash-alt"></i></button>

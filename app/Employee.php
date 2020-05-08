@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property integer  $id
  * @property integer  $user_id
  * @property string   $phone
+ * @property integer  $payroll
  * @property Service  $services
  * @property User     $user
  */

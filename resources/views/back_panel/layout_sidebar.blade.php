@@ -8,7 +8,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link {{ request()->routeIs('back_panel.employees*') ? 'active' : ""}}  " href="{{ route("back_panel.employees.index") }}">
                     <span data-feather="users"></span>
                     <i class="fas fa-user-friends"></i>
                     Employees
@@ -21,7 +21,7 @@
                    Customers
                 </a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item ">
                 <a class="nav-link" href="#">
                     <span data-feather="file"></span>
                     <i class="fas fa-cut"></i>
@@ -29,7 +29,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link active" href="{{ route("products.index") }}">
+                <a class="nav-link {{ request()->routeIs('back_panel.products*') ? 'active' : ""}} " href="{{ route("back_panel.products.index") }}">
                     <span data-feather="shopping-cart"></span>
                     <i class="fas fa-cart-plus"></i>
                     Products

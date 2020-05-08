@@ -5,7 +5,7 @@
 @section("content")
     <div class="row">
         <div class="col-8">
-             {!! Form::open(['url' => route('products.store')]) !!}
+             {!! Form::open(['url' => route('back_panel.products.store')]) !!}
                 <div class="form-group row">
                     {!! Form::label("type", "Product type", ["class" =>"col-sm-2 col-form-label"]) !!}
                     <div class="col-sm-4">
