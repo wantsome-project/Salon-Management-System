@@ -2,7 +2,7 @@
 
 @section("header")
     List of employees
-    <a href="{{ route("employees.create") }}" class="btn btn-primary float-right">Add new employee</a>
+    <a href="{{ route("back_panel.employees.create") }}" class="btn btn-primary float-right">Add new employee</a>
 @endsection
 
 @section("content")
@@ -29,9 +29,9 @@
                         <th>{{ $employee->user->email }}</th>
                         <td>{{ $employee->phone }}</td>
                         <td>{{ $employee->payroll }}</td>
-                        <td><a href="{{ route('employees.edit', $employee) }}"><i class="fas fa-edit"></i></a></td>
+                        <td><a href="{{ route('back_panel.employees.edit', $employee) }}"><i class="fas fa-edit"></i></a></td>
                         <td>
-                            {!! Form::open(['url' => route('employees.destroy',[$employee])]) !!}
+                            {!! Form::open(['url' => route('back_panel.employees.destroy',[$employee])]) !!}
                             @csrf
                             @method("delete")
                             <button type="submit" class="btn btn-danger btn-sm"><i class="far fa-trash-alt"></i></button>

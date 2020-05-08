@@ -23,7 +23,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')
     ->name('home');
 
-Route::get('/dashboard', function () {
+Route::get('/back_panel', function () {
     return view('back_panel.layout');
 });
 
@@ -33,56 +33,58 @@ Route::get('/frontpanel', function () {
 })->name('frontpanel');
 
 Route::prefix('back_panel')
+    ->name("back_panel.")
+    ->namespace("BackPanel")
     ->group(function () {
-    Route::prefix('products')
-        ->group(function () {
-            Route::get('/example', function () {
-                return view('back_panel.example_form');
-            });
-            Route::get('/', 'ProductController@index')
-                ->name('products.index');
-            Route::get('/create', 'ProductController@create')
-                ->name('products.create');
-            Route::post('/','ProductController@store')
-                ->name('products.store');
-            Route::get('/{product}/edit', 'ProductController@edit')
-                ->name('products.edit');
-            Route::put('/{product}', 'ProductController@update')
-                ->name('products.update');
-            Route::delete('/{product}', 'ProductController@destroy')
-                ->name('products.destroy');
+        Route::prefix('products')
+            ->group(function () {
+                Route::get('/example', function () {
+                    return view('back_panel.example_form');
+                });
+                Route::get('/', 'ProductController@index')
+                    ->name('products.index');
+                Route::get('/create', 'ProductController@create')
+                    ->name('products.create');
+                Route::post('/','ProductController@store')
+                    ->name('products.store');
+                Route::get('/{product}/edit', 'ProductController@edit')
+                    ->name('products.edit');
+                Route::put('/{product}', 'ProductController@update')
+                    ->name('products.update');
+                Route::delete('/{product}', 'ProductController@destroy')
+                    ->name('products.destroy');
 
-    });
+        });
 
-    Route::prefix('service_type')
-        ->group(function () {
-            Route::get('/', function () {
-                return "to do";
-            });
-    });
+        Route::prefix('service_type')
+            ->group(function () {
+                Route::get('/', function () {
+                    return "to do";
+                });
+        });
 
-    Route::prefix('customer')
-        ->group(function () {
-            Route::get('/', function () {
-                return "to do";
-            });
+        Route::prefix('customer')
+            ->group(function () {
+                Route::get('/', function () {
+                    return "to do";
+                });
+        });
+        Route::prefix('employee')
+            ->group(function () {
+                Route::get('/', 'EmployeeController@index')
+                    ->name('employees.index');
+                Route::get('/create', 'EmployeeController@create')
+                    ->name('employees.create');
+                Route::post('/','EmployeeController@store')
+                    ->name('employees.store');
+                Route::get('/{employee}/edit', 'EmployeeController@edit')
+                    ->name('employees.edit');
+                Route::put('/{employee}', 'EmployeeController@update')
+                    ->name('employees.update');
+                Route::delete('/{employee}', 'EmployeeController@destroy')
+                    ->name('employees.destroy');
+        });
     });
-    Route::prefix('employee')
-        ->group(function () {
-            Route::get('/', 'EmployeeController@index')
-                ->name('employees.index');
-            Route::get('/create', 'EmployeeController@create')
-                ->name('employees.create');
-            Route::post('/','EmployeeController@store')
-                ->name('employees.store');
-            Route::get('/{employee}/edit', 'EmployeeController@edit')
-                ->name('employees.edit');
-            Route::put('/{employee}', 'EmployeeController@update')
-                ->name('employees.update');
-            Route::delete('/{employee}', 'EmployeeController@destroy')
-                ->name('employees.destroy');
-    });
-});
 
 Route::get('/contact', function () {
     return view('front_panel.layout_contact');

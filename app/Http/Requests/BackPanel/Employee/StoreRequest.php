@@ -26,13 +26,22 @@ class StoreRequest extends FormRequest
         return [
             "user.name" => [
                 "required",
+                "string",
+                "max:255"
             ],
             "user.email" => [
                 "required",
+                "string",
+                "email",
+                "max:255",
             ],
             "user.password" => [
                 "required",
+                "string",
+                "min:8",
+                "confirmed"
             ],
+
             "employee.phone" => [
                 "required",
                 "numeric",

@@ -5,7 +5,7 @@
 @section("content")
     <div class="row">
         <div class="col-8">
-            {!! Form::open(['url' => route('employees.store')]) !!}
+            {!! Form::open(['url' => route('back_panel.employees.store')]) !!}
             <div class="form-group row">
                 {!! Form::label("user[name]", "Name", ["class" =>"col-sm-2 col-form-label"]) !!}
                 <div class="col-sm-4">
@@ -29,6 +29,15 @@
                 <div class="col-sm-4">
                     {!! Form::password("user[password]", ["class"=>"form-control ".($errors->has('user.password') ? "is-invalid" : "")]) !!}
                     @error("user.password")
+                    <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+            </div>
+            <div class="form-group row">
+                {!! Form::label("user[password_confirmation]", "Confirm password", ["class" =>"col-sm-2 col-form-label"]) !!}
+                <div class="col-sm-4">
+                    {!! Form::password("user[password_confirmation]", ["class"=>"form-control ".($errors->has('user.password_confirmation') ? "is-invalid" : "")]) !!}
+                    @error("user.password_confirmation")
                     <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>

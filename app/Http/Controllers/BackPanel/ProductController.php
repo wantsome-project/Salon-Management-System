@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\BackPanel;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\BackPanel\Product\StoreRequest;
 use App\Http\Requests\BackPanel\Product\UpdateRequest;
 use App\Product;
@@ -24,8 +25,7 @@ class ProductController extends Controller
 
     /**
      * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
+e
      */
     public function create()
     {
@@ -45,7 +45,7 @@ class ProductController extends Controller
         $product->save();
 
         return redirect()
-            ->route("products.index", $product);
+            ->route("back_panel.products.index", $product);
     }
 
     /**
@@ -83,7 +83,7 @@ class ProductController extends Controller
         $product->price = request("price");
         $product->save();
         return redirect()
-            ->route("products.index");
+            ->route("back_panel.products.index");
     }
 
     /**
@@ -95,6 +95,6 @@ class ProductController extends Controller
     {
         $product->delete();
         return redirect()
-            ->route("products.index");
+            ->route("back_panel.products.index");
     }
 }

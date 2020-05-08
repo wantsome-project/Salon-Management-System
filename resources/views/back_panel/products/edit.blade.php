@@ -9,7 +9,7 @@
 
     <div class="row">
         <div class="col-8">
-            {!! Form::open(['url' => route('products.update',[$product])]) !!}
+            {!! Form::open(['url' => route('back_panel.products.update',[$product])]) !!}
                 @method("PUT")
                 <div class="form-group row">
                     {!! Form::label("type", "Product type", ["class" =>"col-sm-2 col-form-label"]) !!}

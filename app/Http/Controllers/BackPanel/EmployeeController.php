@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\BackPanel;
 
 use App\Employee;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\BackPanel\Employee\StoreRequest;
 use App\Http\Requests\BackPanel\Employee\UpdateRequest;
 use App\User;
@@ -74,7 +75,7 @@ class EmployeeController extends Controller
         $employee->save();
 
         return redirect()
-            ->route("employees.index", $employee)
+            ->route("back_panel.employees.index", $employee)
             ->with("success", "Employee $user->name created successfully");
     }
 
@@ -113,7 +114,7 @@ class EmployeeController extends Controller
         $employee->save();
 
         return redirect()
-            ->route("employees.index");
+            ->route("back_panel.employees.index");
     }
 
     /**
@@ -126,7 +127,7 @@ class EmployeeController extends Controller
         // delete employee throw user foreign key
         $employee->user->delete();
         return redirect()
-            ->route("employees.index")
+            ->route("back_panel.employees.index")
             ->with("success", "Employee ".$employee->user->name." deleted successfully");
     }
 }
