@@ -6,7 +6,7 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">
-                    <a class="nav-link {{ request()->routeIs('back_panel.dashboard') ? 'active' : ""}} " href="{{ route("back_panel.dashboard") }}">
+                    <a class="nav-link " href="">
                     Dashboard
                     </a>
                 </div>
