@@ -22,7 +22,7 @@
                 </a>
             </li>
             <li class="nav-item ">
-                <a class="nav-link" href="#">
+                <a class="nav-link" {{ request()->routeIs('back_panel.service_type*') ? 'active' : ""}}   href="{{ route("back_panel.service_types.index") }}">
                     <span data-feather="file"></span>
                     <i class="fas fa-cut"></i>
                     Service types
