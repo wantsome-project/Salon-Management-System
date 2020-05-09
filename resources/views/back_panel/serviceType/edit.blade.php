@@ -9,7 +9,7 @@
 
     <div class="row">
         <div class="col-8">
-            {!! Form::open(['url' => route('back_panel.service_types.update',[$service_types])]) !!}
+            {!! Form::open(['url' => route('back_panel.service_types.update',[$service_type])]) !!}
             @method("PUT")
             <div class="form-group row">
                 {!! Form::label("service_type[name]", "Name", ["class" =>"col-sm-2 col-form-label"]) !!}
@@ -33,7 +33,7 @@
                 {!! Form::label("service_type[duration]", "Duration", ["class" =>"col-sm-2 col-form-label"]) !!}
                 <div class="col-sm-4">
                     {!! Form::number("service_type[duration]", $service_type->duration, ["class"=>"form-control ".($errors->has("service_type.duration") ? "is-invalid" : ""), "min"=>0]) !!}
-                    @error("employee.payroll")
+                    @error("service_type.duration")
                     <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>

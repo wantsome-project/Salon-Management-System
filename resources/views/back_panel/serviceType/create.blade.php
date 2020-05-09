@@ -27,7 +27,7 @@
             <div class="form-group row">
                 {!! Form::label("service_type[duration]", "Duration", ["class" =>"col-sm-2 col-form-label"]) !!}
                 <div class="col-sm-4">
-                    {!! Form::number("service_type[duration]", ["class"=>"form-control ".($errors->has('service_type.duration') ? "is-invalid" : "")]) !!}
+                    {!! Form::number("service_type[duration]", null, ["class"=>"form-control ".($errors->has('service_type.duration') ? "is-invalid" : "")]) !!}
                     @error("service_type.duration")
                     <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
