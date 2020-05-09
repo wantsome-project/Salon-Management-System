@@ -13,13 +13,13 @@ class ServiceTypeController extends Controller
     {
         $service_types = ServiceType::query()
             ->paginate(10);
-        return view("back_panel.service_type.index")
+        return view("back_panel.serviceType.index")
             ->with("service_types", $service_types);
     }
 
     public function create()
     {
-        return view("back_panel.Service_type.create");
+        return view("back_panel.serviceType.create");
     }
 
     public function store(StoreRequest $request)
@@ -28,7 +28,7 @@ class ServiceTypeController extends Controller
         $service_type->fill($request->all());
         $service_type->save()
 
-            ->route("service_types.index", $service_type);
+            ->route("ServicesType.index", $service_type);
     }
 
     public function show($id)
@@ -37,7 +37,7 @@ class ServiceTypeController extends Controller
     }
     public function edit(ServiceType $serviceType)
     {
-        return view("back_panel.service_type.edit")
+        return view("back_panel.serviceType.edit")
             ->with("service_types", $serviceType);
     }
     public function update(UpdateRequest $request, ServiceType $serviceType)
@@ -48,7 +48,7 @@ class ServiceTypeController extends Controller
         $serviceType->price = request("price");
         $serviceType->save();
         return redirect()
-            ->route("service_type.index");
+            ->route("service_types.index");
     }
     public function destroy(ServiceType $serviceType)
     {

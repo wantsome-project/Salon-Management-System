@@ -1,4 +1,3 @@
-<?php
 @extends("back_panel.layout")
 
 @section("header", "Update employee")
@@ -10,7 +9,7 @@
 
     <div class="row">
         <div class="col-8">
-            {!! Form::open(['url' => route('back_panel.service_types.update',[$service_type])]) !!}
+            {!! Form::open(['url' => route('back_panel.service_types.update',[$service_types])]) !!}
             @method("PUT")
             <div class="form-group row">
                 {!! Form::label("service_type[name]", "Name", ["class" =>"col-sm-2 col-form-label"]) !!}

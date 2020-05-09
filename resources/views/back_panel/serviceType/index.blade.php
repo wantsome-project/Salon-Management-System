@@ -1,4 +1,3 @@
-<?php
 @extends("back_panel.layout")
 
 @section("header")
@@ -23,7 +22,7 @@
                     <th></th>
                     <th></th>
                 </tr>
-                @foreach($service_type as $serviceType)
+                @foreach($service_types as $serviceType)
                     <tr>
                         <th>{{ $serviceType->id }}</th>
                         <th>{{ $serviceType->name }}</th>
@@ -32,7 +31,7 @@
                         <td>{{ $serviceType->price    }}</td>
                         <td><a href="{{ route('back_panel.service_types.edit', $serviceType) }}"><i class="fas fa-edit"></i></a></td>
                         <td>
-                            {!! Form::open(['url' => route('back_panel.service_type.destroy',[$serviceType])]) !!}
+                            {!! Form::open(['url' => route('back_panel.service_types.destroy',[$serviceType])]) !!}
                             @csrf
                             @method("delete")
                             <button type="submit" class="btn btn-danger btn-sm"><i class="far fa-trash-alt"></i></button>
@@ -44,5 +43,5 @@
         </div>
     </div>
 
-    {{ $service_type->links() }}
+    {{ $service_types->links() }}
 @endsection

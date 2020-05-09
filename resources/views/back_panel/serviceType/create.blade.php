@@ -1,4 +1,3 @@
-<?php
 @extends("back_panel.layout")
 
 @section("header", "Fill in the information of the new Service")
