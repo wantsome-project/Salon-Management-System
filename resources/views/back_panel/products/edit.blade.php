@@ -12,37 +12,37 @@
             {!! Form::open(['url' => route('back_panel.products.update',[$product])]) !!}
                 @method("PUT")
                 <div class="form-group row">
-                    {!! Form::label("type", "Product type", ["class" =>"col-sm-2 col-form-label"]) !!}
+                    {!! Form::label("product[type]", "Product type", ["class" =>"col-sm-2 col-form-label"]) !!}
                     <div class="col-sm-4">
-                        {!! Form::text("type", $product->type, ["class"=>"form-control ".($errors->has("type") ? "is-invalid" : "")]) !!}
-                        @error("type")
+                        {!! Form::text("product[type]", $product->type, ["class"=>"form-control ".($errors->has("product.type") ? "is-invalid" : "")]) !!}
+                        @error("product.type")
                         <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
                 </div>
                 <div class="form-group row">
-                    {!! Form::label("brand", "Product brand", ["class" =>"col-sm-2 col-form-label"]) !!}
+                    {!! Form::label("product[brand]", "Product brand", ["class" =>"col-sm-2 col-form-label"]) !!}
                     <div class="col-sm-4">
-                        {!! Form::text("brand", $product->brand, ["class"=>"form-control ".($errors->has("brand") ? "is-invalid" : "")]) !!}
-                        @error("brand")
+                        {!! Form::text("product[brand]", $product->brand, ["class"=>"form-control ".($errors->has("product.brand") ? "is-invalid" : "")]) !!}
+                        @error("product.brand")
                         <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
                 </div>
             <div class="form-group row">
-                {!! Form::label("quantity", "Quantity", ["class" =>"col-sm-2 col-form-label"]) !!}
+                {!! Form::label("product[quantity]", "Quantity", ["class" =>"col-sm-2 col-form-label"]) !!}
                 <div class="col-sm-4">
-                    {!! Form::number("quantity", $product->quantity, ["class"=>"form-control ".($errors->has("quantity") ? "is-invalid" : ""), "min"=>0]) !!}
-                    @error("quantity")
+                    {!! Form::number("product[quantity]", $product->quantity, ["class"=>"form-control ".($errors->has("product.quantity") ? "is-invalid" : ""), "min"=>0]) !!}
+                    @error("product.quantity")
                     <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
             </div>
                 <div class="form-group row">
-                    {!! Form::label("price", "Price", ["class" =>"col-sm-2 col-form-label"]) !!}
+                    {!! Form::label("product[price]", "Price", ["class" =>"col-sm-2 col-form-label"]) !!}
                     <div class="col-sm-4">
-                        {!! Form::number("price", $product->price, ["class"=>"form-control ".($errors->has("price") ? "is-invalid" : ""), "min"=>0]) !!}
-                        @error("price")
+                        {!! Form::number("product[price]", $product->price, ["class"=>"form-control ".($errors->has("product.price") ? "is-invalid" : ""), "min"=>0]) !!}
+                        @error("product.price")
                         <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>

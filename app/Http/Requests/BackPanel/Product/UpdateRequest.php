@@ -24,18 +24,18 @@ class UpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            "type" => [
+            "product.type" => [
                 "required",
             ],
-            "brand" => [
+            "product.brand" => [
                 "required",
             ],
-            "quantity" => [
+            "product.quantity" => [
                 "required",
                 "numeric",
                 "min:0",
             ],
-            "price" => [
+            "product.price" => [
                 "required",
                 "numeric",
                 "min:0",
@@ -46,7 +46,10 @@ class UpdateRequest extends FormRequest
     public function attributes()
     {
         return [
-            "type" => "product type",
+            "product.type" => "product type",
+            "product.brand" => "product brand",
+            "product.quantity" => "product quantity",
+            "product.price" => "product price",
         ];
     }
 }

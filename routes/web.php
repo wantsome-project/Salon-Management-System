@@ -23,11 +23,6 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')
     ->name('home');
 
-Route::get('/back_panel', function () {
-    return view('back_panel.layout');
-});
-
-
 Route::get('/frontpanel', function () {
     return view('front_panel.layout');
 })->name('frontpanel');
@@ -36,6 +31,9 @@ Route::prefix('back_panel')
     ->name("back_panel.")
     ->namespace("BackPanel")
     ->group(function () {
+        Route::get('/', function () {
+            return view('back_panel.layout');
+        })->name("dashboard");
         Route::prefix('products')
             ->group(function () {
                 Route::get('/example', function () {

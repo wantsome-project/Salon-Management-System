@@ -41,7 +41,7 @@ e
     public function store(StoreRequest $request)
     {
         $product = new Product();
-        $product->fill($request->all());
+        $product->fill($request->input('product'));
         $product->save();
 
         return redirect()
@@ -78,9 +78,9 @@ e
      */
     public function update(UpdateRequest $request, Product $product)
     {
-        $product->type = request("type");
-        $product->brand = request("brand");
-        $product->price = request("price");
+        $product->type = request("product.type");
+        $product->brand = request("product.brand");
+        $product->price = request("product.price");
         $product->save();
         return redirect()
             ->route("back_panel.products.index");
