@@ -7,6 +7,7 @@
                     Dashboard <span class="sr-only">(current)</span>
                 </a>
             </li>
+            @cannot('isEmployee')
             <li class="nav-item">
                 <a class="nav-link {{ request()->routeIs('back_panel.employees*') ? 'active' : ""}}  " href="{{ route("back_panel.employees.index") }}">
                     <span data-feather="users"></span>
@@ -21,6 +22,7 @@
                    Customers
                 </a>
             </li>
+            @endcannot
             <li class="nav-item ">
                 <a class="nav-link" href="#">
                     <span data-feather="file"></span>
@@ -28,6 +30,14 @@
                     Service types
                 </a>
             </li>
+            <li class="nav-item ">
+                <a class="nav-link" href="#">
+                    <span data-feather="file"></span>
+                    <i class="fas fa-cart-plus"></i>
+                    Services
+                </a>
+            </li>
+            @cannot('isEmployee')
             <li class="nav-item">
                 <a class="nav-link {{ request()->routeIs('back_panel.products*') ? 'active' : ""}} " href="{{ route("back_panel.products.index") }}">
                     <span data-feather="shopping-cart"></span>
@@ -35,6 +45,7 @@
                     Products
                 </a>
             </li>
+            @endcannot
         </ul>
     </div>
 </nav>

@@ -19,7 +19,7 @@ class UserRoles
 
     public static function getUserRole($id)
     {
-        $user_role = UserRoles::getUserRoles();
-        return $user_role[$id]??null;
+        $role_id = UserRoles::getUserRoles();
+        return $role_id[$id]??null;
     }
 }
