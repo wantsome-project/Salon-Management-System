@@ -35,6 +35,7 @@ Route::prefix('back_panel')
             return view('back_panel.layout');
         })->name("dashboard");
         Route::prefix('products')
+            ->middleware('can:isAdmin')
             ->group(function () {
                 Route::get('/example', function () {
                     return view('back_panel.example_form');
@@ -68,6 +69,7 @@ Route::prefix('back_panel')
                 });
         });
         Route::prefix('employee')
+            ->middleware('can:isAdmin')
             ->group(function () {
                 Route::get('/', 'EmployeeController@index')
                     ->name('employees.index');
