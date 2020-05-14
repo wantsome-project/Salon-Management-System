@@ -19,7 +19,7 @@ class ServicesTableSeeder extends Seeder
             ->orderBy('id')
             ->first();
         if (!$customer) {
-            die('Please run customer seed before services seed');
+            die('Please run customers seed before services seed');
         }
         $employee = Employee::query()
             ->orderBy('id')
@@ -47,7 +47,7 @@ class ServicesTableSeeder extends Seeder
             ->orderBy('id', 'desc')
             ->first();
         if (!$customer) {
-            die('Please run customer seed before services seed');
+            die('Please run customers seed before services seed');
         }
         $employee = Employee::query()
             ->orderBy('id', 'desc')

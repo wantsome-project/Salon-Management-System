@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Customer;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\User;
@@ -31,7 +32,6 @@ class RegisterController extends Controller
      * @var string
      */
     protected $redirectTo = RouteServiceProvider::HOME;
-
     /**
      * Create a new controller instance.
      *
@@ -54,6 +54,7 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'phone' =>['required', 'numeric'],
         ]);
     }
 
@@ -61,15 +62,27 @@ class RegisterController extends Controller
      * Create a new user instance after a valid registration.
      *
      * @param  array  $data
-     * @return \App\User
+     * @retufrn \App\User
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user = new User([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-            'role_id' => UserRoles::CUSTOMER,
         ]);
+
+        $user->role_id = UserRoles::CUSTOMER;
+        $user->save();
+
+        $customer = new Customer();
+        $customer->user_id = $user->id;
+        $customer->phone = $data['phone'];
+        $customer->save();
+        return $user;
+    }
+    public function redirectTo()
+    {
+        return route('frontpanel');
     }
 }

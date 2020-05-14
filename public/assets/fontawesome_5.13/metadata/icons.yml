@@ -10720,7 +10720,7 @@ intercom:
   search:
     terms:
       - app
-      - customer
+      - customers
       - messenger
   styles:
     - brands
