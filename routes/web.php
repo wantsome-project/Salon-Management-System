@@ -86,21 +86,30 @@ Route::prefix('back_panel')
         });
     });
 
-Route::get('/contact', function () {
-    return view('front_panel.layout_contact');
-})->name('contact');
+Route::namespace("FrontPanel")
+    ->group(function () {
+        Route::get('/staff', 'StaffController@index')
+            ->name('staff');
+
+        Route::get('/products', function () {
+            return view('front_panel.pages.products');
+        })->name('products');
+
+        Route::get('/contact', function () {
+                return view('front_panel.pages.contact');
+        })->name('contact');
+
+        Route::get('/service_types', 'ServiceTypesController@index')
+            ->name('service_types');
 
 
-Route::get('/staff', function () {
-    return view('front_panel.layout_staff');
-})->name('staff');
+    });
 
 
-Route::get('/products', function () {
-    return view('front_panel.layout_products');
-})->name('products');
 
 
-Route::get('/services', function () {
-    return view('front_panel.layout_services');
-})->name('ServicesType');
+
+
+
+
+
