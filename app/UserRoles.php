@@ -13,7 +13,7 @@ class UserRoles
         return [
             self::ADMIN => "admin",
             self::EMPLOYEE => "employee",
-            self::CUSTOMER => "customer",
+            self::CUSTOMER => "customers",
         ];
     }
 

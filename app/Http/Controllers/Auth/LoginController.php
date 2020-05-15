@@ -52,7 +52,7 @@ class LoginController extends Controller
                 ->route('frontpanel');
         } else {
             return redirect()
-            ->route('back_panel.dashboard');
+                ->route('back_panel.dashboard');
         }
     }
 }
