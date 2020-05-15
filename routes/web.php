@@ -62,11 +62,11 @@ Route::prefix('back_panel')
                     ->name('service_types.create');
                 Route::post('/','ServiceTypeController@store')
                     ->name('service_types.store');
-                Route::get('/{employee}/edit', 'ServiceTypeController@edit')
+                Route::get('/{serviceType}/edit', 'ServiceTypeController@edit')
                     ->name('service_types.edit');
-                Route::put('/{service_type}', 'ServiceTypeController@update')
+                Route::put('/{serviceType}', 'ServiceTypeController@update')
                     ->name('service_types.update');
-                Route::delete('/{service_type}', 'ServiceTypeController@destroy')
+                Route::delete('/{serviceType}', 'ServiceTypeController@destroy')
                     ->name('service_types.destroy');
             });
 

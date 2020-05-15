@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\BackPanel;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\BackPanel\Product\StoreRequest;
-use App\Http\Requests\BackPanel\Product\UpdateRequest;
+use App\Http\Requests\BackPanel\Service_Type\StoreRequest;
+use App\Http\Requests\BackPanel\Service_Type\UpdateRequest;
 use App\ServiceType;
 
 class ServiceTypeController extends Controller
@@ -25,10 +25,10 @@ class ServiceTypeController extends Controller
     public function store(StoreRequest $request)
     {
         $service_type = new ServiceType();
-        $service_type->fill($request->all());
-        $service_type->save()
+        $service_type->fill($request->input("service_type"));
+        $service_type->save();
 
-            ->route("ServicesType.index", $service_type);
+        return redirect()->route("back_panel.service_types.index");
     }
 
     public function show($id)
@@ -38,22 +38,21 @@ class ServiceTypeController extends Controller
     public function edit(ServiceType $serviceType)
     {
         return view("back_panel.serviceType.edit")
-            ->with("service_types", $serviceType);
+            ->with("service_type", $serviceType);
     }
     public function update(UpdateRequest $request, ServiceType $serviceType)
     {
-        $serviceType->name = request("name");
-        $serviceType->description = request("description");
-        $serviceType->duration = request("duration");
-        $serviceType->price = request("price");
+        $serviceType->name = request("service_type.name");
+        $serviceType->description = request("service_type.description");
+        $serviceType->duration = request("service_type.duration");
+        $serviceType->price = request("service_type.price");
         $serviceType->save();
-        return redirect()
-            ->route("service_types.index");
+        return redirect()->route("back_panel.service_types.index");
     }
     public function destroy(ServiceType $serviceType)
     {
         $serviceType->delete();
         return redirect()
-            ->route("service_types.index");
+            ->route("back_panel.service_types.index");
     }
 }

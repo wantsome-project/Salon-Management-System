@@ -1,6 +1,6 @@
 @extends("back_panel.layout")
 
-@section("header", "Update employee")
+@section("header", "Update Service Types")
 
 @section("content")
     @php
