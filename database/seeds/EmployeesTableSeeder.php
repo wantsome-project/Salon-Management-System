@@ -26,7 +26,8 @@ class EmployeesTableSeeder extends Seeder
         $employee = new Employee([
             'user_id' => $user->id,
             'phone' => '0749982097',
-            'payroll' => '2000'
+            'title' => 'hairstylist',
+            'payroll' => '2000',
         ]);
         $employee->save();
 
@@ -41,7 +42,8 @@ class EmployeesTableSeeder extends Seeder
         $employee = new Employee([
             'user_id' => $user->id,
             'phone' => '0749851345',
-            'payroll' => '4500'
+            'title' => 'stylist',
+            'payroll' => '4500',
         ]);
         $employee->save();
     }

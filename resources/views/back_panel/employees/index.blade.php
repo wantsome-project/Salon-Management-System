@@ -8,6 +8,7 @@
 @section("content")
     @php
         /* @var \App\Employee[] $employees */
+        /* @var \App\SalaryPayment $salary_payment*/
     @endphp
 
     <div class="row">
@@ -19,6 +20,7 @@
                     <th>Email</th>
                     <th>Phone</th>
                     <th>Payroll</th>
+                    <th>Current month pay status</th>
                     <th></th>
                     <th></th>
                 </tr>
@@ -29,6 +31,10 @@
                         <th>{{ $employee->user->email }}</th>
                         <td>{{ $employee->phone }}</td>
                         <td>{{ $employee->payroll }}</td>
+                        @php
+                          $payment_status = $employee->payroll
+                        @endphp
+                        <td>{{ $payment_status }}</td>
                         <td><a href="{{ route('back_panel.employees.edit', $employee) }}"><i class="fas fa-edit"></i></a></td>
                         <td>
                             {!! Form::open(['url' => route('back_panel.employees.destroy',[$employee])]) !!}

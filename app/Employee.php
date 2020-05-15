@@ -27,6 +27,11 @@ class Employee extends Model
         return $this->hasMany(Service::class, "employee_id", "id");
     }
 
+    public function salary_payments()
+    {
+        return $this->hasMany(SalaryPayment::class, "employee_id", 'id');
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class, "user_id", "id");
