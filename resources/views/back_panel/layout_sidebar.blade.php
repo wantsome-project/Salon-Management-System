@@ -16,7 +16,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link ">
+                <a class="nav-link {{ request()->routeIs('back_panel.customers*') ? 'active' : ""}}  " href="{{ route("back_panel.customers.index") }}">
                     <span data-feather="users"></span>
                     <i class="fas fa-users"></i>
                    Customers
@@ -33,7 +33,7 @@
             <li class="nav-item ">
                 <a class="nav-link" href="#">
                     <span data-feather="file"></span>
-                    <i class="fas fa-cart-plus"></i>
+                    <i class="fas fa-hand-holding-usd"></i>
                     Services
                 </a>
             </li>

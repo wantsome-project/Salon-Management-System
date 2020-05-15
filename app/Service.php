@@ -13,7 +13,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property integer      $price
  * @property ServiceType  $serviceType
  * @property Employee     $employee
- * @property Customer     $customer
+ * @property Customer     $customers
  */
 
 class Service extends Model

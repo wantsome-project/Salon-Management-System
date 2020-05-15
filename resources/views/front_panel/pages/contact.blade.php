@@ -32,11 +32,6 @@
         </div>
     </div>
     <div class="form-group row">
-        <div class="col-sm-2">Checkbox</div>
-        <div class="col-sm-10">
-        </div>
-    </div>
-    <div class="form-group row">
         <div class="col-sm-10">
             <button type="submit" class="btn btn-primary">Sumbit</button>
         </div>

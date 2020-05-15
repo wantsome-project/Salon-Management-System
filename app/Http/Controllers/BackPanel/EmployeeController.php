@@ -47,7 +47,7 @@ class EmployeeController extends Controller
      */
     public function store(StoreRequest $request)
     {
-        // try find user using email, possible to be created as customer
+        // try find user using email, possible to be created as customers
         /* @var User $user */
         $user = User::query()
             ->where('email', '=', $request->input('user.email'))

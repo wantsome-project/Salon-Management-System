@@ -16,7 +16,7 @@ use App\UserRoles;
  * @property string   $email
  * @property string   $password
  * @property Employee $employee
- * @property Customer $customer
+ * @property Customer $customers
  */
 class User extends Authenticatable
 {

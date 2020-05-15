@@ -37,9 +37,6 @@ Route::prefix('back_panel')
         Route::prefix('products')
             ->middleware('can:isAdmin')
             ->group(function () {
-                Route::get('/example', function () {
-                    return view('back_panel.example_form');
-                });
                 Route::get('/', 'ProductController@index')
                     ->name('products.index');
                 Route::get('/create', 'ProductController@create')
@@ -62,11 +59,11 @@ Route::prefix('back_panel')
                 });
         });
 
-        Route::prefix('customer')
+        Route::prefix('customers')
+            ->middleware('can:isAdmin')
             ->group(function () {
-                Route::get('/', function () {
-                    return "to do";
-                });
+                Route::get('/', 'CustomerController@index')
+                    ->name('customers.index');
         });
         Route::prefix('employee')
             ->middleware('can:isAdmin')
