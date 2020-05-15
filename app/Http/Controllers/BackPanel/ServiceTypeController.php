@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\BackPanel;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\BackPanel\Service_Type\StoreRequest;
-use App\Http\Requests\BackPanel\Service_Type\UpdateRequest;
+use App\Http\Requests\BackPanel\ServiceType\StoreRequest;
+use App\Http\Requests\BackPanel\ServiceType\UpdateRequest;
 use App\ServiceType;
 
 class ServiceTypeController extends Controller

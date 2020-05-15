@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\BackPanel\Service_Type;
+namespace App\Http\Requests\BackPanel\ServiceType;
 
 use Illuminate\Foundation\Http\FormRequest;
 
