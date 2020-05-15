@@ -54,10 +54,19 @@ Route::prefix('back_panel')
 
         Route::prefix('service_type')
             ->group(function () {
-                Route::get('/', function () {
-                    return "to do";
-                });
-        });
+                Route::get('/', 'ServiceTypeController@index')
+                    ->name('service_types.index');
+                Route::get('/create', 'ServiceTypeController@create')
+                    ->name('service_types.create');
+                Route::post('/','ServiceTypeController@store')
+                    ->name('service_types.store');
+                Route::get('/{serviceType}/edit', 'ServiceTypeController@edit')
+                    ->name('service_types.edit');
+                Route::put('/{serviceType}', 'ServiceTypeController@update')
+                    ->name('service_types.update');
+                Route::delete('/{serviceType}', 'ServiceTypeController@destroy')
+                    ->name('service_types.destroy');
+            });
 
         Route::prefix('customers')
             ->middleware('can:isAdmin')
