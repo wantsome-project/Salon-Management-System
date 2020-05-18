@@ -30,7 +30,7 @@
                 </div>
             </div>
             <div class="form-group row">
-                {!! Form::label("salary_payment[description]", "Description", ["class" =>"col-sm-2 col-form-label"]) !!}
+                {!! Form::label("salary_payment[description]", "Payment details", ["class" =>"col-sm-2 col-form-label"]) !!}
                 <div class="col-sm-4">
                     {!! Form::text("salary_payment[description]", null, ["class"=>"form-control ".($errors->has("salary_payment.description") ? "is-invalid" : "")]) !!}
                     @error("salary_payment.description")

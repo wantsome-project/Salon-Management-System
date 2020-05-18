@@ -18,7 +18,7 @@
                     <th>Id</th>
                     <th>Employee name</th>
                     <th>Paid amount</th>
-                    <th>Payment detail</th>
+                    <th>Payment details</th>
                     <th>Paid at</th>
                     <th>Updated at</th>
                     <th></th>

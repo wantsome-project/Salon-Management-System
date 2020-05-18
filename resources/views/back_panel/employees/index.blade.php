@@ -31,10 +31,7 @@
                         <th>{{ $employee->user->email }}</th>
                         <td>{{ $employee->phone }}</td>
                         <td>{{ $employee->payroll }}</td>
-                        @php
-                          $payment_status = $employee->payroll
-                        @endphp
-                        <td>{{ $payment_status }}</td>
+                        <td>{{ "Rest to be paid: ". ($employee->payroll - $employee->paid_amount) }}</td>
                         <td><a href="{{ route('back_panel.employees.edit', $employee) }}"><i class="fas fa-edit"></i></a></td>
                         <td>
                             {!! Form::open(['url' => route('back_panel.employees.destroy',[$employee])]) !!}
