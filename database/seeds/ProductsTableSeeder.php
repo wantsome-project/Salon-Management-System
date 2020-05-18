@@ -13,24 +13,24 @@ class ProductsTableSeeder extends Seeder
     public function run()
     {
         $product = new Product([
-            'type' => 'Sampon',
-            'brand' => 'Nivea',
+            'type' => 'Shampoo',
+            'brand' => "L'Oreal",
             'price' => '100',
             'quantity' => '2',
         ]);
         $product->save();
 
         $product = new Product([
-            'type' => 'Vopsea de par',
-            'brand' => 'Garnier',
+            'type' => 'Hair color',
+            'brand' => "L'Oreal",
             'price' => '50',
             'quantity' => '3',
         ]);
         $product->save();
 
         $product = new Product([
-            'type' => 'Balsam de par',
-            'brand' => 'Head & Shoulders',
+            'type' => 'Hair conditioner',
+            'brand' => "L'Oreal",
             'price' => '40',
             'quantity' => '3',
         ]);

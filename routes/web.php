@@ -1,5 +1,6 @@
 <?php
 
+use App\ServiceType;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -15,8 +16,20 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('front_panel.layout');
-});
+    $service_types = ServiceType::query()
+        ->limit(2)
+        ->get();
+    $employees = \App\Employee::query()
+        ->limit(2)
+        ->get();
+    $products = \App\Product::query()
+        ->limit(2)
+        ->get();
+    return view('front_panel.pages.home')
+        ->with('service_types', $service_types)
+        ->with('employees', $employees)
+        ->with('products', $products);
+})->name('home_page');
 
 Auth::routes();
 
@@ -97,9 +110,8 @@ Route::namespace("FrontPanel")
         Route::get('/staff', 'StaffController@index')
             ->name('staff');
 
-        Route::get('/products', function () {
-            return view('front_panel.pages.products');
-        })->name('products');
+        Route::get('/products', 'ProductController@index')
+            ->name('products');
 
         Route::get('/contact', function () {
                 return view('front_panel.pages.contact');
