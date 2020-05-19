@@ -29,7 +29,7 @@
                    Customers
                 </a>
             </li>
-            @endcannot
+
             <li class="nav-item ">
                 <a class="nav-link {{ request()->routeIs('back_panel.service_types*') ? 'active' : ""}} "  href="{{ route("back_panel.service_types.index") }}">
                     <span data-feather="file"></span>
@@ -37,8 +37,9 @@
                     Service types
                 </a>
             </li>
+            @endcannot
             <li class="nav-item ">
-                <a class="nav-link" href="#">
+                <a class="nav-link {{ request()->routeIs('back_panel.services*') ? 'active' : ""}} "  href="{{ route("back_panel.services.index") }}">
                     <span data-feather="file"></span>
                     <i class="fas fa-hand-holding-usd"></i>
                     Services
@@ -53,6 +54,13 @@
                 </a>
             </li>
             @endcannot
+            <li class="nav-item ">
+                <a class="nav-link" href="#">
+                    <span data-feather="file"></span>
+                    <i class="fas fa-calendar-check"></i>
+                    Appointments
+                </a>
+            </li>
         </ul>
     </div>
 </nav>

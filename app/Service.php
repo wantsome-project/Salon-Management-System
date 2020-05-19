@@ -19,7 +19,11 @@ use Illuminate\Database\Eloquent\Model;
 class Service extends Model
 {
     protected $table = "services";
-
+    protected $fillable = [
+        'employee_id',
+        'customer_id',
+        'service_type_id',
+    ];
 
     public function serviceType()
     {

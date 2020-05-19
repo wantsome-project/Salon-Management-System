@@ -41,7 +41,11 @@ class StoreRequest extends FormRequest
                 "min:8",
                 "confirmed"
             ],
-
+            "employee.title" => [
+                "required",
+                "string",
+                "max:255"
+            ],
             "employee.phone" => [
                 "required",
                 "numeric",

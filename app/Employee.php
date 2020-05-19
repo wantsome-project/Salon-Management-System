@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
  * @package App
  * @property integer  $id
  * @property integer  $user_id
+ * @property string   $title
  * @property string   $phone
  * @property integer  $payroll
  * @property Service  $services
