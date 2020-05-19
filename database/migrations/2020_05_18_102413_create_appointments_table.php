@@ -21,6 +21,12 @@ class CreateAppointmentsTable extends Migration
                 ->unsigned();
             $table->bigInteger('service_type_id')
                 ->unsigned();
+            $table->text('status')
+                ->nullable();
+            $table->dateTime('appointment_time')
+                ->nullable();
+            $table->dateTime('appointment_date')
+                ->nullable();
             $table->timestamps();
 
             $table->foreign('customer_id', 'customer_appointment_foreign')

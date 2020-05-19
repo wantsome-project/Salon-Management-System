@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property integer      $customer_id
  * @property integer      $service_type_id
  * @property integer      $employee_id
+ * @property string       $status
  */
 
 class Appointment extends Model
