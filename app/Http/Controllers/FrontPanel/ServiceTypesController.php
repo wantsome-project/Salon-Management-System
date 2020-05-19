@@ -16,7 +16,7 @@ class ServiceTypesController extends Controller
     {
         $service_types = ServiceType::query()
             ->paginate(10);
-        return view("front_panel.pages.service_types")
+        return view("front_panel.pages.service_type.index")
             ->with("service_types", $service_types);
     }
 

@@ -2,28 +2,28 @@
 
 namespace App\Http\Controllers\FrontPanel;
 
-use App\Employee;
 use App\Http\Controllers\Controller;
+use App\Product;
 use Illuminate\Http\Request;
 
-class StaffController extends Controller
+class ProductController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
+
      */
     public function index()
     {
-        $employees = Employee::query()
-            ->with(['user'])
+        $products = Product::query()
             ->paginate(10);
-        return view("front_panel.pages.staff.index")
-            ->with("employees", $employees);
+        return view("front_panel.pages.products.index")
+            ->with("products", $products);
     }
 
     /**
      * Show the form for creating a new resource.
-
+     *
      * @return \Illuminate\Http\Response
      */
     public function create()
