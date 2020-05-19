@@ -6,8 +6,11 @@ use App\Employee;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\BackPanel\Employee\StoreRequest;
 use App\Http\Requests\BackPanel\Employee\UpdateRequest;
+use App\SalaryPayment;
 use App\User;
 use App\UserRoles;
+use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -24,6 +27,14 @@ class EmployeeController extends Controller
         $employees = Employee::query()
             ->with(['user'])
             ->paginate(10);
+
+        foreach ($employees as $employee) {
+            $start = Carbon::now()->startOfMonth();
+            $employee->paid_amount = $employee->salary_payments()
+                ->where('created_at', ">=", $start)
+                ->sum('paid');
+        }
+
         return view("back_panel.employees.index")
             ->with("employees", $employees);
     }

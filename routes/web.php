@@ -65,7 +65,8 @@ Route::prefix('back_panel')
 
         });
 
-        Route::prefix('service_type')
+        Route::prefix('service_types')
+            ->middleware('can:isAdmin')
             ->group(function () {
                 Route::get('/', 'ServiceTypeController@index')
                     ->name('service_types.index');
@@ -87,7 +88,7 @@ Route::prefix('back_panel')
                 Route::get('/', 'CustomerController@index')
                     ->name('customers.index');
         });
-        Route::prefix('employee')
+        Route::prefix('employees')
             ->middleware('can:isAdmin')
             ->group(function () {
                 Route::get('/', 'EmployeeController@index')
@@ -103,6 +104,24 @@ Route::prefix('back_panel')
                 Route::delete('/{employee}', 'EmployeeController@destroy')
                     ->name('employees.destroy');
         });
+
+        Route::prefix('salary_payments')
+            ->middleware('can:isAdmin')
+            ->group(function () {
+                Route::get('/', 'SalaryPaymentController@index')
+                    ->name('salary_payments.index');
+                Route::get('/create', 'SalaryPaymentController@create')
+                    ->name('salary_payments.create');
+                Route::post('/','SalaryPaymentController@store')
+                    ->name('salary_payments.store');
+                Route::get('/{salary_payment}/edit', 'SalaryPaymentController@edit')
+                    ->name('salary_payments.edit');
+                Route::put('/{salary_payment}', 'SalaryPaymentController@update')
+                    ->name('salary_payments.update');
+                Route::delete('/{salary_payment}', 'SalaryPaymentController@destroy')
+                    ->name('salary_payments.destroy');
+
+            });
     });
 
 Route::namespace("FrontPanel")
