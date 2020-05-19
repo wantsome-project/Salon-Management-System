@@ -1,6 +1,6 @@
 @extends("front_panel.layout")
 @section("header")
-    Service Types
+    Services
 @endsection
 
 @section("content")

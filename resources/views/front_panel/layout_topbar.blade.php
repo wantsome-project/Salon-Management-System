@@ -1,10 +1,10 @@
 <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
     <h5 class="my-0 mr-md-auto font-weight-normal"><a class="p-2 text-dark" href="{{ route('home_page') }}">Company name</a></h5>
     <nav class="my-2 my-md-0 mr-md-3">
-        <a class="p-2 text-dark" href="{{ route("service_types") }}">Service types</a>
+        <a class="p-2 text-dark" href="{{ route("service_types") }}">Services</a>
         <a class="p-2 text-dark" href="{{ route("products") }}">Products</a>
-        <a class="p-2 text-dark {{ request()->routeIs('front_panel.pages.staff*') ? 'active' : ""}} " href="{{ route("staff") }}">Staff</a>
-        <a class="p-2 text-dark" href="/contact">Contatct</a>
+        <a class="p-2 text-dark {{ request()->routeIs('front_panel.pages.staff*') ? 'active' : ""}} " href="{{ route("staff") }}">Team</a>
+        <a class="p-2 text-dark" href="/contact">Contact</a>
         <a class="p-2 text-dark" href="">Appointment</a>
     </nav>
     <!-- Authentication Links -->
