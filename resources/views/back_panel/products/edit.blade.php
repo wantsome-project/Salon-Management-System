@@ -4,7 +4,7 @@
 
 @section("content")
     @php
-        /* @var \App\Product $product */
+        /* @var \App\Product[] $product */
     @endphp
 
     <div class="row">

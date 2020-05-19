@@ -14,6 +14,13 @@
                     <i class="fas fa-user-friends"></i>
                     Employees
                 </a>
+                <ul>
+                    <li class="toc-entry toc-h3">
+                        <a class ="nav-link {{ request()->routeIs('back_panel.salary_payments*') ? 'active' : ""}}  " href="{{ route("back_panel.salary_payments.index") }}">
+                            Salary payments
+                        </a>
+                    </li>
+                </ul>
             </li>
             <li class="nav-item">
                 <a class="nav-link {{ request()->routeIs('back_panel.customers*') ? 'active' : ""}}  " href="{{ route("back_panel.customers.index") }}">

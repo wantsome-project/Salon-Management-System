@@ -4,7 +4,7 @@
 
 @section("content")
     @php
-        /* @var \App\Employee $employee */
+        /* @var \App\Employee[] $employee */
     @endphp
 
     <div class="row">
