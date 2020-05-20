@@ -7,7 +7,6 @@
         /* @var \App\SalaryPayment[] $salary_payment */
     @endphp
 
-
     <div class="row">
         <div class="col-8">
             {!! Form::open(['url' => route('back_panel.salary_payments.store')]) !!}

@@ -1,14 +1,17 @@
 @extends("back_panel.layout")
 
 @section("header", "Fill in the information of the new service")
+        @php
+            $user =  Auth::user();
+        @endphp
 
 @section("content")
     <div class="row">
         <div class="col-8">
             {!! Form::open(['url' => route('back_panel.services.store')]) !!}
-            @if($user = Auth::user()->role_id == \App\UserRoles::ADMIN)
+            @if($user->role_id == \App\UserRoles::ADMIN)
             <div class="form-group row">
-                {!! Form::label("service[employee_id]", "Employee Name", ["class" =>"col-sm-2 col-form-label"]) !!}
+                {!! Form::label("service[employee_id]", "Employee", ["class" =>"col-sm-2 col-form-label"]) !!}
                 <div class="col-sm-4">
                     {!! Form::select("service[employee_id]",$employees_services, null, ["class"=>"form-control ".($errors->has("service.employee_id") ? "is-invalid" : "")]) !!}
                     @error("service.employee_id")
@@ -18,7 +21,7 @@
             </div>
             @endif
             <div class="form-group row">
-                {!! Form::label("service[customer_id]", "Customer Name", ["class" =>"col-sm-2 col-form-label"]) !!}
+                {!! Form::label("service[customer_id]", "Customer", ["class" =>"col-sm-2 col-form-label"]) !!}
                 <div class="col-sm-4">
                     {!! Form::select("service[customer_id]",$customers_services, null, ["class"=>"form-control ".($errors->has("service.customer_id") ? "is-invalid" : "")]) !!}
                     @error("service.customer_id")

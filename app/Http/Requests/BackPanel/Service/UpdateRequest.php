@@ -5,7 +5,7 @@ namespace App\Http\Requests\BackPanel\Service;
 use App\UserRoles;
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreRequest extends FormRequest
+class UpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -31,7 +31,6 @@ class StoreRequest extends FormRequest
             $this->merge($all_inputs);
         }
     }
-
     /**
      * Get the validation rules that apply to the request.
      *
@@ -68,5 +67,4 @@ class StoreRequest extends FormRequest
             "service.service_type_id" => "Payment details",
         ];
     }
-
 }

@@ -5,52 +5,43 @@
     <a href="{{ route("back_panel.services.create") }}" class="btn btn-primary float-right">Add new service</a>
 @endsection
 
+@section("content")
+    @php
+        /* @var \App\Service[]     $services */
+    @endphp
 
-{{--@section("content")--}}
-{{--    @php--}}
-{{--        /* @var \App\Employee[] $employees */--}}
-{{--        /* @var \App\Employee[] $employees */--}}
-{{--        /* @var \App\Employee[] $employees */--}}
-{{--        /* @var \App\Employee[] $employees */--}}
-{{--        --}}
-{{--    @endphp--}}
+    <div class="row">
+        <div class="col-8">
+            <table class="table table-striped">
+                <tr>
+                    <th>Id</th>
+                    <th>Employee </th>
+                    <th>Customer </th>
+                    <th>Service type</th>
+                    <th>Total to be paid</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                @foreach($services as $service)
+                    <tr>
+                        <th>{{ $service->id }}</th>
+                        <th>{{ $service->employee->user->name }}</th>
+                        <th>{{ $service->customer->user->name }}</th>
+                        <th>{{ $service->serviceType->name }}</th>
+                        <td>{{ ($service->price)." euro" }}</td>
+                        <td><a href="{{ route('back_panel.services.edit', $service) }}"><i class="fas fa-edit"></i></a></td>
+                        <td>
+                            {!! Form::open(['url' => route('back_panel.services.destroy',[$service])]) !!}
+                            @csrf
+                            @method("delete")
+                            <button type="submit" class="btn btn-danger btn-sm"><i class="far fa-trash-alt"></i></button>
+                            {!! Form::close() !!}
+                        </td>
+                    </tr>
+                @endforeach
+            </table>
+        </div>
+    </div>
 
-{{--    <div class="row">--}}
-{{--        <div class="col-8">--}}
-{{--            <table class="table table-striped">--}}
-{{--                <tr>--}}
-{{--                    <th>Id</th>--}}
-{{--                    <th>Name</th>--}}
-{{--                    <th>Job position</th>--}}
-{{--                    <th>Email</th>--}}
-{{--                    <th>Phone</th>--}}
-{{--                    <th>Payroll</th>--}}
-{{--                    <th>Current month pay status</th>--}}
-{{--                    <th></th>--}}
-{{--                    <th></th>--}}
-{{--                </tr>--}}
-{{--                @foreach($employees as $employee)--}}
-{{--                    <tr>--}}
-{{--                        <th>{{ $employee->id }}</th>--}}
-{{--                        <th>{{ $employee->user->name }}</th>--}}
-{{--                        <th>{{ $employee->title }}</th>--}}
-{{--                        <th>{{ $employee->user->email }}</th>--}}
-{{--                        <td>{{ $employee->phone }}</td>--}}
-{{--                        <td>{{ $employee->payroll }}</td>--}}
-{{--                        <td>{{ "Rest to be paid: ". ($employee->payroll - $employee->paid_amount) }}</td>--}}
-{{--                        <td><a href="{{ route('back_panel.employees.edit', $employee) }}"><i class="fas fa-edit"></i></a></td>--}}
-{{--                        <td>--}}
-{{--                            {!! Form::open(['url' => route('back_panel.employees.destroy',[$employee])]) !!}--}}
-{{--                            @csrf--}}
-{{--                            @method("delete")--}}
-{{--                            <button type="submit" class="btn btn-danger btn-sm"><i class="far fa-trash-alt"></i></button>--}}
-{{--                            {!! Form::close() !!}--}}
-{{--                        </td>--}}
-{{--                    </tr>--}}
-{{--                @endforeach--}}
-{{--            </table>--}}
-{{--        </div>--}}
-{{--    </div>--}}
-
-{{--    {{ $employees->links() }}--}}
-{{--@endsection--}}
+    {{ $services->links() }}
+@endsection

@@ -124,7 +124,6 @@ Route::prefix('back_panel')
             });
 
         Route::prefix('services')
-//            ->middleware('can:isAdmin')
             ->group(function () {
                 Route::get('/', 'ServiceController@index')
                     ->name('services.index');

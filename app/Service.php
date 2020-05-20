@@ -11,9 +11,9 @@ use Illuminate\Database\Eloquent\Model;
  * @property integer      $service_type_id
  * @property integer      $employee_id
  * @property integer      $price
- * @property ServiceType  $serviceTypes
- * @property Employee     $employees
- * @property Customer     $customers
+ * @property ServiceType  $serviceType
+ * @property Employee     $employee
+ * @property Customer     $customer
  */
 
 class Service extends Model
