@@ -15,4 +15,5 @@
     <h4 class="p-3 mb-2 bg-primary text-white">Our team</h4>
     <hr>
     @include('front_panel.pages.staff.cards')
+
 @endsection
