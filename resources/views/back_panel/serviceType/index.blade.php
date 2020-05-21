@@ -7,7 +7,7 @@
 
 @section("content")
     @php
-        /* @var \App\ServiceType[] $service_type */
+        /* @var \App\ServiceType[] $service_types */
     @endphp
 
     <div class="row">

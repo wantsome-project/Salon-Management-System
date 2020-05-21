@@ -63,7 +63,7 @@ Route::prefix('back_panel')
                 Route::delete('/{product}', 'ProductController@destroy')
                     ->name('products.destroy');
 
-        });
+            });
 
         Route::prefix('service_types')
             ->middleware('can:isAdmin')
@@ -87,7 +87,7 @@ Route::prefix('back_panel')
             ->group(function () {
                 Route::get('/', 'CustomerController@index')
                     ->name('customers.index');
-        });
+            });
         Route::prefix('employees')
             ->middleware('can:isAdmin')
             ->group(function () {
@@ -103,7 +103,7 @@ Route::prefix('back_panel')
                     ->name('employees.update');
                 Route::delete('/{employee}', 'EmployeeController@destroy')
                     ->name('employees.destroy');
-        });
+            });
 
         Route::prefix('salary_payments')
             ->middleware('can:isAdmin')
@@ -121,6 +121,22 @@ Route::prefix('back_panel')
                 Route::delete('/{salary_payment}', 'SalaryPaymentController@destroy')
                     ->name('salary_payments.destroy');
 
+            });
+
+        Route::prefix('services')
+            ->group(function () {
+                Route::get('/', 'ServiceController@index')
+                    ->name('services.index');
+                Route::get('/create', 'ServiceController@create')
+                    ->name('services.create');
+                Route::post('/','ServiceController@store')
+                    ->name('services.store');
+                Route::get('/{service}/edit', 'ServiceController@edit')
+                    ->name('services.edit');
+                Route::put('/{service}', 'ServiceController@update')
+                    ->name('services.update');
+                Route::delete('/{service}', 'ServiceController@destroy')
+                    ->name('services.destroy');
             });
     });
 

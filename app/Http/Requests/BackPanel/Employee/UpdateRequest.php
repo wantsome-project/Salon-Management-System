@@ -27,6 +27,11 @@ class UpdateRequest extends FormRequest
             "user.name" => [
                 "required",
             ],
+            "employee.title" => [
+                "required",
+                "string",
+                "max:255"
+            ],
             "employee.phone" => [
                 "required",
                 "numeric",

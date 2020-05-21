@@ -83,6 +83,7 @@ class EmployeeController extends Controller
         $employee->fill($request->input("employee"));
         $employee->user_id = $user->id;
         $employee->payroll = $request->input("employee.payroll");
+        $employee->title = $request->input("employee.title");
         $employee->save();
 
         return redirect()
@@ -120,6 +121,7 @@ class EmployeeController extends Controller
     {
         $employee->user->name = request("user.name");
         $employee->user->save();
+        $employee->title = request("employee.title");
         $employee->phone = request("employee.phone");
         $employee->payroll = request("employee.payroll");
         $employee->save();

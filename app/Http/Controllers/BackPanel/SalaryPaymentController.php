@@ -52,8 +52,6 @@ class SalaryPaymentController extends Controller
      */
     public function store(StoreRequest $request)
     {
-//        /* @var Employee $employee */
-//        dd($request->all());
         $salary_payment = new SalaryPayment();
         $salary_payment->fill($request->input('salary_payment'));
         $salary_payment->save();
@@ -95,7 +93,7 @@ class SalaryPaymentController extends Controller
     {
 
         $salary_payment->paid = request("salary_payment.paid");
-        $salary_payment->descriptions = request("salary_payment.descriptions");
+        $salary_payment->description = request("salary_payment.description");
         $salary_payment->save();
 
         return redirect()

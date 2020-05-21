@@ -1,6 +1,6 @@
 @extends("back_panel.layout")
 
-@section("header", "Fill in the information of the new Service")
+@section("header", "Fill in the information of the new service type")
 
 @section("content")
     <div class="row">

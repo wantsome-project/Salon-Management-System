@@ -17,6 +17,7 @@
                 <tr>
                     <th>Id</th>
                     <th>Name</th>
+                    <th>Job position</th>
                     <th>Email</th>
                     <th>Phone</th>
                     <th>Payroll</th>
@@ -28,6 +29,7 @@
                     <tr>
                         <th>{{ $employee->id }}</th>
                         <th>{{ $employee->user->name }}</th>
+                        <th>{{ $employee->title }}</th>
                         <th>{{ $employee->user->email }}</th>
                         <td>{{ $employee->phone }}</td>
                         <td>{{ $employee->payroll }}</td>
