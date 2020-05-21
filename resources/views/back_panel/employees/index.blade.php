@@ -8,6 +8,7 @@
 @section("content")
     @php
         /* @var \App\Employee[] $employees */
+        /* @var \App\SalaryPayment $salary_payment*/
     @endphp
 
     <div class="row">
@@ -16,9 +17,11 @@
                 <tr>
                     <th>Id</th>
                     <th>Name</th>
+                    <th>Job position</th>
                     <th>Email</th>
                     <th>Phone</th>
                     <th>Payroll</th>
+                    <th>Current month pay status</th>
                     <th></th>
                     <th></th>
                 </tr>
@@ -26,9 +29,11 @@
                     <tr>
                         <th>{{ $employee->id }}</th>
                         <th>{{ $employee->user->name }}</th>
+                        <th>{{ $employee->title }}</th>
                         <th>{{ $employee->user->email }}</th>
                         <td>{{ $employee->phone }}</td>
                         <td>{{ $employee->payroll }}</td>
+                        <td>{{ "Rest to be paid: ". ($employee->payroll - $employee->paid_amount) }}</td>
                         <td><a href="{{ route('back_panel.employees.edit', $employee) }}"><i class="fas fa-edit"></i></a></td>
                         <td>
                             {!! Form::open(['url' => route('back_panel.employees.destroy',[$employee])]) !!}

@@ -1,5 +1,6 @@
 <?php
 
+use App\ServiceType;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -15,8 +16,20 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('front_panel.layout');
-});
+    $service_types = ServiceType::query()
+        ->limit(2)
+        ->get();
+    $employees = \App\Employee::query()
+        ->limit(2)
+        ->get();
+    $products = \App\Product::query()
+        ->limit(2)
+        ->get();
+    return view('front_panel.pages.home')
+        ->with('service_types', $service_types)
+        ->with('employees', $employees)
+        ->with('products', $products);
+})->name('home_page');
 
 Auth::routes();
 
@@ -51,9 +64,10 @@ Route::prefix('back_panel')
                 Route::delete('/{product}', 'ProductController@destroy')
                     ->name('products.destroy');
 
-        });
+            });
 
-        Route::prefix('service_type')
+        Route::prefix('service_types')
+            ->middleware('can:isAdmin')
             ->group(function () {
                 Route::get('/', 'ServiceTypeController@index')
                     ->name('service_types.index');
@@ -74,8 +88,8 @@ Route::prefix('back_panel')
             ->group(function () {
                 Route::get('/', 'CustomerController@index')
                     ->name('customers.index');
-        });
-        Route::prefix('employee')
+            });
+        Route::prefix('employees')
             ->middleware('can:isAdmin')
             ->group(function () {
                 Route::get('/', 'EmployeeController@index')
@@ -90,6 +104,7 @@ Route::prefix('back_panel')
                     ->name('employees.update');
                 Route::delete('/{employee}', 'EmployeeController@destroy')
                     ->name('employees.destroy');
+
         });
         Route::prefix('appointment')
             ->group(function () {
@@ -105,6 +120,40 @@ Route::prefix('back_panel')
                     ->name('appointments.update');
                 Route::delete('/{appointment}', 'ServiceTypeController@destroy')
                     ->name('appointments.destroy');
+
+            });
+
+        Route::prefix('salary_payments')
+            ->middleware('can:isAdmin')
+            ->group(function () {
+                Route::get('/', 'SalaryPaymentController@index')
+                    ->name('salary_payments.index');
+                Route::get('/create', 'SalaryPaymentController@create')
+                    ->name('salary_payments.create');
+                Route::post('/','SalaryPaymentController@store')
+                    ->name('salary_payments.store');
+                Route::get('/{salary_payment}/edit', 'SalaryPaymentController@edit')
+                    ->name('salary_payments.edit');
+                Route::put('/{salary_payment}', 'SalaryPaymentController@update')
+                    ->name('salary_payments.update');
+                Route::delete('/{salary_payment}', 'SalaryPaymentController@destroy')
+                    ->name('salary_payments.destroy');
+            });
+
+        Route::prefix('services')
+            ->group(function () {
+                Route::get('/', 'ServiceController@index')
+                    ->name('services.index');
+                Route::get('/create', 'ServiceController@create')
+                    ->name('services.create');
+                Route::post('/','ServiceController@store')
+                    ->name('services.store');
+                Route::get('/{service}/edit', 'ServiceController@edit')
+                    ->name('services.edit');
+                Route::put('/{service}', 'ServiceController@update')
+                    ->name('services.update');
+                Route::delete('/{service}', 'ServiceController@destroy')
+                    ->name('services.destroy');
             });
     });
 
@@ -113,9 +162,8 @@ Route::namespace("FrontPanel")
         Route::get('/staff', 'StaffController@index')
             ->name('staff');
 
-        Route::get('/products', function () {
-            return view('front_panel.pages.products');
-        })->name('products');
+        Route::get('/products', 'ProductController@index')
+            ->name('products');
 
         Route::get('/contact', function () {
                 return view('front_panel.pages.contact');

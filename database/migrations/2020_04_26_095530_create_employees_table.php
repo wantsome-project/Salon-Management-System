@@ -21,6 +21,8 @@ class CreateEmployeesTable extends Migration
                 ->unique();
             $table->string('phone', 20)
                 ->nullable();
+            $table->string('title')
+                ->nullable();
             $table->string('payroll')
                 ->nullable();
             $table->timestamps();

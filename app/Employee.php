@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
  * @package App
  * @property integer  $id
  * @property integer  $user_id
+ * @property string   $title
  * @property string   $phone
  * @property integer  $payroll
  * @property Service  $services
@@ -25,6 +26,11 @@ class Employee extends Model
     public function services()
     {
         return $this->hasMany(Service::class, "employee_id", "id");
+    }
+
+    public function salary_payments()
+    {
+        return $this->hasMany(SalaryPayment::class, "employee_id", 'id');
     }
 
     public function user()

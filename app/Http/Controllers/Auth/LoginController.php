@@ -49,7 +49,7 @@ class LoginController extends Controller
     {
         if ($user->role_id == UserRoles::CUSTOMER) {
             return redirect()
-                ->route('frontpanel');
+                ->route('home_page');
         } else {
             return redirect()
                 ->route('back_panel.dashboard');

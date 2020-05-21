@@ -17,7 +17,7 @@ class StaffController extends Controller
         $employees = Employee::query()
             ->with(['user'])
             ->paginate(10);
-        return view("front_panel.pages.staff")
+        return view("front_panel.pages.staff.index")
             ->with("employees", $employees);
     }
 

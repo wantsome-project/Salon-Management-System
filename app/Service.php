@@ -13,13 +13,17 @@ use Illuminate\Database\Eloquent\Model;
  * @property integer      $price
  * @property ServiceType  $serviceType
  * @property Employee     $employee
- * @property Customer     $customers
+ * @property Customer     $customer
  */
 
 class Service extends Model
 {
     protected $table = "services";
-
+    protected $fillable = [
+        'employee_id',
+        'customer_id',
+        'service_type_id',
+    ];
 
     public function serviceType()
     {

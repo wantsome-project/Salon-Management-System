@@ -17,6 +17,6 @@
     @include("front_panel.layout_footer")
 </div>
 </body>
-@extends("back_panel.layout_scripts")
+@extends("front_panel.layout_scripts")
 
 </html>

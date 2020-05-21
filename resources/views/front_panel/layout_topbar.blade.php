@@ -1,32 +1,55 @@
-<div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
-    <h5 class="my-0 mr-md-auto font-weight-normal"><a class="p-2 text-dark" href="/frontpanel">Company name</a></h5>
-    <nav class="my-2 my-md-0 mr-md-3">
-        <a class="p-2 text-dark" href="{{ route("service_types") }}">Service types</a>
-        <a class="p-2 text-dark" href="{{ route("products") }}">Products</a>
-        <a class="p-2 text-dark {{ request()->routeIs('front_panel.pages.staff*') ? 'active' : ""}} " href="{{ route("staff") }}">Staff</a>
-        <a class="p-2 text-dark" href="/contact">Contatct</a>
-        <a class="p-2 text-dark" href="">Appointment</a>
-    </nav>
-    <!-- Authentication Links -->
-    @guest
-        <a class="btn btn-outline-primary mr-2" href="{{ route('login') }}">{{ __('Login') }}</a>
-        @if (Route::has('register'))
-            <a class="btn btn-outline-primary" href="{{ route('register') }}">{{ __('Register') }}</a>
-        @endif
-    @else
-        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
-            aria-haspopup="true" aria-expanded="false" v-pre>
-            {{ Auth::user()->name }} <span class="caret"></span>
-        </a>
-        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-            <a class="btn btn-outline-primary" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                 document.getElementById('logout-form').submit();">
-                {{ __('Logout') }}
-            </a>
+<nav class="navbar navbar-expand-lg ">
+    <a class="navbar-brand p-2 text-dark" href="{{ route('home_page') }}">Company name</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
 
-            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                @csrf
-            </form>
-        </div>
-    @endguest
-</div>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+                <a class="nav-link p-2 text-dark" href="{{ route("service_types") }}">Services</a>
+            </li>
+
+            <li class="nav-item active">
+                <a class="nav-link p-2 text-dark" href="{{ route("products") }}">Products</a>
+            </li>
+
+            <li class="nav-item active">
+                <a class="nav-link p-2 text-dark {{ request()->routeIs('front_panel.pages.staff*') ? 'active' : ""}} " href="{{ route("staff") }}">Team</a>
+            </li>
+
+            <li class="nav-item active">
+                <a class="nav-link p-2 text-dark" href="/contact">Contact</a>
+            </li>
+
+            <li class="nav-item active">
+                <a class="nav-link p-2 text-dark" href="">Appointment</a>
+            </li>
+
+            <li class="nav-item dropdown ">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    @auth
+                        {{  Auth::user()->name }}
+                    @else
+                        Log In or Register
+                    @endauth
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                    <!-- Authentication Links -->
+                    @guest
+                        <a class="dropdown-item" href="{{ route('login') }}">{{ __('Login') }}</a>
+                        @if (Route::has('register'))
+                            <a class="dropdown-item" href="{{ route('register') }}">{{ __('Register') }}</a>
+                        @endif
+                    @else
+                        {!! Form::open(['url'=>route('logout')]) !!}
+                        @csrf
+
+                        <button type="submit" class="dropdown-item">Sign out</button>
+                        {!! Form::close() !!}
+                    @endguest
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>
