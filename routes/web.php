@@ -34,6 +34,7 @@ Route::prefix('back_panel')
         Route::get('/', function () {
             return view('back_panel.layout');
         })->name("dashboard");
+
         Route::prefix('products')
             ->middleware('can:isAdmin')
             ->group(function () {
@@ -90,6 +91,21 @@ Route::prefix('back_panel')
                 Route::delete('/{employee}', 'EmployeeController@destroy')
                     ->name('employees.destroy');
         });
+        Route::prefix('appointment')
+            ->group(function () {
+                Route::get('/', 'AppointmentController@index')
+                    ->name('service_types.index');
+                Route::get('/create', 'ServiceTypeController@create')
+                    ->name('service_types.create');
+                Route::post('/','ServiceTypeController@store')
+                    ->name('service_types.store');
+                Route::get('/{serviceType}/edit', 'ServiceTypeController@edit')
+                    ->name('service_types.edit');
+                Route::put('/{serviceType}', 'ServiceTypeController@update')
+                    ->name('service_types.update');
+                Route::delete('/{serviceType}', 'ServiceTypeController@destroy')
+                    ->name('service_types.destroy');
+            });
     });
 
 Route::namespace("FrontPanel")
@@ -108,6 +124,9 @@ Route::namespace("FrontPanel")
         Route::get('/service_types', 'ServiceTypesController@index')
             ->name('service_types');
 
+        Route::get('/appointment', function (){
+            return view('front_panel.pages.appointments');
+        })->name('appointment');
 
     });
 

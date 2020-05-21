@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+
 /**
  * Class Service
  * @package App
@@ -11,6 +12,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property integer      $service_type_id
  * @property integer      $employee_id
  * @property string       $status
+ * @property array|\Illuminate\Contracts\Foundation\Application|\Illuminate\Http\Request|mixed|string appointment_time
+ * @property mixed appointment_date
  */
 
 class Appointment extends Model
