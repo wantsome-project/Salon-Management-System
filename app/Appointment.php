@@ -2,20 +2,20 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class Service
  * @package App
- * @property integer      $id
- * @property integer      $customer_id
- * @property integer      $service_type_id
- * @property integer      $employee_id
- * @property string       $status
+ * @property integer $id
+ * @property integer $customer_id
+ * @property integer $service_type_id
+ * @property integer $employee_id
+ * @property string $status
  * @property array|\Illuminate\Contracts\Foundation\Application|\Illuminate\Http\Request|mixed|string appointment_time
  * @property mixed appointment_date
  */
-
 class Appointment extends Model
 {
     const STATUS_ON_HOLD = "onHold";
@@ -24,17 +24,33 @@ class Appointment extends Model
 
     protected $table = "appointments";
 
+    protected $fillable = [
+        'customer_id', 'employee_id', 'service_type_id', 'status', 'appointment_time', 'appointment_date'
+    ];
+
     public function customer()
     {
         return $this->belongsTo(Customer::class, "customer_id", "id");
     }
+
     public function employee()
     {
         return $this->belongsTo(Employee::class, "employee_id", "id");
     }
+
     public function serviceType()
     {
         return $this->belongsTo(ServiceType::class, "service_type_id", "id");
+    }
+
+    public function save(array $options = [])
+    {
+
+        $customer = Customer::where('user_id', auth()->user()->id)->firstOrFail();
+        $this->appointment_date = new Carbon($this->appointment_date);
+        $this->customer_id = $customer->id;
+        $this->status = Appointment::STATUS_ON_HOLD;
+        parent::save();
     }
 
 }

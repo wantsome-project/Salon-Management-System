@@ -2,24 +2,24 @@
 @section("header", "Make an Appointment")
 @section("content")
 
-    {!! Form::open(['url' => 'front_panel/appointment', 'method'=>'post']) !!}
+    {!! Form::open(['url' => route('appointment.create'), 'method'=>'post']) !!}
     @csrf
     <div class="form-group row">
-        {!! Form::label("employee", "Select Employee", ["class" =>"col-sm-2 col-form-label"]) !!}
+        {!! Form::label("employee_id", "Select Employee", ["class" =>"col-sm-2 col-form-label"]) !!}
         <div class="col-sm-10">
-            {!! Form::select('employee',$employees, ["class"=>"form-control"]) !!}
+            {!! Form::select('employee_id',$employees, ["class"=>"form-control"]) !!}
         </div>
     </div>
     <div class="form-group row">
-        {!! Form::label("service_type", "Service Type", ["class" =>"col-sm-2 col-form-label"]) !!}
+        {!! Form::label("service_type_id", "Service Type", ["class" =>"col-sm-2 col-form-label"]) !!}
         <div class="col-sm-10">
-            {!! Form::select('service_type',$service_types, ["class"=>"form-control"]) !!}
+            {!! Form::select('service_type_id',$service_types, ["class"=>"form-control"]) !!}
         </div>
     </div>
     <div class="form-group row">
-        {!! Form::label("description", "Description", ["class" =>"col-sm-2 col-form-label"]) !!}
+        {!! Form::label("appointment_date", "Pick a date", ["class" =>"col-sm-2 col-form-label"]) !!}
         <div class="col-sm-10">
-                <input type='text' class="form-control" id="datepicker" />
+                <input type='text' name="appointment_date" class="form-control" id="datepicker" />
             </div>
         </div>
     <div class="form-group row">

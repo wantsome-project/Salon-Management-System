@@ -5,6 +5,7 @@ namespace App\Http\Controllers\FrontPanel;
 use App\Employee;
 use App\Http\Controllers\Controller;
 use App\Appointment;
+use App\Http\Requests\FrontPanel\Appointment\StoreRequest;
 use App\ServiceType;
 use Illuminate\Http\Request;
 
@@ -15,8 +16,8 @@ class AppointmentController extends Controller
      */
     public function index()
     {
-        $employees = Employee::with('user')->get()->pluck('user.name','id')->toArray();
-        $service_types = ServiceType::get()->pluck('name','id')->toArray();
+        $employees = Employee::with('user')->get()->pluck('user.name', 'id')->toArray();
+        $service_types = ServiceType::get()->pluck('name', 'id')->toArray();
         return view("front_panel.pages.appointments", compact("employees", "service_types"));
     }
 
@@ -25,9 +26,12 @@ class AppointmentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(StoreRequest $request)
     {
-        auth()->user()->id;
+        $appoiment = new Appointment($request->all());
+        $appoiment->save();
+        return redirect(route('appointment.index'));
+
     }
 
     /**
