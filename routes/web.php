@@ -94,17 +94,17 @@ Route::prefix('back_panel')
         Route::prefix('appointment')
             ->group(function () {
                 Route::get('/', 'AppointmentController@index')
-                    ->name('service_types.index');
+                    ->name('appointments.index');
                 Route::get('/create', 'ServiceTypeController@create')
-                    ->name('service_types.create');
+                    ->name('appointments.create');
                 Route::post('/','ServiceTypeController@store')
-                    ->name('service_types.store');
-                Route::get('/{serviceType}/edit', 'ServiceTypeController@edit')
-                    ->name('service_types.edit');
-                Route::put('/{serviceType}', 'ServiceTypeController@update')
-                    ->name('service_types.update');
-                Route::delete('/{serviceType}', 'ServiceTypeController@destroy')
-                    ->name('service_types.destroy');
+                    ->name('appointments.store');
+                Route::get('/{appointment}/edit', 'ServiceTypeController@edit')
+                    ->name('appointments.edit');
+                Route::put('/{appointment}', 'ServiceTypeController@update')
+                    ->name('appointments.update');
+                Route::delete('/{appointment}', 'ServiceTypeController@destroy')
+                    ->name('appointments.destroy');
             });
     });
 
