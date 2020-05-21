@@ -82,7 +82,7 @@ class ServiceController extends Controller
 
         return redirect()
             ->route("back_panel.services.index", $service)
-            ->with("success", "Service payment for ".$service->customer->user->name." created successfully");
+            ->with("success", "Payment service for ".$service->customer->user->name." created successfully");
     }
 
     /**

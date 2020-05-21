@@ -6,8 +6,8 @@
         <div class="col-6 col-md">
             <h5>About</h5>
             <ul class="list-unstyled text-small">
-                <li><a class="text-muted" href="#">Privacy</a></li>
-                <li><a class="text-muted" href="#">Terms</a></li>
+                <li><a class="text-muted" href="{{ route("terms") }}">Terms and conditions</a></li>
+                <li><a class="text-muted" href="{{ route('privacy') }}">Privacy</a></li>
             </ul>
         </div>
     </div>
