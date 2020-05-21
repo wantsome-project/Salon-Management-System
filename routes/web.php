@@ -124,9 +124,11 @@ Route::namespace("FrontPanel")
         Route::get('/service_types', 'ServiceTypesController@index')
             ->name('service_types');
 
-        Route::get('/appointment', function (){
-            return view('front_panel.pages.appointments');
-        })->name('appointment');
+        Route::get('/appointment', 'AppointmentController@index')
+            ->name('appointment.index');
+
+        Route::post('/appointment', 'AppointmentController@create')
+            ->name('appointment.create');
 
     });
 
