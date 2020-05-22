@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\FrontPanel;
 
-use App\Customer;
 use App\Employee;
 use App\Http\Controllers\Controller;
 use App\Appointment;
@@ -18,9 +17,26 @@ class AppointmentController extends Controller
      */
     public function index()
     {
+        $time_ranges = [
+            '09:00:00' => '09:00-9:30',
+            '09:30:00' => '9:30-10:00',
+            '10:00:00' => '10:00-10:30',
+            '10:30:00' => '10:30-11:00',
+            '11:00:00' => '11:00-11:30',
+            '11:30:00' => '11:30-12:00',
+            '12:00:00' => '12:30-13:00',
+            '12:30:00' => '13:30-14:00',
+            '13:00:00' => '14:00-14:30',
+            '13:30:00' => '14:30-15:00',
+            '14:00:00' => '15:00-15:30',
+            '14:30:00' => '15:30-16:00',
+            '15:00:00' => '16:00-16:30',
+            '15:30:00' => '16:30-17:00',
+        ];
         $employees = Employee::with('user')->get()->pluck('user.name', 'id')->toArray();
         $service_types = ServiceType::get()->pluck('name', 'id')->toArray();
-        return view("front_panel.pages.appointments", compact("employees", "service_types"));
+
+        return view("front_panel.pages.appointments", compact("employees", "service_types", "time_ranges"));
     }
 
     /**
@@ -41,8 +57,10 @@ class AppointmentController extends Controller
      */
     public function store(StoreRequest $request)
     {
-        $appoiment = new Appointment($request->all());
-        $appoiment->save();
+        $appointment = new Appointment($request->all());
+        $appointment->customer_id = auth()->user()->customer->id;
+        $appointment->appointment_date = new Carbon($appointment->appointment_date);
+        $appointment->save();
         return redirect(route('appointment.index'));
     }
 

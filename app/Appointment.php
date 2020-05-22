@@ -43,11 +43,4 @@ class Appointment extends Model
         return $this->belongsTo(ServiceType::class, "service_type_id", "id");
     }
 
-    public function save(array $options = [])
-    {
-        $this->customer_id = auth()->user()->customer->id;
-        $this->appointment_date = new Carbon($this->appointment_date);
-        parent::save();
-    }
-
 }
