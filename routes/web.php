@@ -175,8 +175,8 @@ Route::namespace("FrontPanel")
         Route::get('/appointment', 'AppointmentController@index')
             ->name('appointment.index');
 
-        Route::post('/appointment', 'AppointmentController@create')
-            ->name('appointment.create');
+        Route::post('/appointment', 'AppointmentController@store')
+            ->name('appointment.store');
 
     });
 

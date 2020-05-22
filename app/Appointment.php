@@ -45,11 +45,8 @@ class Appointment extends Model
 
     public function save(array $options = [])
     {
-
-        $customer = Customer::where('user_id', auth()->user()->id)->firstOrFail();
+        $this->customer_id = auth()->user()->customer->id;
         $this->appointment_date = new Carbon($this->appointment_date);
-        $this->customer_id = $customer->id;
-        $this->status = Appointment::STATUS_ON_HOLD;
         parent::save();
     }
 

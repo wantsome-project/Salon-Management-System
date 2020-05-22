@@ -2,7 +2,7 @@
 @section("header", "Make an Appointment")
 @section("content")
 
-    {!! Form::open(['url' => route('appointment.create'), 'method'=>'post']) !!}
+    {!! Form::open(['url' => route('appointment.store'), 'method'=>'post']) !!}
     @csrf
     <div class="form-group row">
         {!! Form::label("employee_id", "Select Employee", ["class" =>"col-sm-2 col-form-label"]) !!}

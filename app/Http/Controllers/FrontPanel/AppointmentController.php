@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\FrontPanel;
 
+use App\Customer;
 use App\Employee;
 use App\Http\Controllers\Controller;
 use App\Appointment;
 use App\Http\Requests\FrontPanel\Appointment\StoreRequest;
 use App\ServiceType;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class AppointmentController extends Controller
@@ -26,11 +28,8 @@ class AppointmentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(StoreRequest $request)
+    public function create()
     {
-        $appoiment = new Appointment($request->all());
-        $appoiment->save();
-        return redirect(route('appointment.index'));
 
     }
 
@@ -40,9 +39,11 @@ class AppointmentController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreRequest $request)
     {
-        //
+        $appoiment = new Appointment($request->all());
+        $appoiment->save();
+        return redirect(route('appointment.index'));
     }
 
     /**
