@@ -6,13 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * Class Employee
  * @package App
- * @property integer  $id
- * @property integer  $user_id
- * @property string   $title
- * @property string   $phone
- * @property integer  $payroll
- * @property Service  $services
- * @property User     $user
+ * @property integer $id
+ * @property integer $user_id
+ * @property string  $title
+ * @property string  $phone
+ * @property integer $payroll
+ * @property string  $photo_name
+ * @property Service $services
+ * @property User    $user
  */
 
 class Employee extends Model
@@ -36,6 +37,11 @@ class Employee extends Model
     public function user()
     {
         return $this->belongsTo(User::class, "user_id", "id");
+    }
+
+    public function getPhotoUrl()
+    {
+        return asset("assets/employees_images/".$this->photo_name);
     }
 }
 

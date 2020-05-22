@@ -55,6 +55,10 @@ class StoreRequest extends FormRequest
                 "numeric",
                 "min:0",
             ],
+            'employee.image' => [
+                'nullable',
+                'image',
+            ]
         ];
     }
 

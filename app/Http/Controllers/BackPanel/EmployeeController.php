@@ -58,6 +58,8 @@ class EmployeeController extends Controller
      */
     public function store(StoreRequest $request)
     {
+//        dd();
+
         // try find user using email, possible to be created as customers
         /* @var User $user */
         $user = User::query()
@@ -85,6 +87,15 @@ class EmployeeController extends Controller
         $employee->payroll = $request->input("employee.payroll");
         $employee->title = $request->input("employee.title");
         $employee->save();
+
+        if ($request->hasFile('employee.image')) {
+            $uploaded_file = $request->file("employee.image");
+            $file_name = $employee->id.".".$uploaded_file->extension();
+            $path = $uploaded_file
+                ->storeAs("assets/employees_images", $file_name, 'public');
+            $employee->photo_name = $file_name;
+            $employee->save();
+        }
 
         return redirect()
             ->route("back_panel.employees.index", $employee)
@@ -125,6 +136,15 @@ class EmployeeController extends Controller
         $employee->phone = request("employee.phone");
         $employee->payroll = request("employee.payroll");
         $employee->save();
+
+        if ($request->hasFile('employee.image')) {
+            $uploaded_file = $request->file("employee.image");
+            $file_name = $employee->id.".".$uploaded_file->extension();
+            $path = $uploaded_file
+                ->storeAs("assets/employees_images", $file_name, 'public');
+            $employee->photo_name = $file_name;
+            $employee->save();
+        }
 
         return redirect()
             ->route("back_panel.employees.index");
