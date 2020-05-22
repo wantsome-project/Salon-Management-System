@@ -61,6 +61,13 @@
                     Appointments
                 </a>
             </li>
+            <li class="nav-item ">
+                <a class="nav-link {{ request()->routeIs('back_panel.customer_requests*') ? 'active' : ""}} " href="{{ route("back_panel.customer_requests.index") }}">
+                    <span data-feather="file"></span>
+                    <i class="fas fa-question-circle"></i>
+                    Customer requests
+                </a>
+            </li>
         </ul>
     </div>
 </nav>

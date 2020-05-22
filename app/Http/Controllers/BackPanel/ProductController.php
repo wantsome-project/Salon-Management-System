@@ -45,7 +45,8 @@ e
         $product->save();
 
         return redirect()
-            ->route("back_panel.products.index", $product);
+            ->route("back_panel.products.index", $product)
+            ->with('success', 'New product successfully added.');
     }
 
     /**

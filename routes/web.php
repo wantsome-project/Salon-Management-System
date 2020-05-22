@@ -31,6 +31,13 @@ Route::get('/', function () {
         ->with('products', $products);
 })->name('home_page');
 
+Route::get('/terms-and-conditions', function () {
+    return view('front_panel.pages.terms');
+})->name('terms');
+Route::get('/privacy', function () {
+    return view('front_panel.pages.privacy');
+})->name('privacy');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')
@@ -122,6 +129,18 @@ Route::prefix('back_panel')
                     ->name('salary_payments.destroy');
 
             });
+        Route::prefix('request')
+            ->middleware('can:isAdmin')
+            ->group(function () {
+                Route::get('/', 'CustomerRequestController@index')
+                    ->name('customer_requests.index');
+                Route::get('/{customer_request}', 'CustomerRequestController@show')
+                    ->name('customer_requests.show');
+                Route::delete('/{customer_request}', 'CustomerRequestController@destroy')
+                    ->name('customer_requests.destroy');
+
+            });
+
 
         Route::prefix('services')
             ->group(function () {
@@ -145,12 +164,20 @@ Route::namespace("FrontPanel")
         Route::get('/staff', 'StaffController@index')
             ->name('staff');
 
+        Route::prefix('/contact')
+            ->group( function () {
+                Route::get('/', function () {
+                    return view('front_panel.pages.contact_request.create');
+                 })->name('contact');
+                Route::get('/create', 'CustomerRequestControllerr@create')
+                    ->name('customer_requests.create');
+                Route::post('/','CustomerRequestController@store')
+                    ->name('customer_requests.store');
+            });
+
         Route::get('/products', 'ProductController@index')
             ->name('products');
 
-        Route::get('/contact', function () {
-                return view('front_panel.pages.contact');
-        })->name('contact');
 
         Route::get('/service_types', 'ServiceTypesController@index')
             ->name('service_types');

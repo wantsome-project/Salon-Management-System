@@ -28,7 +28,9 @@ class ServiceTypeController extends Controller
         $service_type->fill($request->input("service_type"));
         $service_type->save();
 
-        return redirect()->route("back_panel.service_types.index");
+        return redirect()
+            ->route("back_panel.service_types.index")
+            ->with('success', 'New service type successfully added.');
     }
 
     public function show($id)

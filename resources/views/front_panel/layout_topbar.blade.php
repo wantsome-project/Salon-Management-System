@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg ">
-    <a class="navbar-brand p-2 text-dark" href="{{ route('home_page') }}">Company name</a>
+    <a class="navbar-brand p-2 text-dark" href="{{ route('home_page') }}">{{ config('app.name', 'Beauty salon') }}</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -19,7 +19,7 @@
             </li>
 
             <li class="nav-item active">
-                <a class="nav-link p-2 text-dark" href="/contact">Contact</a>
+                <a class="nav-link p-2 text-dark" href="{{ route('contact') }}">Contact</a>
             </li>
 
             <li class="nav-item active">
