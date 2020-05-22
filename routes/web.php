@@ -54,6 +54,7 @@ Route::prefix('back_panel')
         Route::get('/', function () {
             return view('back_panel.layout');
         })->name("dashboard");
+
         Route::prefix('products')
             ->middleware('can:isAdmin')
             ->group(function () {
@@ -110,6 +111,23 @@ Route::prefix('back_panel')
                     ->name('employees.update');
                 Route::delete('/{employee}', 'EmployeeController@destroy')
                     ->name('employees.destroy');
+
+        });
+        Route::prefix('appointment')
+            ->group(function () {
+                Route::get('/', 'AppointmentController@index')
+                    ->name('appointments.index');
+                Route::get('/create', 'ServiceTypeController@create')
+                    ->name('appointments.create');
+                Route::post('/','ServiceTypeController@store')
+                    ->name('appointments.store');
+                Route::get('/{appointment}/edit', 'ServiceTypeController@edit')
+                    ->name('appointments.edit');
+                Route::put('/{appointment}', 'ServiceTypeController@update')
+                    ->name('appointments.update');
+                Route::delete('/{appointment}', 'ServiceTypeController@destroy')
+                    ->name('appointments.destroy');
+
             });
 
         Route::prefix('salary_payments')
@@ -127,7 +145,6 @@ Route::prefix('back_panel')
                     ->name('salary_payments.update');
                 Route::delete('/{salary_payment}', 'SalaryPaymentController@destroy')
                     ->name('salary_payments.destroy');
-
             });
         Route::prefix('request')
             ->middleware('can:isAdmin')
@@ -182,6 +199,11 @@ Route::namespace("FrontPanel")
         Route::get('/service_types', 'ServiceTypesController@index')
             ->name('service_types');
 
+        Route::get('/appointment', 'AppointmentController@index')
+            ->name('appointment.index');
+
+        Route::post('/appointment', 'AppointmentController@store')
+            ->name('appointment.store');
 
     });
 

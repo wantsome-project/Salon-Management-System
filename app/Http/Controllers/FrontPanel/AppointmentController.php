@@ -2,22 +2,41 @@
 
 namespace App\Http\Controllers\FrontPanel;
 
+use App\Employee;
 use App\Http\Controllers\Controller;
 use App\Appointment;
+use App\Http\Requests\FrontPanel\Appointment\StoreRequest;
+use App\ServiceType;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class AppointmentController extends Controller
 {
     /**
      * Display a listing of the resource.
-
      */
     public function index()
     {
-        $appointments = Appointment::query()
-            ->paginate(10);
-        return view("front_panel.pages.appointments")
-            ->with("appointments", $appointments);
+        $time_ranges = [
+            '09:00:00' => '09:00-9:30',
+            '09:30:00' => '9:30-10:00',
+            '10:00:00' => '10:00-10:30',
+            '10:30:00' => '10:30-11:00',
+            '11:00:00' => '11:00-11:30',
+            '11:30:00' => '11:30-12:00',
+            '12:00:00' => '12:30-13:00',
+            '12:30:00' => '13:30-14:00',
+            '13:00:00' => '14:00-14:30',
+            '13:30:00' => '14:30-15:00',
+            '14:00:00' => '15:00-15:30',
+            '14:30:00' => '15:30-16:00',
+            '15:00:00' => '16:00-16:30',
+            '15:30:00' => '16:30-17:00',
+        ];
+        $employees = Employee::with('user')->get()->pluck('user.name', 'id')->toArray();
+        $service_types = ServiceType::get()->pluck('name', 'id')->toArray();
+
+        return view("front_panel.pages.appointments", compact("employees", "service_types", "time_ranges"));
     }
 
     /**
@@ -27,24 +46,28 @@ class AppointmentController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreRequest $request)
     {
-        //
+        $appointment = new Appointment($request->all());
+        $appointment->customer_id = auth()->user()->customer->id;
+        $appointment->appointment_date = new Carbon($appointment->appointment_date);
+        $appointment->save();
+        return redirect(route('appointment.index'));
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -55,7 +78,7 @@ class AppointmentController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -66,8 +89,8 @@ class AppointmentController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -78,7 +101,7 @@ class AppointmentController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

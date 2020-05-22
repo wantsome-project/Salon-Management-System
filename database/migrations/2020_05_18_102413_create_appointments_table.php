@@ -23,9 +23,9 @@ class CreateAppointmentsTable extends Migration
                 ->unsigned();
             $table->text('status')
                 ->nullable();
-            $table->dateTime('appointment_time')
+            $table->time('appointment_time')
                 ->nullable();
-            $table->dateTime('appointment_date')
+            $table->date('appointment_date')
                 ->nullable();
             $table->timestamps();
 
