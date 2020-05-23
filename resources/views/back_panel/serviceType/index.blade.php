@@ -15,6 +15,7 @@
             <table class="table table-striped">
                 <tr>
                     <th>Id</th>
+                    <th>Image</th>
                     <th>Name</th>
                     <th>Description</th>
                     <th>Duration</th>
@@ -25,6 +26,11 @@
                 @foreach($service_types as $serviceType)
                     <tr>
                         <th>{{ $serviceType->id }}</th>
+                        <th>
+                            @if($serviceType->photo_name)
+                                <img src="{{ $serviceType->getPhotoUrl() }}" alt="Service type photo" style="width: 30px;height: 30px">
+                            @endif
+                        </th>
                         <th>{{ $serviceType->name }}</th>
                         <th>{{ $serviceType->description }}</th>
                         <td>{{ $serviceType->duration }}</td>

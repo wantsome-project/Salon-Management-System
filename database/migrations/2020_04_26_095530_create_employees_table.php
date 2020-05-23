@@ -25,6 +25,8 @@ class CreateEmployeesTable extends Migration
                 ->nullable();
             $table->string('payroll')
                 ->nullable();
+            $table->string('photo_name')
+                ->nullable();
             $table->timestamps();
 
             $table->foreign('user_id', "user_employee_foreign")

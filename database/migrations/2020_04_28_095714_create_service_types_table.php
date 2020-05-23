@@ -22,6 +22,8 @@ class CreateServiceTypesTable extends Migration
                 ->nullable();
             $table->float('price')
                 ->nullable();
+            $table->string('photo_name')
+                ->nullable();
             $table->timestamps();
 
         });

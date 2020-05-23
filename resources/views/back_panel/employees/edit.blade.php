@@ -9,7 +9,7 @@
 
     <div class="row">
         <div class="col-8">
-            {!! Form::open(['url' => route('back_panel.employees.update',[$employee])]) !!}
+            {!! Form::open(['url' => route('back_panel.employees.update',[$employee]), 'files' => true]) !!}
             @method("PUT")
             <div class="form-group row">
                 {!! Form::label("user[name]", "Name", ["class" =>"col-sm-2 col-form-label"]) !!}
@@ -43,6 +43,15 @@
                 <div class="col-sm-4">
                     {!! Form::number("employee[payroll]", $employee->payroll, ["class"=>"form-control ".($errors->has("employee.payroll") ? "is-invalid" : ""), "min"=>0]) !!}
                     @error("employee.payroll")
+                    <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+            </div>
+            <div class="form-group row">
+                {!! Form::label("employee[image]", "Choose file", ["class" =>"col-sm-2 col-form-label","custom-file-label"]) !!}
+                <div class="col-sm-4">
+                    {!! Form::file("employee[image]", null, ["class"=>"form-control ".($errors->has("employee.image") ? "is-invalid" : "")]) !!}
+                    @error("employee.image")
                     <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>

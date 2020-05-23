@@ -44,6 +44,14 @@ e
         $product->fill($request->input('product'));
         $product->save();
 
+        if ($request->hasFile('product.image')) {
+            $uploaded_file = $request->file("product.image");
+            $file_name = $product->id.".".$uploaded_file->extension();
+            $path = $uploaded_file
+                ->storeAs("assets/products_images", $file_name, 'public');
+            $product->photo_name = $file_name;
+            $product->save();
+        }
         return redirect()
             ->route("back_panel.products.index", $product)
             ->with('success', 'New product successfully added.');
@@ -83,6 +91,15 @@ e
         $product->brand = request("product.brand");
         $product->price = request("product.price");
         $product->save();
+
+        if ($request->hasFile('product.image')) {
+            $uploaded_file = $request->file("product.image");
+            $file_name = $product->id.".".$uploaded_file->extension();
+            $path = $uploaded_file
+                ->storeAs("assets/products_images", $file_name, 'public');
+            $product->photo_name = $file_name;
+            $product->save();
+        }
         return redirect()
             ->route("back_panel.products.index");
     }

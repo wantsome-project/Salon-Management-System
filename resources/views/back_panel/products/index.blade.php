@@ -15,6 +15,7 @@
             <table class="table table-striped">
                 <tr>
                     <th>Id</th>
+                    <th>Image</th>
                     <th>Product type</th>
                     <th>Product brand</th>
                     <th>Quantity</th>
@@ -25,6 +26,11 @@
                 @foreach($products as $product)
                     <tr>
                         <th>{{ $product->id }}</th>
+                        <th>
+                            @if($product->photo_name)
+                                <img src="{{ $product->getPhotoUrl() }}" alt="Product photo" style="width: 30px;height: 30px">
+                            @endif
+                        </th>
                         <td>{{ $product->type }}</td>
                         <td>{{ $product->brand }}</td>
                         <td>{{ $product->quantity }}</td>

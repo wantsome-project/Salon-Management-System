@@ -55,6 +55,10 @@ class StoreRequest extends FormRequest
                 "numeric",
                 "min:0",
             ],
+            'employee.image' => [
+                'nullable',
+                'image',
+            ]
         ];
     }
 
@@ -66,6 +70,7 @@ class StoreRequest extends FormRequest
             "user.password" => "password",
             "employee.phone" => "phone",
             "employee.payroll" => "payroll",
+            "employee,image" => "image",
         ];
     }
 }

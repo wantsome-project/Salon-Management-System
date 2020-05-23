@@ -16,6 +16,7 @@
             <table class="table table-striped">
                 <tr>
                     <th>Id</th>
+                    <th>Image</th>
                     <th>Name</th>
                     <th>Job position</th>
                     <th>Email</th>
@@ -28,6 +29,11 @@
                 @foreach($employees as $employee)
                     <tr>
                         <th>{{ $employee->id }}</th>
+                        <th>
+                            @if($employee->photo_name)
+                                <img src="{{ $employee->getPhotoUrl() }}" alt="Employee photo" style="width: 30px;height: 30px">
+                            @endif
+                        </th>
                         <th>{{ $employee->user->name }}</th>
                         <th>{{ $employee->title }}</th>
                         <th>{{ $employee->user->email }}</th>
