@@ -5,7 +5,7 @@
 @section("content")
     <div class="row">
         <div class="col-8">
-            {!! Form::open(['url' => route('back_panel.service_types.store')]) !!}
+            {!! Form::open(['url' => route('back_panel.service_types.store'), "files" => true]) !!}
             <div class="form-group row">
                 {!! Form::label("service_type[name]", "Name", ["class" =>"col-sm-2 col-form-label"]) !!}
                 <div class="col-sm-4">
@@ -38,6 +38,15 @@
                 <div class="col-sm-4">
                     {!! Form::number("service_type[price]", null, ["class"=>"form-control ".($errors->has("service_type.price") ? "is-invalid" : ""), "min"=>0]) !!}
                     @error("service_type.price")
+                    <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+            </div>
+            <div class="form-group row">
+                {!! Form::label("service_type[image]", "Choose file", ["class" =>"col-sm-2 col-form-label","custom-file-label"]) !!}
+                <div class="col-sm-4">
+                    {!! Form::file("service_type[image]", null, ["class"=>"form-control ".($errors->has("service_type.image") ? "is-invalid" : "")]) !!}
+                    @error("service_type.image")
                     <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>

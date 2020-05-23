@@ -40,6 +40,10 @@ class UpdateRequest extends FormRequest
                 "numeric",
                 "min:0",
             ],
+            "product.image" => [
+                "nullable",
+                "image",
+            ],
         ];
     }
 
@@ -50,6 +54,7 @@ class UpdateRequest extends FormRequest
             "product.brand" => "product brand",
             "product.quantity" => "product quantity",
             "product.price" => "product price",
+            "product.image" => "image",
         ];
     }
 }

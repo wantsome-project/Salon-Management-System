@@ -8,10 +8,12 @@ use Illuminate\Database\Eloquent\Model;
  * Class Product
  * @package App
  *
+ * @property integer $id
  * @property string  $type
  * @property string  $brand
  * @property integer $quantity
  * @property integer $price
+ * @property string  $photo_name
  */
 class Product extends Model
 {
@@ -27,4 +29,8 @@ class Product extends Model
         'quantity',
         'price',
     ];
+    public function getPhotoUrl()
+    {
+        return asset("assets/products_images/".$this->photo_name);
+    }
 }

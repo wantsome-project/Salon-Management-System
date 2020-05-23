@@ -22,6 +22,8 @@ class CreateProductsTable extends Migration
                 ->nullable();
             $table->float('price', 8, 2)
                 ->nullable();
+            $table->string('photo_name')
+                ->nullable();
             $table->timestamps();
         });
     }

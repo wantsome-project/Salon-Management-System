@@ -31,6 +31,10 @@ class UpdateRequest extends FormRequest
                 "numeric",
                 "min:0",
             ],
+            "service_type.image" => [
+                "nullable",
+                "image",
+            ]
         ];
     }
 
@@ -40,7 +44,8 @@ class UpdateRequest extends FormRequest
             "service_type.name" => "name",
             "service_type.description" => "description",
             "service_type.duration" => "duration",
-            "service_type.price" => "price"
+            "service_type.price" => "price",
+            "service_type.image" => "image",
         ];
     }
 }

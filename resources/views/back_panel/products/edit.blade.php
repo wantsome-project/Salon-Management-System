@@ -9,7 +9,7 @@
 
     <div class="row">
         <div class="col-8">
-            {!! Form::open(['url' => route('back_panel.products.update',[$product])]) !!}
+            {!! Form::open(['url' => route('back_panel.products.update',[$product]), 'files' => true]) !!}
                 @method("PUT")
                 <div class="form-group row">
                     {!! Form::label("product[type]", "Product type", ["class" =>"col-sm-2 col-form-label"]) !!}
@@ -47,6 +47,15 @@
                         @enderror
                     </div>
                 </div>
+            <div class="form-group row">
+                {!! Form::label("product[image]", "Choose file", ["class" =>"col-sm-2 col-form-label","custom-file-label"]) !!}
+                <div class="col-sm-4">
+                    {!! Form::file("product[image]", null, ["class"=>"form-control ".($errors->has("product.image") ? "is-invalid" : "")]) !!}
+                    @error("product.image")
+                    <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+            </div>
                 <button type="submit" class="btn btn-danger btn-sm">Update</button>
 
             {!! Form::close() !!}

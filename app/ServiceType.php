@@ -12,6 +12,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property string  $description
  * @property integer $duration
  * @property integer $price
+ * @property string  $photo_name
+ *
  */
 
 class ServiceType extends Model
@@ -28,5 +30,10 @@ class ServiceType extends Model
     public function services()
     {
         return $this->hasMany(Service::class, "service_type_id", "id");
+    }
+
+    public function getPhotoUrl()
+    {
+        return asset("assets/service_type_images/".$this->photo_name);
     }
 }
