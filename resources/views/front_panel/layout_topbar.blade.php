@@ -23,7 +23,7 @@
             </li>
 
             <li class="nav-item active">
-                <a class="nav-link p-2 text-dark" href="">Appointment</a>
+                <a class="nav-link p-2 text-dark" href="{{route('appointment.index')}}">Appointment</a>
             </li>
 
             <li class="nav-item dropdown ">

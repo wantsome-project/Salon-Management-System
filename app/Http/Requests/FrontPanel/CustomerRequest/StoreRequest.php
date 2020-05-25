@@ -57,7 +57,7 @@ class StoreRequest extends FormRequest
             "customer_request.email" => "Email",
             "customer_request.phone" => "Phone",
             "customer_request.subject" => "Subject",
-            "customer_request.message" => "Message"
+            "customer_request.message" => "Message",
         ];
     }
 }

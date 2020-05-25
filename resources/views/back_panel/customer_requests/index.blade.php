@@ -16,6 +16,7 @@
                     <th>Id</th>
                     <th>Name</th>
                     <th>Subject</th>
+                    <th>Date</th>
                     <th></th>
                     <th></th>
                 </tr>
@@ -24,6 +25,7 @@
                         <th>{{ $customer_request->id }}</th>
                         <th>{{ $customer_request->name }}</th>
                         <td>{{ $customer_request->subject }}</td>
+                        <td>{{ $customer_request->created_at }}</td>
                         <td><a href="{{ route('back_panel.customer_requests.show', $customer_request) }}"><i class="fas fa-eye"></i></a></td>
                         <td>
                             {!! Form::open(['url' => route('back_panel.customer_requests.destroy',[$customer_request])]) !!}

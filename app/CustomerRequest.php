@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 /**
  * Class CustomerRequest
@@ -12,6 +13,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string   $phone
  * @property string   $subject
  * @property string   $message
+ * @property Carbon   $created_at
  *
  */
 class CustomerRequest extends Model
