@@ -29,3 +29,4 @@
         max-width: 960px;
     }
 </style>
+@yield("custom_css")
