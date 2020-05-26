@@ -7,13 +7,19 @@
     <div class="form-group row">
         {!! Form::label("employee_id", "Select Employee", ["class" =>"col-sm-2 col-form-label"]) !!}
         <div class="col-sm-10">
-            {!! Form::select('employee_id',$employees, ["class"=>"form-control"]) !!}
+            {!! Form::select('employee_id',$employees, ["class"=>"form-control".($errors->has("employee_id") ? "is-invalid" : "")]) !!}
+            @error("employee_id")
+            <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
         </div>
     </div>
     <div class="form-group row">
         {!! Form::label("service_type_id", "Service Type", ["class" =>"col-sm-2 col-form-label"]) !!}
         <div class="col-sm-10">
-            {!! Form::select('service_type_id',$service_types, ["class"=>"form-control"]) !!}
+            {!! Form::select('service_type_id',$service_types, ["class"=>"form-control".($errors->has("service_type_id") ? "is-invalid" : "")]) !!}
+            @error("service_type_id")
+            <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
         </div>
     </div>
     <div class="form-group row">
@@ -25,7 +31,10 @@
     <div class="form-group row">
         {!! Form::label("appointment_time", "Pick a time", ["class" =>"col-sm-2 col-form-label"]) !!}
         <div class="col-sm-10">
-            {!! Form::select('appointment_time',$time_ranges, ["class"=>"form-control"]) !!}
+            {!! Form::select('appointment_time',$time_ranges, ["class"=>"form-control".($errors->has("appointment_time") ? "is-invalid" : "")]) !!}
+            @error("appointment_time")
+            <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
         </div>
     </div>
     <div class="form-group row">

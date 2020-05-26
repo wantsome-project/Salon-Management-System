@@ -114,6 +114,7 @@ Route::prefix('back_panel')
 
         });
         Route::prefix('appointment')
+            ->middleware('can:isCustomer')
             ->group(function () {
                 Route::get('/', 'AppointmentController@index')
                     ->name('appointments.index');
