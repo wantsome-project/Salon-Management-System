@@ -1,5 +1,8 @@
 @extends("front_panel.layout")
 @section("header", "Make an Appointment")
+@section("custom_css")
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+@endsection
 @section("content")
 
     {!! Form::open(['url' => route('appointment.store'), 'autocomplete'=>'off']) !!}
