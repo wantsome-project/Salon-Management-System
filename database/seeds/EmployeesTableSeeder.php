@@ -28,6 +28,7 @@ class EmployeesTableSeeder extends Seeder
             'phone' => '0749982097',
             'title' => 'hairstylist',
             'payroll' => '2000',
+            'photo_name' => 'one.jpeg'
         ]);
         $employee->save();
 
@@ -44,6 +45,7 @@ class EmployeesTableSeeder extends Seeder
             'phone' => '0749851345',
             'title' => 'stylist',
             'payroll' => '4500',
+            'photo_name' => "two.jpeg"
         ]);
         $employee->save();
     }

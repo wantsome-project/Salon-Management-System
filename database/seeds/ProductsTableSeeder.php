@@ -17,6 +17,8 @@ class ProductsTableSeeder extends Seeder
             'brand' => "L'Oreal",
             'price' => '100',
             'quantity' => '2',
+            'photo_name' => 'one.jpeg',
+
         ]);
         $product->save();
 
@@ -25,6 +27,8 @@ class ProductsTableSeeder extends Seeder
             'brand' => "L'Oreal",
             'price' => '50',
             'quantity' => '3',
+            'photo_name' => 'two.jpeg',
+
         ]);
         $product->save();
 
@@ -33,6 +37,8 @@ class ProductsTableSeeder extends Seeder
             'brand' => "L'Oreal",
             'price' => '40',
             'quantity' => '3',
+            'photo_name' => 'three.jpeg',
+
         ]);
         $product->save();
     }
