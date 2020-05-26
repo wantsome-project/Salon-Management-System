@@ -33,8 +33,15 @@ class AppointmentController extends Controller
             '15:00:00' => '16:00-16:30',
             '15:30:00' => '16:30-17:00',
         ];
-        $employees = Employee::with('user')->get()->pluck('user.name', 'id')->toArray();
-        $service_types = ServiceType::get()->pluck('name', 'id')->toArray();
+        $employees = Employee::query()
+            ->with('user')
+            ->get()
+            ->pluck('user.name', 'id')
+            ->toArray();
+        $service_types = ServiceType::query()
+            ->get()
+            ->pluck('name', 'id')
+            ->toArray();
 
         return view("front_panel.pages.appointments", compact("employees", "service_types", "time_ranges"));
     }
@@ -52,16 +59,21 @@ class AppointmentController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
      */
     public function store(StoreRequest $request)
     {
-        $appointment = new Appointment($request->all());
+        $appointment = new Appointment;
+        $appointment->employee_id = request("appointment.employee_id");
+        $appointment->service_type_id = request("appointment.service_type_id");
         $appointment->customer_id = auth()->user()->customer->id;
+        $appointment->status = Appointment::STATUS_ON_HOLD;
+        $appointment->appointment_time = request("appointment.appointment_time");
         $appointment->appointment_date = new Carbon($appointment->appointment_date);
         $appointment->save();
-        return redirect(route('appointment.index'));
+
+        return redirect()
+            ->route('appointment.index')
+            ->with("success", "Appointment created, you will be contacted as soon as possible for confirmation.");;
     }
 
     /**

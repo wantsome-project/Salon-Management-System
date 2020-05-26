@@ -6,15 +6,15 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class Service
+ * Class Appointment
  * @package App
- * @property integer $id
- * @property integer $customer_id
- * @property integer $service_type_id
- * @property integer $employee_id
- * @property string $status
+ * @property integer  $id
+ * @property integer  $customer_id
+ * @property integer  $service_type_id
+ * @property integer  $employee_id
+ * @property string   $status
  * @property array|\Illuminate\Contracts\Foundation\Application|\Illuminate\Http\Request|mixed|string appointment_time
- * @property mixed appointment_date
+ * @property mixed    appointment_date
  */
 class Appointment extends Model
 {
