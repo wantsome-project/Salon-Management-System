@@ -159,7 +159,6 @@ Route::prefix('back_panel')
 
             });
 
-
         Route::prefix('services')
             ->group(function () {
                 Route::get('/', 'ServiceController@index')
@@ -187,7 +186,7 @@ Route::namespace("FrontPanel")
                 Route::get('/', function () {
                     return view('front_panel.pages.contact_request.create');
                  })->name('contact');
-                Route::get('/create', 'CustomerRequestControllerr@create')
+                Route::get('/create', 'CustomerRequestController@create')
                     ->name('customer_requests.create');
                 Route::post('/','CustomerRequestController@store')
                     ->name('customer_requests.store');
@@ -201,6 +200,7 @@ Route::namespace("FrontPanel")
             ->name('service_types');
 
         Route::get('/appointment', 'AppointmentController@index')
+//            ->middleware('auth')
             ->name('appointment.index');
 
         Route::post('/appointment', 'AppointmentController@store')

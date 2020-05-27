@@ -7,8 +7,11 @@ use App\Http\Controllers\Controller;
 use App\Appointment;
 use App\Http\Requests\FrontPanel\Appointment\StoreRequest;
 use App\ServiceType;
+use App\User;
+use App\UserRoles;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AppointmentController extends Controller
 {
@@ -17,9 +20,16 @@ class AppointmentController extends Controller
      */
     public function index()
     {
+
+        if (!Auth::check()) {
+            return redirect()
+                ->route("login")
+                ->with("warning", "To create an appointment you must be log in!");
+        }
+
         $time_ranges = [
-            '09:00:00' => '09:00-9:30',
-            '09:30:00' => '9:30-10:00',
+            '09:00:00' => '09:00-09:30',
+            '09:30:00' => '09:30-10:00',
             '10:00:00' => '10:00-10:30',
             '10:30:00' => '10:30-11:00',
             '11:00:00' => '11:00-11:30',
@@ -33,8 +43,15 @@ class AppointmentController extends Controller
             '15:00:00' => '16:00-16:30',
             '15:30:00' => '16:30-17:00',
         ];
-        $employees = Employee::with('user')->get()->pluck('user.name', 'id')->toArray();
-        $service_types = ServiceType::get()->pluck('name', 'id')->toArray();
+        $employees = Employee::query()
+            ->with('user')
+            ->get()
+            ->pluck('user.name', 'id')
+            ->toArray();
+        $service_types = ServiceType::query()
+            ->get()
+            ->pluck('name', 'id')
+            ->toArray();
 
         return view("front_panel.pages.appointments", compact("employees", "service_types", "time_ranges"));
     }
@@ -52,16 +69,21 @@ class AppointmentController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
      */
     public function store(StoreRequest $request)
     {
-        $appointment = new Appointment($request->all());
+        $appointment = new Appointment;
+        $appointment->employee_id = request("appointment.employee_id");
+        $appointment->service_type_id = request("appointment.service_type_id");
         $appointment->customer_id = auth()->user()->customer->id;
+        $appointment->status = Appointment::STATUS_ON_HOLD;
+        $appointment->appointment_time = request("appointment.appointment_time");
         $appointment->appointment_date = new Carbon($appointment->appointment_date);
         $appointment->save();
-        return redirect(route('appointment.index'));
+
+        return redirect()
+            ->route('appointment.index')
+            ->with("success", "Appointment created, you will be contacted as soon as possible for confirmation.");;
     }
 
     /**
