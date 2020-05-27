@@ -13,7 +13,7 @@
                 <div class="form-group row">
                     {!! Form::label("appointment[employee_id]", "Employee", ["class" =>"col-sm-2 col-form-label"]) !!}
                     <div class="col-sm-4">
-                        {!! Form::select("appointment[employee_id]",$employees_appointments, null, ["class"=>"form-control ".($errors->has("appointment.employee_id") ? "is-invalid" : "")]) !!}
+                        {!! Form::select("appointment[employee_id]",$employees_appointment, null, ["class"=>"form-control ".($errors->has("appointment.employee_id") ? "is-invalid" : "")]) !!}
                         @error("appointment.employee_id")
                         <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
@@ -23,7 +23,7 @@
             <div class="form-group row">
                 {!! Form::label("appointment[customer_id]", "Customer", ["class" =>"col-sm-2 col-form-label"]) !!}
                 <div class="col-sm-4">
-                    {!! Form::select("appointment[customer_id]",$customers_appointments, null, ["class"=>"form-control ".($errors->has("appointment.customer_id") ? "is-invalid" : "")]) !!}
+                    {!! Form::select("appointment[customer_id]",$customers_appointment, null, ["class"=>"form-control ".($errors->has("appointment.customer_id") ? "is-invalid" : "")]) !!}
                     @error("appointment.customer_id")
                     <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
@@ -32,16 +32,28 @@
             <div class="form-group row">
                 {!! Form::label("appointment[service_type_id]", "Service type", ["class" =>"col-sm-2 col-form-label"]) !!}
                 <div class="col-sm-4">
-                    {!! Form::select("appointment[service_type_id]",$service_type_appointment, null, ["class"=>"form-control ".($errors->has("appointment.service_type_id") ? "is-invalid" : "")]) !!}
+                    {!! Form::select("appointment[service_type_id]",$service_type_names, null, ["class"=>"form-control ".($errors->has("appointment.service_type_id") ? "is-invalid" : "")]) !!}
                     @error("appointment.service_type_id")
                     <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
             </div>
             <div class="form-group row">
+                {!! Form::label("appointment[status]", "Status", ["class" =>"col-sm-2 col-form-label"]) !!}
+                <div class="col-sm-4">
+                    {!! Form::select("appointment[status]",$status_appointment, null, ["class"=>"form-control ".($errors->has("appointment.status") ? "is-invalid" : "")]) !!}
+                    @error("appointment.status")
+                    <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+            </div>
+            <div class="form-group row">
                 {!! Form::label("appointment[appointment_date]", "Pick a date", ["class" =>"col-sm-2 col-form-label"]) !!}
-                <div class="col-sm-10">
-                    <input type='text' name="appointment_date" class="form-control" id="datepicker"/>
+                <div class="col-sm-4">
+                    {!! Form::text("appointment[appointment_date]"," ", ['id' => 'datepicker', "class"=>"form-control ".($errors->has("appointment.appointment_date") ? "is-invalid" : "")]) !!}
+                    @error("appointment.appointment_date")
+                    <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                 </div>
             </div>
             <div class="form-group row">

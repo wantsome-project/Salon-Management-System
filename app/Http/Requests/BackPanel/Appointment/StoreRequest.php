@@ -58,9 +58,9 @@ class StoreRequest extends FormRequest
             "appointment.customer_id" => "Customer",
             "appointment.employee_id" => "Employee",
             "appointment.service_type_id" => "Payment details",
-            "appointment.status" => "Status",
-            "appointment.appointment_time" => "Time",
-            "appointment.appointment_date" => "Date",
+//            "appointment.status" => "Status",
+//            "appointment.appointment_time" => "Time",
+//            "appointment.appointment_date" => "Date",
         ];
     }
 
