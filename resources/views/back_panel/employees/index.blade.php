@@ -12,7 +12,7 @@
     @endphp
 
     <div class="row">
-        <div class="col-8">
+        <div class="col-sm-10">
             <table class="table table-striped">
                 <tr>
                     <th>Id</th>
@@ -22,7 +22,7 @@
                     <th>Email</th>
                     <th>Phone</th>
                     <th>Payroll</th>
-                    <th>Current month pay status</th>
+                    <th>Payment status for current month</th>
                     <th></th>
                     <th></th>
                 </tr>

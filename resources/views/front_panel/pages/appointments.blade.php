@@ -49,10 +49,7 @@
             <button type="submit" class="btn btn-primary">Submit</button>
         </div>
     </div>
-
     {!! Form::close() !!}
-
-
 @endsection
 @section('footer-scripts')
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>

@@ -7,8 +7,11 @@ use App\Http\Controllers\Controller;
 use App\Appointment;
 use App\Http\Requests\FrontPanel\Appointment\StoreRequest;
 use App\ServiceType;
+use App\User;
+use App\UserRoles;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AppointmentController extends Controller
 {
@@ -17,9 +20,16 @@ class AppointmentController extends Controller
      */
     public function index()
     {
+
+        if (!Auth::check()) {
+            return redirect()
+                ->route("login")
+                ->with("warning", "To create an appointment you must be log in!");
+        }
+
         $time_ranges = [
-            '09:00:00' => '09:00-9:30',
-            '09:30:00' => '9:30-10:00',
+            '09:00:00' => '09:00-09:30',
+            '09:30:00' => '09:30-10:00',
             '10:00:00' => '10:00-10:30',
             '10:30:00' => '10:30-11:00',
             '11:00:00' => '11:00-11:30',
