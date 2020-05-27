@@ -18,9 +18,6 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Appointment extends Model
 {
-    const STATUS_ON_HOLD = "onHold";
-    const STATUS_CONFIRMED = "confirmed";
-    const STATUS_CANCELED = "canceled";
 
     protected $table = "appointments";
 

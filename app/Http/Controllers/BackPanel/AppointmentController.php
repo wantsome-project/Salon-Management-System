@@ -43,14 +43,33 @@ class AppointmentController extends Controller
             /* @var ServiceType[]|Collection $service_types */
             $service_types = ServiceType::query()
                 ->get();
-            $service_type_names =[];
+            $service_type_names = [];
             foreach ($service_types as $service_type) {
                 $service_type_names[$service_type->id] = $service_type->name;
             }
+            $status_appointment = ['Confirmed', 'OnHold', 'Canceled'];
+            $time_appointment = ['09:00:00' => '09:00-9:30',
+                '09:30:00' => '9:30-10:00',
+                '10:00:00' => '10:00-10:30',
+                '10:30:00' => '10:30-11:00',
+                '11:00:00' => '11:00-11:30',
+                '11:30:00' => '11:30-12:00',
+                '12:00:00' => '12:30-13:00',
+                '12:30:00' => '13:30-14:00',
+                '13:00:00' => '14:00-14:30',
+                '13:30:00' => '14:30-15:00',
+                '14:00:00' => '15:00-15:30',
+                '14:30:00' => '15:30-16:00',
+                '15:00:00' => '16:00-16:30',
+                '15:30:00' => '16:30-17:00',];
+            $date_appointment = [];
             return view("back_panel.appointment.create")
                 ->with("employees_appointment", $employees_appointment)
                 ->with("customers_appointment", $customers_appointment)
-                ->with("service_type_names",$service_type_names);
+                ->with("service_type_names", $service_type_names)
+                ->with("status_appointment", $status_appointment)
+                ->with("time_appointment", $time_appointment)
+                ->with("date_appointment", $date_appointment);
         }
     }
 
@@ -87,7 +106,7 @@ class AppointmentController extends Controller
         /* @var ServiceType[]|Collection $service_types */
         $service_types = ServiceType::query()
             ->get();
-        $service_type_names =[];
+        $service_type_names = [];
         foreach ($service_types as $service_type) {
             $service_type_names[$service_type->id] = $service_type->name;
         }
@@ -95,7 +114,7 @@ class AppointmentController extends Controller
             ->with("appointment", $appointment)
             ->with("employees_appointment", $employees_appointment)
             ->with("customers_appointment", $customers_appointment)
-            ->with("service_type_names",$service_type_names);
+            ->with("service_type_names", $service_type_names);
     }
 
     public function edit(Appointment $appointment)
@@ -122,7 +141,7 @@ class AppointmentController extends Controller
         /* @var ServiceType[]|Collection $service_types */
         $service_types = ServiceType::query()
             ->get();
-        $service_type_names =[];
+        $service_type_names = [];
         foreach ($service_types as $service_type) {
             $service_type_names[$service_type->id] = $service_type->name;
         }
@@ -130,7 +149,7 @@ class AppointmentController extends Controller
             ->with("appointment", $appointment)
             ->with("employees_appointment", $employees_appointment)
             ->with("customers_appointment", $customers_appointment)
-            ->with("service_type_names",$service_type_names);
+            ->with("service_type_names", $service_type_names);
     }
 
     public function update(UpdateRequest $request, Appointment $appointment)
