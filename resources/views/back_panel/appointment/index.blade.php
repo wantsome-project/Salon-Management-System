@@ -21,6 +21,8 @@
                     <th>Status</th>
                     <th>Time</th>
                     <th>Date</th>
+                    <th></th>
+                    <th></th>
                 </tr>
                 @foreach($appointments as $appointment)
                     <tr>

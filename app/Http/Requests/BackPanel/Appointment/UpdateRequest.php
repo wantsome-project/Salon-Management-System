@@ -48,6 +48,7 @@ class UpdateRequest extends FormRequest
             ],
             "appointment.appointment_date" => [
                 "required",
+                "date",
             ],
         ];
     }
