@@ -114,19 +114,20 @@ Route::prefix('back_panel')
 
         });
         Route::prefix('appointment')
+            ->middleware('can:isAdmin')
             ->group(function () {
                 Route::get('/', 'AppointmentController@index')
-                    ->name('appointments.index');
-                Route::get('/create', 'ServiceTypeController@create')
-                    ->name('appointments.create');
-                Route::post('/','ServiceTypeController@store')
-                    ->name('appointments.store');
-                Route::get('/{appointment}/edit', 'ServiceTypeController@edit')
-                    ->name('appointments.edit');
-                Route::put('/{appointment}', 'ServiceTypeController@update')
-                    ->name('appointments.update');
-                Route::delete('/{appointment}', 'ServiceTypeController@destroy')
-                    ->name('appointments.destroy');
+                    ->name('appointment.index');
+                Route::get('/create', 'AppointmentController@create')
+                    ->name('appointment.create');
+                Route::post('/','AppointmentController@store')
+                    ->name('appointment.store');
+                Route::get('/{appointment}/edit', 'AppointmentController@edit')
+                    ->name('appointment.edit');
+                Route::put('/{appointment}', 'AppointmentController@update')
+                    ->name('appointment.update');
+                Route::delete('/{appointment}', 'AppointmentController@destroy')
+                    ->name('appointment.destroy');
 
             });
 
