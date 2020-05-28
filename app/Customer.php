@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Model;
  * Class Customer
  * @package App
  * @property integer  $id
- * @property integer  $user_id
  * @property string   $phone
  * @property Service  $services
  * @property User     $user
@@ -22,7 +21,7 @@ class Customer extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class, "user_id", "id");
+        return $this->hasOne(User::class, "customer_id", "id");
     }
 
     public function services()

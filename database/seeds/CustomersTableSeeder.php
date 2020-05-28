@@ -17,35 +17,34 @@ class CustomersTableSeeder extends Seeder
      */
     public function run()
     {
-        $user = new User([
-            'role_id' => UserRoles::CUSTOMER,
-            'name' => Str::random(10),
-            'email' => Str::random(10).'@gmail.com',
-            'email_verified_at' => now(),
-            'password' => Hash::make(Str::random(5)),
-        ]);
-        $user->save();
-
         $customer = new Customer([
-            'user_id' => $user->id,
             'phone' => '0749851345'
         ]);
         $customer->save();
 
         $user = new User([
-            'role_id' => UserRoles::CUSTOMER,
-            'name' => Str::random(10),
+            'customer_id' => $customer->id,
+            'name' => "kevin Space",
             'email' => Str::random(10).'@gmail.com',
             'email_verified_at' => now(),
             'password' => Hash::make(Str::random(5)),
         ]);
         $user->save();
 
+
         $customer = new Customer([
-            'user_id' => $user->id,
             'phone' => '074983413'
         ]);
         $customer->save();
+
+        $user = new User([
+            'customer_id' => $customer->id,
+            'name' => "Barbara Space",
+            'email' => Str::random(10).'@gmail.com',
+            'email_verified_at' => now(),
+            'password' => Hash::make(Str::random(5)),
+        ]);
+        $user->save();
     }
 
 }

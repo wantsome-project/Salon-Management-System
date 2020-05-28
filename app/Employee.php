@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Model;
  * Class Employee
  * @package App
  * @property integer $id
- * @property integer $user_id
  * @property string  $title
  * @property string  $phone
  * @property integer $payroll
@@ -36,9 +35,8 @@ class Employee extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class, "user_id", "id");
+        return $this->hasOne(User::class, "employee_id", "id");
     }
-
     public function getPhotoUrl()
     {
         return asset("assets/employees_images/".$this->photo_name);
