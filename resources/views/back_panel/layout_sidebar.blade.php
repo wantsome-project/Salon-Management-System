@@ -60,13 +60,12 @@
                         Products
                     </a>
                 </li>
-            @endcannot
             <li class="nav-item ">
-                <a class="nav-link" {{ request()->routeIs('back_panel.appointment*') ? 'active' : "" }} "
-                href="{{ route("back_panel.appointment.index") }}" >
-                <span data-feather="file"></span>
-                <i class="fas fa-calendar-check"></i>
-                Appointments
+                <a class="nav-link {{ request()->routeIs('back_panel.appointment*') ? 'active' : "" }} "
+                    href="{{ route("back_panel.appointment.index") }}">
+                    <span data-feather="file"></span>
+                    <i class="fas fa-calendar-check"></i>
+                    Appointments
                 </a>
             </li>
             <li class="nav-item ">
@@ -77,6 +76,7 @@
                     Customer requests
                 </a>
             </li>
+            @endcannot
         </ul>
     </div>
 </nav>

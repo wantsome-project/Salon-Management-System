@@ -76,10 +76,10 @@ class EmployeeController extends Controller
             }
         } else {
             $user = new User($request->input('user'));
-            $user->role_id = UserRoles::EMPLOYEE;
             $user->password = \Hash::make($request->input('user.password'));
-            $user->save();
         }
+        $user->role_id = UserRoles::EMPLOYEE;
+        $user->save();
 
         $employee = new Employee();
         $employee->fill($request->input("employee"));
