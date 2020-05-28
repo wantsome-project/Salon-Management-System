@@ -32,7 +32,6 @@
             @error("appointment.appointment_date")
             <div class="invalid-feedback">{{ $message }}</div>
             @enderror
-{{--            <input type='text' name="appointment_date" class="form-control" id="datepicker"/>--}}
         </div>
     </div>
     <div class="form-group row">

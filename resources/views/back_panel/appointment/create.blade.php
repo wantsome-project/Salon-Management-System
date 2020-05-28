@@ -1,6 +1,8 @@
 @extends("back_panel.layout")
-
 @section("header", "Fill in the information of the new appointment")
+@section("custom_css")
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+@endsection
 @php
     $user =  Auth::user();
 @endphp
@@ -58,9 +60,9 @@
             </div>
             <div class="form-group row">
                 {!! Form::label("appointment[appointment_time]", "Pick a time", ["class" =>"col-sm-2 col-form-label"]) !!}
-                <div class="col-sm-10">
-                    {!! Form::select('appointment[appointment_time]',$time_appointment, ["class"=>"form-control".($errors->has("appointment.appointment_time") ? "is-invalid" : "")]) !!}
-                    @error("appointment_time")
+                <div class="col-sm-4">
+                    {!! Form::select("appointment[appointment_time]",$time_appointment, null, ["class"=>"form-control ".($errors->has("appointment.appointment_time") ? "is-invalid" : "")]) !!}
+                    @error("appointment.appointment_time")
                     <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
@@ -70,3 +72,13 @@
         </div>
     </div>
 @endsection
+@section('footer-scripts')
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+        $(function () {
+            $("#datepicker").datepicker();
+        });
+    </script>
+@endsection
+@yield("custom_css")
