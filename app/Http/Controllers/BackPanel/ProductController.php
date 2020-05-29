@@ -90,6 +90,7 @@ e
         $product->type = request("product.type");
         $product->brand = request("product.brand");
         $product->price = request("product.price");
+        $product->quantity = request("product.quantity");
         $product->save();
 
         if ($request->hasFile('product.image')) {

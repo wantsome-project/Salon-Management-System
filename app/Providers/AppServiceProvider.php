@@ -55,6 +55,13 @@ class AppServiceProvider extends ServiceProvider
                 : Response::allow();
         });
 
+        Gate::define('adminAndEmployee', function ($user) {
+            /* @var User $user */
+            return ($user->is_admin || $user->employee_id)
+                ? Response::allow()
+                : Response::deny('You must be an administrator.');
+        });
+
 
     }
 }
