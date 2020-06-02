@@ -62,6 +62,13 @@ class EmployeeController extends Controller
 
         // try find user using email, possible to be created as customers
         /* @var User $user */
+
+        $employee = new Employee();
+        $employee->fill($request->input("employee"));
+        $employee->payroll = $request->input("employee.payroll");
+        $employee->title = $request->input("employee.title");
+        $employee->save();
+
         $user = User::query()
             ->where('email', '=', $request->input('user.email'))
             ->first();
@@ -78,15 +85,8 @@ class EmployeeController extends Controller
             $user = new User($request->input('user'));
             $user->password = \Hash::make($request->input('user.password'));
         }
-        $user->role_id = UserRoles::EMPLOYEE;
+        $user->employee_id = $employee->id;
         $user->save();
-
-        $employee = new Employee();
-        $employee->fill($request->input("employee"));
-        $employee->user_id = $user->id;
-        $employee->payroll = $request->input("employee.payroll");
-        $employee->title = $request->input("employee.title");
-        $employee->save();
 
         if ($request->hasFile('employee.image')) {
             $uploaded_file = $request->file("employee.image");
@@ -158,9 +158,13 @@ class EmployeeController extends Controller
     public function destroy(Employee $employee)
     {
         // delete employee throw user foreign key
-        $employee->user->delete();
+        $user = $employee->user;
+        $employee->delete();
+        if (empty($user->customer_id) && empty($user->is_admin)) {
+            $user->delete();
+        }
         return redirect()
             ->route("back_panel.employees.index")
-            ->with("success", "Employee ".$employee->user->name." deleted successfully");
+            ->with("success", "Employee ".$user->name." deleted successfully");
     }
 }

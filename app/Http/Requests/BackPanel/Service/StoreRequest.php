@@ -25,9 +25,9 @@ class StoreRequest extends FormRequest
     public function prepareForValidation()
     {
         $user = \Auth::user();
-        if ($user->role_id == UserRoles::EMPLOYEE) {
+        if ($user->employee_id) {
             $all_inputs = $this->all();
-            $all_inputs['service']["employee_id"] = $user->employee->id;
+            $all_inputs['service']["employee_id"] = $user->employee_id;
             $this->merge($all_inputs);
         }
     }

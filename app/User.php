@@ -11,7 +11,9 @@ use App\UserRoles;
  * Class User
  * @package App
  * @property integer  $id
- * @property integer  $role_id
+ * @property integer  $is_admin
+ * @property integer  $customer_id
+ * @property integer  $employee_id
  * @property string   $name
  * @property string   $email
  * @property string   $password
@@ -57,13 +59,12 @@ class User extends Authenticatable
         return UserRoles::getUserRole($this->role_id);
     }
 
-    public function customer()
-    {
-        return $this->hasOne(Customer::class, 'user_id', 'id');
-    }
-
     public function employee()
     {
-        return $this->hasOne(Employee::class, 'user_id', 'id');
+        return $this->belongsTo(Employee::class, "employee_id", "id");
+    }
+    public function customer()
+    {
+        return $this->belongsTo(Customer::class, "customer_id", "id");
     }
 }

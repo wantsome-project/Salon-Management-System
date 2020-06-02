@@ -48,6 +48,7 @@ Route::get('/frontpanel', function () {
 })->name('frontpanel');
 
 Route::prefix('back_panel')
+    ->middleware("can:adminAndEmployee")
     ->name("back_panel.")
     ->namespace("BackPanel")
     ->group(function () {
@@ -187,14 +188,15 @@ Route::namespace("FrontPanel")
                     return view('front_panel.pages.contact_request.create');
                  })->name('contact');
                 Route::get('/create', 'CustomerRequestController@create')
-                    ->name('customer_requests.create');
+                    ->name('customer_requests.create')
+                ->middleware("can:isAdmin");
                 Route::post('/','CustomerRequestController@store')
-                    ->name('customer_requests.store');
+                    ->name('customer_requests.store')
+                ->middleware("cam:isAdmin");
             });
 
         Route::get('/products', 'ProductController@index')
             ->name('products');
-
 
         Route::get('/service_types', 'ServiceTypesController@index')
             ->name('service_types');

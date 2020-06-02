@@ -47,12 +47,13 @@ class LoginController extends Controller
      */
     protected function authenticated(Request $request, $user)
     {
-        if ($user->role_id == UserRoles::CUSTOMER) {
-            return redirect()
-                ->route('home_page');
-        } else {
+//        if user is employee or is admin redirect to back-panel
+        if ($user->employee_id || $user->is_admin) {
             return redirect()
                 ->route('back_panel.dashboard');
+        } else {
+            return redirect()
+                ->route('home_page');
         }
     }
 }
