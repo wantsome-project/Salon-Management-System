@@ -9,7 +9,7 @@
     <div class="row">
         <div class="col-8">
             {!! Form::open(['url' => route('back_panel.services.store')]) !!}
-            @if($user->role_id == \App\UserRoles::ADMIN)
+            @if($user->is_admin)
             <div class="form-group row">
                 {!! Form::label("service[employee_id]", "Employee", ["class" =>"col-sm-2 col-form-label"]) !!}
                 <div class="col-sm-4">

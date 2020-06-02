@@ -66,19 +66,19 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $customer = new Customer();
+        $customer->phone = $data['phone'];
+        $customer->save();
+
         $user = new User([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
 
-        $user->role_id = UserRoles::CUSTOMER;
+        $user->customer_id = $customer->id;
         $user->save();
 
-        $customer = new Customer();
-        $customer->user_id = $user->id;
-        $customer->phone = $data['phone'];
-        $customer->save();
         return $user;
     }
     public function redirectTo()

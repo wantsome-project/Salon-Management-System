@@ -16,9 +16,6 @@ class CreateEmployeesTable extends Migration
     {
         Schema::create('employees', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('user_id')
-                ->unsigned()
-                ->unique();
             $table->string('phone', 20)
                 ->nullable();
             $table->string('title')
@@ -29,10 +26,6 @@ class CreateEmployeesTable extends Migration
                 ->nullable();
             $table->timestamps();
 
-            $table->foreign('user_id', "user_employee_foreign")
-                ->references('id')
-                ->on('users')
-                ->onDelete("cascade");
         });
     }
 

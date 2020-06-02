@@ -35,21 +35,29 @@ class AppServiceProvider extends ServiceProvider
     {
        Gate::define('isAdmin', function ($user) {
            /* @var User $user */
-           return $user->role_id == UserRoles::ADMIN
+           return $user->is_admin == true
                ? Response::allow()
                : Response::deny('You must be an administrator.');
       });
 
         Gate::define('isEmployee', function ($user) {
             /* @var User $user */
-            return $user->role_id == UserRoles::EMPLOYEE
-                ? Response::allow()
-                : Response::deny('You must be an administrator.');
+            return empty($user->employee_id)
+                ? Response::deny('You must be an administrator.')
+                : Response::allow();
+
         });
 
         Gate::define('isCustomer', function ($user) {
             /* @var User $user */
-            return $user->role_id == UserRoles::CUSTOMER
+            return empty($user->customer_id)
+                ? Response::deny('You must be an administrator.')
+                : Response::allow();
+        });
+
+        Gate::define('adminAndEmployee', function ($user) {
+            /* @var User $user */
+            return ($user->is_admin || $user->employee_id)
                 ? Response::allow()
                 : Response::deny('You must be an administrator.');
         });
