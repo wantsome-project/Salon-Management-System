@@ -1,7 +1,7 @@
 @extends("front_panel.layout")
 @section("header")
     <h3 class="mx-auto text-center"><strong>Beauty Salon</strong></h3>
-    <h4 class="text-center">BARBER SHOP - HAIRSTYLE - COSMETICS - MAKE-UP</h4>
+    <h4 class="text-center bg-info text-dark ">BARBER SHOP - HAIRSTYLE - COSMETICS - MAKE-UP</h4>
 @endsection
 
 @section("content")
