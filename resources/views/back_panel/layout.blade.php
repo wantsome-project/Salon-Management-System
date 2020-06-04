@@ -8,7 +8,7 @@
 
         @include("back_panel.layout_head")
     </head>
-    <body>
+    <body style="background-image:  url('assets/1.jpg')">
         @include("back_panel.layout_navbar")
 
         <div class="container-fluid">
@@ -46,7 +46,3 @@
     </body>
     @include("back_panel.layout_scripts")
 </html>
-
-
-
-

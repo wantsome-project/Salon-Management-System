@@ -1,4 +1,4 @@
-# Project details
+Project details
 ## User roles:
 
 ### Admin 
@@ -9,50 +9,45 @@
 	- add, update, delete - new services like nails, hair, makeup,
 	- add, update, delete - rates, duration, service type;
 - manage and check employees salaries due date and payment to be made, payroll,
-- can see inside customers accounts, approve/reject, send email confirmation,
 - check various scheduled appointment booking;
 
 ### Employee
 - login to the system,
-- appointment booking - approve/reject, send email confirmation,
-- enters various services, the system calculates the bill and generates the bill;
+- enters various services, the system calculates the bill;
 
 ### Customer
 - login to the system,
-- user may book online appointment for 3 slots;
+- user may book online appointments;
 
 ## Inventory - stock system
 - product type,
 - product name,
-- rates;
+- price;
 
-## Services 
+## Service types 
 - service type,
-- rates,
+- price,
 - duration;  
 
-## Payment system
-- cash,
-- online payment(extra);
-
-## Appointment booking system
-- select available time slots, 
+## Appointment booking system 
 - dates,
 - services;
 
 ## Invoice 
--  calculates and generates the bill;
+-  calculates the bill;
 
 ## Dashboard:
 In this section admin can see all detail in brief like:
  - total number of employees,
- - total services,
+    - salary payments,
  - total number of customers, 
+ - total services and service types
+ - total number of products, 
  - total number of appointments 
 	- rejected appointment,
 	- accepted appointment, 
- - total sales 
-	- today’s sales;
+ - customer requests.	
+	
 
 
 
