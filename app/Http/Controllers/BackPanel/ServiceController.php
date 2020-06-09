@@ -9,6 +9,7 @@ use App\Http\Requests\BackPanel\Service\StoreRequest;
 use App\Http\Requests\BackPanel\Service\UpdateRequest;
 use App\Service;
 use App\ServiceType;
+use Auth;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 
@@ -20,12 +21,19 @@ class ServiceController extends Controller
      */
     public function index()
     {
-        $services = Service::query()
-            ->with(['employee'])
-            ->with(['customer'])
-            ->with(["serviceType"])
+        $user = Auth::user();
+        $services_query = Service::query()
+            ->with(['employee', 'customer', 'serviceType']);
+
+        if (!$user->is_admin) {
+            $services_query
+                ->where("employee_id", $user->employee_id);
+        }
+
+        $services = $services_query
             ->orderBy('id', "desc")
             ->paginate(25);
+
         return view("back_panel.services.index")
             ->with("services", $services);
     }
@@ -103,6 +111,11 @@ class ServiceController extends Controller
      */
     public function edit(Service $service)
     {
+        $user = Auth::user();
+        if (!$user->is_admin && $user->employee_id != $service->employee_id) {
+            abort(403);
+        }
+
         /* @var Customer[]|Collection $customers */
         $customers = Customer::query()
             ->with(['user'])
@@ -128,11 +141,12 @@ class ServiceController extends Controller
         foreach ($service_types as $service_type) {
             $service_type_names[$service_type->id] = $service_type->name."/".$service_type->price." euro";
         }
-        return view("back_panel.services.edit")
-            ->with("service", $service)
-            ->with("customers_services", $customers_services)
-            ->with("employees_services", $employees_services)
-            ->with('service_type_names', $service_type_names);
+
+            return view("back_panel.services.edit")
+                ->with("service", $service)
+                ->with("customers_services", $customers_services)
+                ->with("employees_services", $employees_services)
+                ->with('service_type_names', $service_type_names);
     }
 
     /**
@@ -141,7 +155,6 @@ class ServiceController extends Controller
      */
     public function update(UpdateRequest $request, Service $service)
     {
-
         $service->employee_id = request('service.employee_id');
         $service->customer_id = request('service.customer_id');
         $service->service_type_id = request('service.service_type_id');
@@ -160,6 +173,10 @@ class ServiceController extends Controller
      */
     public function destroy(Service $service)
     {
+        $user = Auth::user();
+        if (!$user->is_admin && $user->employee_id != $service->employee_id) {
+            abort(403);
+        }
         $service->delete();
         return redirect()
             ->route("back_panel.services.index");
