@@ -11,12 +11,14 @@
     @endphp
 
     <div class="row">
-        <div class="col-8">
+        <div class="col-12">
             <table class="table table-striped">
                 <tr>
                     <th>Id</th>
                     <th>Employee </th>
                     <th>Customer </th>
+                    <th>Customer phone </th>
+                    <th>Customer email </th>
                     <th>Service type</th>
                     <th>Status</th>
                     <th>Time</th>
@@ -29,6 +31,8 @@
                         <th>{{ $appointment->id }}</th>
                         <th>{{ $appointment->employee->user->name }}</th>
                         <th>{{ $appointment->customer->user->name }}</th>
+                        <th>{{ $appointment->customer->phone }}</th>
+                        <th>{{ $appointment->customer->user->email }}</th>
                         <th>{{ $appointment->serviceType->name }}</th>
                         <td>{{ ($appointment->status) }}</td>
                         <td>{{ ($appointment->appointment_time) }}</td>
