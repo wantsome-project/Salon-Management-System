@@ -20,13 +20,6 @@ class AppointmentController extends Controller
      */
     public function index()
     {
-
-        if (!Auth::check()) {
-            return redirect()
-                ->route("login")
-                ->with("warning", "To create an appointment you must be log in!");
-        }
-
         $time_ranges = [
             '09:00:00' => '09:00-09:30',
             '09:30:00' => '09:30-10:00',

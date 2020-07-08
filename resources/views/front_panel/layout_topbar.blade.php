@@ -19,7 +19,7 @@
             </li>
 
             <li class="nav-item active">
-                <a class="nav-link p-2 text-dark" href="{{ route('contact') }}">Contact</a>
+                <a class="nav-link p-2 text-dark" href="{{ route('customer_requests.create') }}">Contact</a>
             </li>
 
             <li class="nav-item active">

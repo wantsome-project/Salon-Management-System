@@ -46,7 +46,7 @@ class CustomerRequestController extends Controller
         $customer_request->save();
 
         return redirect()
-            ->route("contact", $customer_request)
+            ->route("customer_requests.create")
             ->with("success", "Message sent successfully, you will be contacted as soon as possible.");
 
     }
