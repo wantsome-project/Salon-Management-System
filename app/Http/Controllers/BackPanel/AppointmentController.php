@@ -10,6 +10,7 @@ use App\Http\Requests\BackPanel\Appointment\StoreRequest;
 use App\Http\Requests\BackPanel\Appointment\UpdateRequest;
 use App\ServiceType;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Mail;
 
 class AppointmentController extends Controller
 {
@@ -183,8 +184,43 @@ class AppointmentController extends Controller
         $appointment->status = request("appointment.status");
         $appointment->appointment_time = request("appointment.appointment_time");
         $appointment->appointment_date = request('appointment.appointment_date');
-        $appointment->save();
 
+        /* @var Customer[]|Collection $customers */
+        $customers = Customer::query()
+            ->with(['user'])
+            ->get();
+
+        $customers_appointment = [];
+        foreach ($customers as $customer) {
+            $customers_appointment[$customer->id] = $customer->user->name;
+        }
+
+        /* @var ServiceType[]|Collection $service_types */
+        $service_types = ServiceType::query()
+            ->get();
+        $service_type_names = [];
+        foreach ($service_types as $service_type) {
+            $service_type_names[$service_type->id] = $service_type->name;
+        }
+
+        $to_name  = $customer->user->name;
+        $to_email = $customer->user->email;
+        $data = [
+            'name'  =>$to_name,
+            'time'  =>$appointment->appointment_time,
+            'date'  =>$appointment->appointment_date,
+            'status'=>$appointment->status,
+        ];
+        Mail::send(
+            "emails.appointment",
+            $data,
+            function($message) use ($to_name, $to_email){
+                $message->to($to_email, $to_name)
+                    ->subject("Your appointment");
+                $message->from("sirbuanca2@gmail.com","Beauty salon");
+            }
+        );
+        $appointment->save();
         return redirect()
             ->route("back_panel.appointment.index");
     }

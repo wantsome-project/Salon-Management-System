@@ -12,6 +12,7 @@ use App\UserRoles;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class AppointmentController extends Controller
 {
@@ -72,6 +73,7 @@ class AppointmentController extends Controller
         $appointment->status = Appointment::STATUS_ON_HOLD;
         $appointment->appointment_time = request("appointment.appointment_time");
         $appointment->appointment_date = new Carbon($appointment->appointment_date);
+
         $appointment->save();
 
         return redirect()

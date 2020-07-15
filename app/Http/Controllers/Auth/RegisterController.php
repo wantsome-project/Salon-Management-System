@@ -8,8 +8,8 @@ use App\Providers\RouteServiceProvider;
 use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
-use App\UserRoles;
 
 class RegisterController extends Controller
 {
@@ -78,6 +78,19 @@ class RegisterController extends Controller
 
         $user->customer_id = $customer->id;
         $user->save();
+
+        $to_name = $user->name;
+        $to_email = $user->email;
+        $data = ['name'=>$user->name];
+        Mail::send(
+            "emails.mail",
+            $data,
+            function($message) use ($to_name, $to_email){
+                $message->to($to_email, $to_name)
+                    ->subject("Your account has been created");
+                $message->from("sirbuanca2@gmail.com","Beauty salon");
+            }
+        );
 
         return $user;
     }
