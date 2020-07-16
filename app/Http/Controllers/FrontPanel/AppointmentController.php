@@ -72,7 +72,7 @@ class AppointmentController extends Controller
         $appointment->customer_id = auth()->user()->customer->id;
         $appointment->status = Appointment::STATUS_ON_HOLD;
         $appointment->appointment_time = request("appointment.appointment_time");
-        $appointment->appointment_date = new Carbon($appointment->appointment_date);
+        $appointment->appointment_date = request('appointment.appointment_date');
 
         $appointment->save();
 
