@@ -2,6 +2,9 @@
 
 namespace App\Providers;
 
+use App\Events\CustomerAppointmentStatusEvent;
+use App\Events\NewCustomerHasRegisteredEvent;
+use App\Listeners\AppointmentStatusListener;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -15,8 +18,11 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        Registered::class => [
-            SendEmailVerificationNotification::class,
+        NewCustomerHasRegisteredEvent::class => [
+            \App\Listeners\WelcomeNewCustomerListener::class,
+        ],
+        CustomerAppointmentStatusEvent::class => [
+            AppointmentStatusListener::class
         ],
     ];
 
@@ -29,6 +35,6 @@ class EventServiceProvider extends ServiceProvider
     {
         parent::boot();
 
-        //
+
     }
 }

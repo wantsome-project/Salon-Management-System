@@ -5,9 +5,11 @@ namespace App\Http\Controllers\BackPanel;
 use App\Appointment;
 use App\Customer;
 use App\Employee;
+use App\Events\CustomerAppointmentStatusEvent;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\BackPanel\Appointment\StoreRequest;
 use App\Http\Requests\BackPanel\Appointment\UpdateRequest;
+use App\Mail\AppointmentConfirmation;
 use App\ServiceType;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Mail;
@@ -203,23 +205,19 @@ class AppointmentController extends Controller
             $service_type_names[$service_type->id] = $service_type->name;
         }
 
-        $to_name  = $customer->user->name;
-        $to_email = $customer->user->email;
-        $data = [
-            'name'  =>$to_name,
-            'time'  =>$appointment->appointment_time,
-            'date'  =>$appointment->appointment_date,
-            'status'=>$appointment->status,
-        ];
-        Mail::send(
-            "emails.appointment",
-            $data,
-            function($message) use ($to_name, $to_email){
-                $message->to($to_email, $to_name)
-                    ->subject("Your appointment");
-                $message->from("sirbuanca2@gmail.com","Beauty salon");
-            }
-        );
+        event( new CustomerAppointmentStatusEvent($appointment));
+
+//        Mail::to($customer->user->email)->send( new AppointmentConfirmation($appointment));
+
+//        Mail::send(
+//            "emails.appointment",
+//            $data,
+//            function($message) use ($to_name, $to_email){
+//                $message->to($to_email, $to_name)
+//                    ->subject("Your appointment");
+//                $message->from("sirbuanca2@gmail.com","Beauty salon");
+//            }
+//        );
         $appointment->save();
         return redirect()
             ->route("back_panel.appointment.index");

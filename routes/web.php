@@ -1,5 +1,6 @@
 <?php
 
+use App\Events\NewCustomerHasRegisteredEvent;
 use App\ServiceType;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;

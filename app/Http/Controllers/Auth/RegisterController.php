@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Customer;
+use App\Events\NewCustomerHasRegisteredEvent;
 use App\Http\Controllers\Controller;
+use App\Mail\WelcomeNewUserMail;
 use App\Providers\RouteServiceProvider;
 use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -79,18 +81,7 @@ class RegisterController extends Controller
         $user->customer_id = $customer->id;
         $user->save();
 
-        $to_name = $user->name;
-        $to_email = $user->email;
-        $data = ['name'=>$user->name];
-        Mail::send(
-            "emails.mail",
-            $data,
-            function($message) use ($to_name, $to_email){
-                $message->to($to_email, $to_name)
-                    ->subject("Your account has been created");
-                $message->from("sirbuanca2@gmail.com","Beauty salon");
-            }
-        );
+        event( new NewCustomerHasRegisteredEvent($user));
 
         return $user;
     }
