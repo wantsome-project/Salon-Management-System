@@ -3,13 +3,15 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Customer;
+use App\Events\NewCustomerHasRegisteredEvent;
 use App\Http\Controllers\Controller;
+use App\Mail\WelcomeNewUserMail;
 use App\Providers\RouteServiceProvider;
 use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
-use App\UserRoles;
 
 class RegisterController extends Controller
 {
@@ -78,6 +80,8 @@ class RegisterController extends Controller
 
         $user->customer_id = $customer->id;
         $user->save();
+
+        event( new NewCustomerHasRegisteredEvent($user));
 
         return $user;
     }

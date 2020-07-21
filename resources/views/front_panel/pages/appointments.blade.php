@@ -55,11 +55,20 @@
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script>
         $(function() {
-            $( "#datepicker" ).datepicker({
-                dateFormat: 'yy-mm-dd',
-                changeMonth: true,
-                changeYear: true
-            });
+            $( "#datepicker" )
+                .datepicker(
+                    {
+                        minDate: 0,
+                        maxDate: "+2M",
+                        dateFormat: 'yy-mm-dd',
+                        changeMonth: true,
+                        changeYear: true,
+                        beforeShowDay: function(date) {
+                            var day = date.getDay();
+                            return [(day != 0), ''];
+                        }
+                    }
+                );
         });
     </script>
 @endsection

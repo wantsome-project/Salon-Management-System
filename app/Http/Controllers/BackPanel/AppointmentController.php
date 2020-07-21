@@ -5,11 +5,14 @@ namespace App\Http\Controllers\BackPanel;
 use App\Appointment;
 use App\Customer;
 use App\Employee;
+use App\Events\CustomerAppointmentStatusEvent;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\BackPanel\Appointment\StoreRequest;
 use App\Http\Requests\BackPanel\Appointment\UpdateRequest;
+use App\Mail\AppointmentConfirmation;
 use App\ServiceType;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Mail;
 
 class AppointmentController extends Controller
 {
@@ -183,8 +186,39 @@ class AppointmentController extends Controller
         $appointment->status = request("appointment.status");
         $appointment->appointment_time = request("appointment.appointment_time");
         $appointment->appointment_date = request('appointment.appointment_date');
-        $appointment->save();
 
+        /* @var Customer[]|Collection $customers */
+        $customers = Customer::query()
+            ->with(['user'])
+            ->get();
+
+        $customers_appointment = [];
+        foreach ($customers as $customer) {
+            $customers_appointment[$customer->id] = $customer->user->name;
+        }
+
+        /* @var ServiceType[]|Collection $service_types */
+        $service_types = ServiceType::query()
+            ->get();
+        $service_type_names = [];
+        foreach ($service_types as $service_type) {
+            $service_type_names[$service_type->id] = $service_type->name;
+        }
+
+        event( new CustomerAppointmentStatusEvent($appointment));
+
+//        Mail::to($customer->user->email)->send( new AppointmentConfirmation($appointment));
+
+//        Mail::send(
+//            "emails.appointment",
+//            $data,
+//            function($message) use ($to_name, $to_email){
+//                $message->to($to_email, $to_name)
+//                    ->subject("Your appointment");
+//                $message->from("sirbuanca2@gmail.com","Beauty salon");
+//            }
+//        );
+        $appointment->save();
         return redirect()
             ->route("back_panel.appointment.index");
     }
