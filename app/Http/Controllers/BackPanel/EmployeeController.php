@@ -7,8 +7,9 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\BackPanel\Employee\StoreRequest;
 use App\Http\Requests\BackPanel\Employee\UpdateRequest;
 use App\SalaryPayment;
+use App\ServiceType;
 use App\User;
-use App\UserRoles;
+
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
@@ -47,7 +48,16 @@ class EmployeeController extends Controller
 
     public function create()
     {
-        return view("back_panel.employees.create");
+
+        /* @var ServiceType[]|Collection $service_types */
+        $service_types = ServiceType::query()
+            ->get();
+        $service_type_names =[];
+        foreach ($service_types as $service_type) {
+            $service_type_names[$service_type->id] = $service_type->name;
+        }
+        return view("back_panel.employees.create")
+            ->with('service_type_names', $service_type_names);
     }
 
     /**
@@ -58,15 +68,13 @@ class EmployeeController extends Controller
      */
     public function store(StoreRequest $request)
     {
-//        dd();
-
         // try find user using email, possible to be created as customers
         /* @var User $user */
 
         $employee = new Employee();
         $employee->fill($request->input("employee"));
         $employee->payroll = $request->input("employee.payroll");
-        $employee->title = $request->input("employee.title");
+        $employee->service_type_id = $request->input("employee.service_type_id");
         $employee->save();
 
         $user = User::query()
@@ -120,8 +128,16 @@ class EmployeeController extends Controller
      */
     public function edit(Employee $employee)
     {
+        /* @var ServiceType[]|Collection $service_types */
+        $service_types = ServiceType::query()
+            ->get();
+        $service_type_names =[];
+        foreach ($service_types as $service_type) {
+            $service_type_names[$service_type->id] = $service_type->name;
+        }
         return view("back_panel.employees.edit")
-            ->with("employee", $employee);
+            ->with("employee", $employee)
+            ->with('service_type_names', $service_type_names);;
     }
 
     /**
@@ -132,7 +148,7 @@ class EmployeeController extends Controller
     {
         $employee->user->name = request("user.name");
         $employee->user->save();
-        $employee->title = request("employee.title");
+        $employee->service_type_id = request("employee.service_type_id");
         $employee->phone = request("employee.phone");
         $employee->payroll = request("employee.payroll");
         $employee->save();
@@ -145,7 +161,6 @@ class EmployeeController extends Controller
             $employee->photo_name = $file_name;
             $employee->save();
         }
-
         return redirect()
             ->route("back_panel.employees.index");
     }
@@ -167,4 +182,5 @@ class EmployeeController extends Controller
             ->route("back_panel.employees.index")
             ->with("success", "Employee ".$user->name." deleted successfully");
     }
+
 }

@@ -182,6 +182,9 @@ Route::namespace("FrontPanel")
     ->group(function () {
         Route::get('/staff', 'StaffController@index')
             ->name('staff');
+        Route::get('/staff/employees', 'StaffController@getEmployeesByProvidedServiceType')
+            ->name('service_type.employees');
+
 
         Route::prefix('/contact')
             ->group( function () {

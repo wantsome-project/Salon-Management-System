@@ -41,7 +41,7 @@ class StoreRequest extends FormRequest
                 "min:8",
                 "confirmed"
             ],
-            "employee.title" => [
+            "employee.service_type_id" => [
                 "required",
                 "string",
                 "max:255"
@@ -68,6 +68,7 @@ class StoreRequest extends FormRequest
             "user.name" => "name",
             "user.email" => "email",
             "user.password" => "password",
+            "employee.service_type_id" => "service_type",
             "employee.phone" => "phone",
             "employee.payroll" => "payroll",
             "employee,image" => "image",

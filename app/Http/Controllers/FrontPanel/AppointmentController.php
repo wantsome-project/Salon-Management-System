@@ -37,15 +37,22 @@ class AppointmentController extends Controller
             '15:00:00' => '16:00-16:30',
             '15:30:00' => '16:30-17:00',
         ];
-        $employees = Employee::query()
-            ->with('user')
-            ->get()
-            ->pluck('user.name', 'id')
-            ->toArray();
         $service_types = ServiceType::query()
             ->get()
             ->pluck('name', 'id')
             ->toArray();
+
+        $service_type_id = array_key_first($service_types);
+        $employees = [];
+        if (!is_null($service_type_id)) {
+            $employees = Employee::query()
+                ->with('user')
+                ->where('service_type_id', '=', $service_type_id)
+                ->get()
+                ->pluck('user.name', 'id')
+                ->toArray();
+        }
+
 
         return view("front_panel.pages.appointments", compact("employees", "service_types", "time_ranges"));
     }
@@ -53,7 +60,6 @@ class AppointmentController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
      */
     public function create()
     {

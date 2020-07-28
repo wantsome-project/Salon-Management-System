@@ -1,6 +1,7 @@
 <?php
 
 use App\Employee;
+use App\ServiceType;
 use App\User;
 use App\UserRoles;
 use Illuminate\Database\Seeder;
@@ -15,9 +16,13 @@ class EmployeesTableSeeder extends Seeder
     public function run()
     {
 
+        $service_type = ServiceType::query()
+            ->orderBy('id', 'desc')
+            ->first();
+
         $employee = new Employee([
             'phone' => '0749982097',
-            'title' => 'hairstylist',
+            'service_type_id' => $service_type->id,
             'payroll' => '2000',
             'photo_name' => 'one.jpeg'
         ]);
@@ -33,9 +38,13 @@ class EmployeesTableSeeder extends Seeder
         $user->save();
 
 
+        $service_type = ServiceType::query()
+            ->orderBy('id', 'desc')
+            ->first();
+
         $employee = new Employee([
             'phone' => '0749851345',
-            'title' => 'stylist',
+            'service_type_id' => $service_type->id,
             'payroll' => '4500',
             'photo_name' => "two.jpeg"
         ]);

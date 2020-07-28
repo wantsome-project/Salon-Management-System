@@ -27,7 +27,7 @@ class UpdateRequest extends FormRequest
             "user.name" => [
                 "required",
             ],
-            "employee.title" => [
+            "employee.service_type_id" => [
                 "required",
                 "string",
                 "max:255"
@@ -52,6 +52,7 @@ class UpdateRequest extends FormRequest
     {
         return [
             "user.name" => "name",
+            "employee.service_type_id" => "Service provided",
             "employee.phone" => "phone",
             "employee.payroll" => "payroll",
         ];

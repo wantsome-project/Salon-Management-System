@@ -21,10 +21,10 @@
                 </div>
             </div>
             <div class="form-group row">
-                {!! Form::label("employee[title]", "Job position", ["class" =>"col-sm-2 col-form-label"]) !!}
+                {!! Form::label("employee[service_type_id]", "Service provided", ["class" =>"col-sm-2 col-form-label"]) !!}
                 <div class="col-sm-4">
-                    {!! Form::text("employee[title]", $employee->title, ["class"=>"form-control ".($errors->has("employee.title") ? "is-invalid" : "")]) !!}
-                    @error("employee.title")
+                    {!! Form::select("employee[service_type_id]",$service_type_names, $employee->service_type_id, ["class"=>"form-control ".($errors->has("employee.service_type_id") ? "is-invalid" : "")]) !!}
+                    @error("employee.service_type_id")
                     <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>

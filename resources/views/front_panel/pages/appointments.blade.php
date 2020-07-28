@@ -8,19 +8,19 @@
     {!! Form::open(['url' => route('appointment.store'), 'autocomplete'=>'off']) !!}
     @csrf
     <div class="form-group row">
-        {!! Form::label("appointment[employee_id]", "Employee", ["class" =>"col-sm-2 col-form-label"]) !!}
+        {!! Form::label("appointment[service_type_id]", "Service type", ["class" =>"col-sm-2 col-form-label"]) !!}
         <div class="col-sm-4">
-            {!! Form::select("appointment[employee_id]",$employees, null, ["class"=>"form-control ".($errors->has("appointment.employee_id") ? "is-invalid" : "")]) !!}
-            @error("appointment.employee_id")
+            {!! Form::select("appointment[service_type_id]",$service_types, null,["onchange"=>"get_title(this)", "class"=>"form-control ".($errors->has("appointment.service_type_id") ? "is-invalid" : "")]) !!}
+            @error("appointment.service_type_id")
             <div class="invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
     </div>
-    <div class="form-group row">
-        {!! Form::label("appointment[service_type_id]", "Service type", ["class" =>"col-sm-2 col-form-label"]) !!}
+    <div class="form-group row" id="txtHint">
+        {!! Form::label("appointment[employee_id]", "Employee", ["class" =>"col-sm-2 col-form-label"]) !!}
         <div class="col-sm-4">
-            {!! Form::select("appointment[service_type_id]",$service_types, null, ["class"=>"form-control ".($errors->has("appointment.service_type_id") ? "is-invalid" : "")]) !!}
-            @error("appointment.service_type_id")
+            {!! Form::select("appointment[employee_id]",$employees, null, ["class"=>"form-control ".($errors->has("appointment.employee_id") ? "is-invalid" : "")]) !!}
+            @error("appointment.employee_id")
             <div class="invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
@@ -70,5 +70,25 @@
                     }
                 );
         });
+    </script>
+    <script>
+        function get_title(service_type_select) {
+            var request = $.ajax({
+                url: "{{ route('service_type.employees') }}",
+                type: "GET",
+                data: {
+                    "service_type_id": service_type_select.value,
+                },
+            });
+
+            request.done(function (msg) {
+                $("#txtHint").html(msg);
+            })
+
+            request.fail(function (jqXHR, testStatus) {
+                // console.log(jqXHR, testStatus);
+                alert("Request failed: " + testStatus ) ;
+            });
+        }
     </script>
 @endsection
