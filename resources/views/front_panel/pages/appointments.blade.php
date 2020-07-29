@@ -50,6 +50,7 @@
     </div>
     {!! Form::close() !!}
 @endsection
+
 @section('footer-scripts')
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -76,19 +77,44 @@
             var request = $.ajax({
                 url: "{{ route('service_type.employees') }}",
                 type: "GET",
+                dataType: "JSON",
                 data: {
                     "service_type_id": service_type_select.value,
                 },
             });
 
-            request.done(function (msg) {
-                $("#txtHint").html(msg);
+            request.done(function (employees) {
+                var service_type_employees = "";
+                for (var employee of employees) {
+                    service_type_employees += "<option value='"+ employee.id +"'>"+employee.user.name+"</option>";
+                }
+                $("#appointment\\[employee_id\\]").html(service_type_employees);
             })
 
             request.fail(function (jqXHR, testStatus) {
-                // console.log(jqXHR, testStatus);
                 alert("Request failed: " + testStatus ) ;
             });
         }
     </script>
+{{-- varianta html--}}
+{{--    <script>--}}
+{{--        function get_title(service_type_select) {--}}
+{{--            var request = $.ajax({--}}
+{{--                url: "{{ route('service_type.employees') }}",--}}
+{{--                type: "GET",--}}
+{{--                data: {--}}
+{{--                    "service_type_id": service_type_select.value,--}}
+{{--                },--}}
+{{--            });--}}
+
+{{--            request.done(function (employees) {--}}
+{{--                $("#txtHint").html(employees);--}}
+{{--            })--}}
+
+{{--            request.fail(function (jqXHR, testStatus) {--}}
+{{--                // console.log(jqXHR, testStatus);--}}
+{{--                alert("Request failed: " + testStatus ) ;--}}
+{{--            });--}}
+{{--        }--}}
+{{--    </script>--}}
 @endsection

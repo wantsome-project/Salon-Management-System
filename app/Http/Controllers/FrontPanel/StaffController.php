@@ -87,6 +87,22 @@ class StaffController extends Controller
         //
     }
 
+//    public function getEmployeesByProvidedServiceType(Request $request)
+//    {
+//        $service_type_id = $request->input("service_type_id");
+//        if (is_null($service_type_id)) {
+//            return "empty service type value";
+//        }
+//
+//        $employees = Employee::query()
+//            ->with('user')
+//            ->where('service_type_id', '=', $service_type_id)
+//            ->get()
+//            ->pluck('user.name', 'id')
+//            ->toArray();
+//
+//        return view("front_panel.pages.employees", compact('employees'));
+//    }
     public function getEmployeesByProvidedServiceType(Request $request)
     {
         $service_type_id = $request->input("service_type_id");
@@ -98,9 +114,8 @@ class StaffController extends Controller
             ->with('user')
             ->where('service_type_id', '=', $service_type_id)
             ->get()
-            ->pluck('user.name', 'id')
-            ->toArray();
+            ->makeHidden(["payroll", "phone"]);
 
-        return view("front_panel.pages.employees", compact('employees'));
+        return $employees;
     }
 }
