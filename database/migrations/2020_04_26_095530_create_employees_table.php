@@ -18,14 +18,18 @@ class CreateEmployeesTable extends Migration
             $table->bigIncrements('id');
             $table->string('phone', 20)
                 ->nullable();
-            $table->string('title')
-                ->nullable();
+            $table->bigInteger('service_type_id')
+                ->unsigned();
             $table->string('payroll')
                 ->nullable();
             $table->string('photo_name')
                 ->nullable();
             $table->timestamps();
 
+            $table->foreign('service_type_id', "service_type_employee_foreign")
+                ->references('id')
+                ->on('service_types')
+                ->onDelete("cascade");
         });
     }
 

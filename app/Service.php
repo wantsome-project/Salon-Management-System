@@ -34,6 +34,7 @@ class Service extends Model
     {
         return $this->belongsTo(Employee::class, "employee_id", "id");
     }
+
     public function customer()
     {
         return $this->belongsTo(Customer::class, "customer_id", "id");

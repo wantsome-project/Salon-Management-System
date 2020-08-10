@@ -1,6 +1,7 @@
 <?php
 
 use App\Employee;
+use App\ServiceType;
 use App\User;
 use App\UserRoles;
 use Illuminate\Database\Seeder;
@@ -15,9 +16,13 @@ class EmployeesTableSeeder extends Seeder
     public function run()
     {
 
+        $service_type = ServiceType::query()
+            ->orderBy('id', 'desc')
+            ->first();
+
         $employee = new Employee([
             'phone' => '0749982097',
-            'title' => 'hairstylist',
+            'service_type_id' => $service_type->id,
             'payroll' => '2000',
             'photo_name' => 'one.jpeg'
         ]);
@@ -25,26 +30,51 @@ class EmployeesTableSeeder extends Seeder
 
         $user = new User([
             'employee_id' => $employee->id,
-            'name' => "Mike Nice ",
-            'email' => Str::random(10).'@gmail.com',
+            'name' => "Michelle nice",
+            'email' => 'michelle.nice@gmail.com',
             'email_verified_at' => now(),
             'password' => Hash::make(Str::random(5)),
         ]);
         $user->save();
 
 
+        $service_type = ServiceType::query()
+            ->orderBy('id', 'desc')
+            ->first();
+
         $employee = new Employee([
             'phone' => '0749851345',
-            'title' => 'stylist',
+            'service_type_id' => $service_type->id,
             'payroll' => '4500',
-            'photo_name' => "two.jpeg"
+            'photo_name' => "three.jpeg"
         ]);
         $employee->save();
 
         $user = new User([
             'employee_id' => $employee->id,
             'name' => "Michael Bob ",
-            'email' => Str::random(10).'@gmail.com',
+            'email' =>'michael.bob@gmail.com',
+            'email_verified_at' => now(),
+            'password' => Hash::make(Str::random(5)),
+        ]);
+        $user->save();
+
+        $service_type = ServiceType::query()
+            ->orderBy('id', 'asc')
+            ->first();
+
+        $employee = new Employee([
+            'phone' => '0749851456',
+            'service_type_id' => $service_type->id,
+            'payroll' => '3500',
+            'photo_name' => "two.jpeg"
+        ]);
+        $employee->save();
+
+        $user = new User([
+            'employee_id' => $employee->id,
+            'name' => "Jasmine Hill",
+            'email' => 'Jasmine.hill@gmail.com',
             'email_verified_at' => now(),
             'password' => Hash::make(Str::random(5)),
         ]);

@@ -9,7 +9,7 @@
             @endif
             <div class="card-body">
                 <h5 class="card-title">{{ $employee->user->name }}</h5>
-                <p class="card-text">{{"Position: ". $employee->title}}</p>
+                <p class="card-text">{{"Position: ". $employee->serviceType->name}}</p>
             </div>
         </div>
     @endforeach

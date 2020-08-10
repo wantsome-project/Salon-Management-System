@@ -18,7 +18,7 @@
                     <th>Id</th>
                     <th>Image</th>
                     <th>Name</th>
-                    <th>Job position</th>
+                    <th>Service provided</th>
                     <th>Email</th>
                     <th>Phone</th>
                     <th>Payroll</th>
@@ -35,7 +35,7 @@
                             @endif
                         </th>
                         <th>{{ $employee->user->name }}</th>
-                        <th>{{ $employee->title }}</th>
+                        <th>{{ $employee->serviceType->name }}</th>
                         <th>{{ $employee->user->email }}</th>
                         <td>{{ $employee->phone }}</td>
                         <td>{{ $employee->payroll }}</td>

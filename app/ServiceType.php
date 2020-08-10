@@ -31,6 +31,10 @@ class ServiceType extends Model
     {
         return $this->hasMany(Service::class, "service_type_id", "id");
     }
+    public function employees()
+    {
+        return $this->hasMany(Employee::class, "employee_id", "id");
+    }
 
     public function getPhotoUrl()
     {
