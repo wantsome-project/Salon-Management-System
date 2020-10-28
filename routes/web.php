@@ -175,6 +175,8 @@ Route::prefix('back_panel')
                     ->name('services.update');
                 Route::delete('/{service}', 'ServiceController@destroy')
                     ->name('services.destroy');
+                Route::get('{service}/generate-pdf','PDFController@generatePDF')
+                    ->name("services.PDF");
             });
     });
 

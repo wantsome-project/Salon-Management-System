@@ -21,6 +21,7 @@
                     <th>Total to be paid</th>
                     <th></th>
                     <th></th>
+                    <th></th>
                 </tr>
                 @foreach($services as $service)
                     <tr>
@@ -29,6 +30,7 @@
                         <th>{{ $service->customer->user->name }}</th>
                         <th>{{ $service->serviceType->name }}</th>
                         <td>{{ ($service->price)." euro" }}</td>
+                        <td><a href="{{ route('back_panel.services.PDF', $service) }}"><i class="fas fa-file-pdf"></i></a></td>
                         <td><a href="{{ route('back_panel.services.edit', $service) }}"><i class="fas fa-edit"></i></a></td>
                         <td>
                             {!! Form::open(['url' => route('back_panel.services.destroy',[$service])]) !!}
