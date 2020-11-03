@@ -9,10 +9,9 @@ use App\Events\CustomerAppointmentStatusEvent;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\BackPanel\Appointment\StoreRequest;
 use App\Http\Requests\BackPanel\Appointment\UpdateRequest;
-use App\Mail\AppointmentConfirmation;
 use App\ServiceType;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\Mail;
+
 
 class AppointmentController extends Controller
 {
