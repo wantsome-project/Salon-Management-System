@@ -4,9 +4,24 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-require('./bootstrap');
+import Vue from "vue";
+import VueRouter from "vue-router";
+import {BootstrapVue, IconsPlugin} from "bootstrap-vue";
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
 
+require('./bootstrap');
 window.Vue = require('vue');
+Vue.use(VueRouter);
+Vue.use(BootstrapVue);
+Vue.use(IconsPlugin);
+const routes = [
+    { path: '/', component: require('./components/Home.vue').default},
+    { path: '/service_types', component: require('./components/ServicesComponent.vue').default},
+    { path: '/user', component: require('./components/ExampleComponent.vue').default}
+];
+const router = new VueRouter({routes});
+
 
 /**
  * The following block of code may be used to automatically register your
@@ -16,10 +31,7 @@ window.Vue = require('vue');
  * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
  */
 
-// const files = require.context('./', true, /\.vue$/i)
-// files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
-
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+// Vue.component('home', require('./components/Home.vue').default)
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -29,4 +41,5 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 
 const app = new Vue({
     el: '#app',
+    router,
 });

@@ -17,8 +17,13 @@ class ProductController extends Controller
     {
         $products = Product::query()
             ->paginate(10);
-        return view("front_panel.pages.products.index")
-            ->with("products", $products);
+        if (\request()->wantsJson()) {
+            return response()->json($products);
+        } else {
+            return view("front_panel.pages.products.index")
+                ->with("products", $products);
+        }
+
     }
 
     /**

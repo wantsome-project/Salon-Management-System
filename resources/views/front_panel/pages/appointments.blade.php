@@ -74,7 +74,7 @@
     </script>
     <script>
         function get_title(service_type_select) {
-            var request = $.ajax({
+            let request = $.ajax({
                 url: "{{ route('service_type.employees') }}",
                 type: "GET",
                 dataType: "JSON",
@@ -84,7 +84,7 @@
             });
 
             request.done(function (employees) {
-                var service_type_employees = "";
+                let service_type_employees = "";
                 for (var employee of employees) {
                     service_type_employees += "<option value='"+ employee.id +"'>"+employee.user.name+"</option>";
                 }

@@ -27,16 +27,16 @@ class ServiceType extends Model
         'price',
     ];
 
-    public function services()
+    public function services(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(Service::class, "service_type_id", "id");
     }
-    public function employees()
+    public function employees(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(Employee::class, "employee_id", "id");
     }
 
-    public function getPhotoUrl()
+    public function getPhotoUrl(): string
     {
         return asset("assets/service_type_images/".$this->photo_name);
     }
