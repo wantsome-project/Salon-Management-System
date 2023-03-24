@@ -1,24 +1,77 @@
 <template>
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">Example Component</div>
-
-                    <div class="card-body">
-                        Welcome to Services
-                        <br/>
-                    </div>
+    <div :style="{'background-image': 'url(/assets/img.jpg)'}">
+        <Header/>
+        <b-container fluid="lg" class="bv-example-row bv-example-row-flex-cols">
+            <h5>Services</h5>
+            <b-row style="justify-content: center">
+                <div v-for="(item, index) in services_types">
+                    <b-col>
+                        <b-card
+                            :title="item.name"
+                            img-alt="Image"
+                            :img-src="'assets/service_type_images/'+ item.photo_name"
+                            img-top
+                            tag="article"
+                            style="max-width: 20rem;"
+                            class="mb-2"
+                        >
+                            <b-card-text>
+                                Duration: {{item.duration}} minutes
+                            </b-card-text>
+                            <b-card-text>
+                                Price: {{item.price}} euros
+                            </b-card-text>
+                        </b-card>
+                    </b-col>
                 </div>
-            </div>
-        </div>
+            </b-row>
+            <b-row>
+                <Footer></Footer>
+            </b-row>
+        </b-container>
     </div>
 </template>
 
 <script>
+import axios from "axios";
+import Header from "./Header.vue";
+import Footer from "./Footer.vue"
 export default {
+    components: {
+        Header,
+        Footer
+    },
+    props: {
+
+    },
+
+    data() {
+        return  {
+            services_types: []
+        }
+    },
+
     mounted() {
+        axios.get('/service_types').then(res => {
+            this.services_types = res.data.data
+        })
         console.log('Component mounted.')
     }
 }
 </script>
+<style scoped>
+h1, h4 {
+    text-align: center;
+}
+h5 {
+    padding: 20px;
+    text-align: center;
+}
+img {
+    width: 200px !important;
+    height: 200px
+}
+div {
+    justify-content: center;
+}
+</style>

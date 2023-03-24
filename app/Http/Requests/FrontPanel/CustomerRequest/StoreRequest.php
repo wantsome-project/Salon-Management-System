@@ -24,26 +24,26 @@ class StoreRequest extends FormRequest
     public function rules()
     {
         return [
-            "customer_request.name" => [
+            "name" => [
                 "required",
                 "string"
             ],
-            "customer_request.email" => [
+            "email" => [
                 "required",
                 "string",
                 "email",
                 "max:255",
             ],
-            "customer_request.phone" => [
+            "phone" => [
                 "required",
                 "numeric",
             ],
-            "customer_request.subject" => [
+            "subject" => [
                 "required",
                 "string"
             ],
 
-            "customer_request.message" => [
+            "message" => [
                 "required",
                 "string",
             ],
@@ -53,11 +53,11 @@ class StoreRequest extends FormRequest
     public function attributes()
     {
         return [
-            "customer_request.name" => "Name",
-            "customer_request.email" => "Email",
-            "customer_request.phone" => "Phone",
-            "customer_request.subject" => "Subject",
-            "customer_request.message" => "Message",
+            "name" => "Name",
+            "email" => "Email",
+            "phone" => "Phone",
+            "subject" => "Subject",
+            "message" => "Message",
         ];
     }
 }
