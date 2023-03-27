@@ -119,7 +119,6 @@
     const showPassword = () => {
         let password = document.getElementById("password")
         let confirmPassword = document.getElementById("password-confirm")
-
         if (password.type === "password") {
             password.type = "text";
             confirmPassword.type = "text";

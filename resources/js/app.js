@@ -5,11 +5,13 @@
  */
 
 import Vue from "vue";
-import router from "./routerIndex";
+import router from "./router";
 import {BootstrapVue, IconsPlugin} from "bootstrap-vue";
-import Vuex from 'vuex'
-import 'bootstrap/dist/css/bootstrap.css'
+import Vuex from 'vuex';
 import 'bootstrap-vue/dist/bootstrap-vue.css'
+import 'bootstrap/dist/css/bootstrap.css'
+import store from './store'
+import axios from "axios";
 
 require('./bootstrap');
 window.Vue = require('vue');
@@ -17,9 +19,8 @@ Vue.use(router);
 Vue.use(BootstrapVue);
 Vue.use(IconsPlugin);
 Vue.use(Vuex);
-const store  = new Vuex.Store({
-    appointments: {},
-});
+
+axios.defaults.withCredentials = true;
 
 
 /**

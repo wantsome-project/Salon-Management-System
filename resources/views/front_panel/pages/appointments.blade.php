@@ -5,7 +5,7 @@
 @endsection
 @section("content")
 
-    {!! Form::open(['url' => route('store'), 'autocomplete'=>'off']) !!}
+    {!! Form::open(['url' => route('appointment.store'), 'autocomplete'=>'off']) !!}
     @csrf
     <div class="form-group row">
         {!! Form::label("service_type_id", "Service type", ["class" =>"col-sm-2 col-form-label"]) !!}
@@ -65,8 +65,8 @@
                         changeMonth: true,
                         changeYear: true,
                         beforeShowDay: function(date) {
-                            var day = date.getDay();
-                            return [(day != 0), ''];
+                            let day = date.getDay();
+                            return [(day !== 0), ''];
                         }
                     }
                 );

@@ -19,11 +19,23 @@
                     <router-link to="/appointment">Appointment</router-link>
                 </b-nav-item>
                 <b-nav-item-dropdown right>
-                    <template #button-content>
+                    <template #button-content v-if="isLoggedIn">
+                        <em>{{ User }}</em>
+                    </template>
+                    <template #button-content v-else>
                         <em>Login or register</em>
                     </template>
-                    <b-dropdown-item href="#">Login</b-dropdown-item>
-                    <b-dropdown-item href="#">Register</b-dropdown-item>
+                    <div v-if="isLoggedIn">
+                        <b-dropdown-item @click="logOut">Logout</b-dropdown-item>
+                    </div>
+                    <div v-else>
+                        <b-dropdown-item href="#">Login</b-dropdown-item>
+                        <b-dropdown-item>
+                            <router-link to="/register">Register</router-link>
+                        </b-dropdown-item>
+                    </div>
+
+
                 </b-nav-item-dropdown>
             </b-navbar-nav>
         </b-collapse>
@@ -31,8 +43,23 @@
 </template>
 
 <script>
-export default{
+import { mapGetters } from "vuex";
+
+export default {
   name: 'Header',
+  computed: {
+      ...mapGetters({
+          User: "StateUser"
+      }),
+      isLoggedIn: function(){ return this.$store.getters.isAuthenticated},
+  },
+
+  methods: {
+      async logOut() {
+          await this.$store.dispatch('logOut');
+          await this.$router.push('/')
+      }
+  }
 }
 </script>
 

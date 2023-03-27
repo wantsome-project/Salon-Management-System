@@ -39,7 +39,7 @@ import Header from "./Header.vue";
 import Footer from "./Footer.vue"
 import axios from "axios";
 import { mapActions } from 'vuex';
-import {addAppointment} from "../store/appointment/actions";
+import {addAppointment} from "../store/modules/appointment/actions";
 export default {
     components: {
         Header,
