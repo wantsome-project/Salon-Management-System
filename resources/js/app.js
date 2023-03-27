@@ -7,6 +7,7 @@
 import Vue from "vue";
 import router from "./routerIndex";
 import {BootstrapVue, IconsPlugin} from "bootstrap-vue";
+import Vuex from 'vuex'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 
@@ -15,6 +16,10 @@ window.Vue = require('vue');
 Vue.use(router);
 Vue.use(BootstrapVue);
 Vue.use(IconsPlugin);
+Vue.use(Vuex);
+const store  = new Vuex.Store({
+    appointments: {},
+});
 
 
 /**
@@ -36,4 +41,5 @@ Vue.use(IconsPlugin);
 const app = new Vue({
     el: '#app',
     router,
+    store
 });

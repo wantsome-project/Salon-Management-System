@@ -5,40 +5,40 @@
 @endsection
 @section("content")
 
-    {!! Form::open(['url' => route('appointment.store'), 'autocomplete'=>'off']) !!}
+    {!! Form::open(['url' => route('store'), 'autocomplete'=>'off']) !!}
     @csrf
     <div class="form-group row">
-        {!! Form::label("appointment[service_type_id]", "Service type", ["class" =>"col-sm-2 col-form-label"]) !!}
+        {!! Form::label("service_type_id", "Service type", ["class" =>"col-sm-2 col-form-label"]) !!}
         <div class="col-sm-4">
-            {!! Form::select("appointment[service_type_id]",$service_types, null,["onchange"=>"get_title(this)", "class"=>"form-control ".($errors->has("appointment.service_type_id") ? "is-invalid" : "")]) !!}
-            @error("appointment.service_type_id")
+            {!! Form::select("service_type_id",$service_types, null,["onchange"=>"get_title(this)", "class"=>"form-control ".($errors->has("service_type_id") ? "is-invalid" : "")]) !!}
+            @error("service_type_id")
             <div class="invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
     </div>
     <div class="form-group row" id="txtHint">
-        {!! Form::label("appointment[employee_id]", "Employee", ["class" =>"col-sm-2 col-form-label"]) !!}
+        {!! Form::label("employee_id", "Employee", ["class" =>"col-sm-2 col-form-label"]) !!}
         <div class="col-sm-4">
-            {!! Form::select("appointment[employee_id]",$employees, null, ["class"=>"form-control ".($errors->has("appointment.employee_id") ? "is-invalid" : "")]) !!}
-            @error("appointment.employee_id")
+            {!! Form::select("employee_id",$employees, null, ["class"=>"form-control ".($errors->has("employee_id") ? "is-invalid" : "")]) !!}
+            @error("employee_id")
             <div class="invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
     </div>
     <div class="form-group row">
-        {!! Form::label("appointment[appointment_date]", "Pick a date", ["class" =>"col-sm-2 col-form-label"]) !!}
+        {!! Form::label("appointment_date", "Pick a date", ["class" =>"col-sm-2 col-form-label"]) !!}
         <div class="col-sm-4">
-            {!! Form::text("appointment[appointment_date]"," ", ['id' => 'datepicker', "class"=>"form-control ".($errors->has("appointment.appointment_date") ? "is-invalid" : "")]) !!}
-            @error("appointment.appointment_date")
+            {!! Form::text("appointment_date"," ", ['id' => 'datepicker', "class"=>"form-control ".($errors->has("appointment_date") ? "is-invalid" : "")]) !!}
+            @error("appointment_date")
             <div class="invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
     </div>
     <div class="form-group row">
-        {!! Form::label("appointment[appointment_time]", "Pick a time", ["class" =>"col-sm-2 col-form-label"]) !!}
+        {!! Form::label("appointment_time", "Pick a time", ["class" =>"col-sm-2 col-form-label"]) !!}
         <div class="col-sm-4">
-            {!! Form::select("appointment[appointment_time]",$time_ranges, null, ["class"=>"form-control ".($errors->has("appointment.appointment_time") ? "is-invalid" : "")]) !!}
-            @error("appointment.appointment_time")
+            {!! Form::select("appointment_time",$time_ranges, null, ["class"=>"form-control ".($errors->has("appointment_time") ? "is-invalid" : "")]) !!}
+            @error("appointment_time")
             <div class="invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
