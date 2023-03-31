@@ -19,7 +19,7 @@ const actions = {
     },
     async LogIn({commit}, User) {
         await axios.post('/login', User)
-        await commit('setUser', User.get('name'))
+        await commit('setUser', User.email)
     },
     async logOut({commit}){
         let user = null

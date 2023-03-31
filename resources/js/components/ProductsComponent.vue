@@ -1,6 +1,5 @@
 <template>
     <div :style="{'background-image': 'url(/assets/img.jpg)'}">
-        <Header/>
         <b-container fluid="lg" class="bv-example-row bv-example-row-flex-cols">
             <h5>Products</h5>
             <b-row style="justify-content: center">
@@ -21,9 +20,6 @@
                         </b-card>
                     </b-col>
                 </div>
-            </b-row>
-            <b-row>
-                <Footer></Footer>
             </b-row>
         </b-container>
     </div>

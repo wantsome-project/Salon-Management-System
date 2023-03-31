@@ -29,7 +29,9 @@
                         <b-dropdown-item @click="logOut">Logout</b-dropdown-item>
                     </div>
                     <div v-else>
-                        <b-dropdown-item href="#">Login</b-dropdown-item>
+                        <b-dropdown-item>
+                            <router-link to="/login">Login</router-link>
+                        </b-dropdown-item>
                         <b-dropdown-item>
                             <router-link to="/register">Register</router-link>
                         </b-dropdown-item>
@@ -57,7 +59,7 @@ export default {
   methods: {
       async logOut() {
           await this.$store.dispatch('logOut');
-          await this.$router.push('/')
+          await this.$router.push('/products')
       }
   }
 }

@@ -8,6 +8,7 @@ import ContactComponent from "../components/ContactComponent.vue";
 import AppointmentComponent from "../components/AppointmentComponent.vue";
 import RegisterComponent from "../components/RegisterComponent.vue";
 import store from "../store";
+import loginComponent from "../components/LoginComponent.vue";
 Vue.use(VueRouter);
 const routes = [
     {
@@ -40,6 +41,13 @@ const routes = [
         path: '/register',
         name: 'RegisterComponent',
         component: RegisterComponent,
+        meta: { guest: true },
+    },
+    {
+        path: '/login',
+        name: 'LoginComponent',
+        component: loginComponent,
+        meta: { guest: true },
     },
     {
         path: '/user',
@@ -59,6 +67,17 @@ router.beforeEach((to, from, next) => {
             return;
         }
         next("/login");
+    } else {
+        next();
+    }
+});
+router.beforeEach((to, from, next) => {
+    if (to.matched.some((record) => record.meta.guest)) {
+        if (store.getters.isAuthenticated) {
+            next("/contact");
+            return;
+        }
+        next();
     } else {
         next();
     }

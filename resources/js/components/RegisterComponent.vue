@@ -96,9 +96,7 @@ export default {
         ...mapActions(["Register"]),
         async onSubmit() {
             try {
-               await this.Register(this.form)
-               await this.$router.push('/');
-
+                await this.Register(this.form)
             } catch (error) {
                 this.success = error.message;
             }
