@@ -1,7 +1,5 @@
 <template>
-    <div :style="{'background-image': 'url(/assets/img.jpg)'}">
-        <Header/>
-        <b-container fluid="lg" class="bv-example-row bv-example-row-flex-cols">
+    <b-container fluid="lg" class="bv-example-row bv-example-row-flex-cols">
             <b-row align-h="around">
                 <b-col cols="6">
                     <h3>Contact us</h3>
@@ -92,25 +90,12 @@
                     </b-form>
                 </b-col>
             </b-row>
-            <b-row>
-                <Footer></Footer>
-            </b-row>
         </b-container>
-    </div>
 </template>
 
 <script>
-import Header from "./Header.vue";
-import Footer from "./Footer.vue"
+
 export default {
-    components: {
-        Header,
-        Footer
-    },
-    props: {
-
-    },
-
     data() {
         return  {
            form: {

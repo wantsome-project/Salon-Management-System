@@ -8,10 +8,10 @@
     <title>Laravel Vue Router Message Example From Scratch - ItSolutionStuff.com</title>
 {{--    <link href="{{asset('css/app.css')}}" rel="stylesheet" type="text/css">--}}
 </head>
-<body>
-<div id="app">
-    <router-view></router-view>
-</div>
-<script src="{{asset('js/app.js')}}" ></script>
-</body>
+    <body>
+        <div id="app">
+            <default-layout></default-layout>
+        </div>
+        <script src="{{asset('js/app.js')}}" ></script>
+    </body>
 </html>

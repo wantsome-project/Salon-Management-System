@@ -1,5 +1,5 @@
 <template>
-    <b-navbar>
+    <b-navbar id="header-layout">
         <b-navbar-brand href="/test">Beauty Salon</b-navbar-brand>
         <b-collapse id="nav-collapse" is-nav>
             <b-navbar-nav class="ml-auto">

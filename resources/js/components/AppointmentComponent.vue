@@ -1,7 +1,5 @@
 <template>
-    <div :style="{'background-image': 'url(/assets/img.jpg)'}">
-        <Header/>
-        <b-container fluid="lg" class="bv-example-row bv-example-row-flex-cols">
+    <b-container fluid="lg" class="bv-example-row bv-example-row-flex-cols">
             <h4>Make an appointment</h4>
             <b-col cols="6">
                 <b-form @submit="onSubmit" v-if="show">
@@ -32,23 +30,12 @@
                 </b-form>
             </b-col>
         </b-container>
-    </div>
 </template>
 <script>
-import Header from "./Header.vue";
-import Footer from "./Footer.vue"
 import axios from "axios";
 import { mapActions } from 'vuex';
 import {addAppointment} from "../store/modules/appointment/actions";
 export default {
-    components: {
-        Header,
-        Footer
-    },
-    props: {
-
-    },
-
     data() {
         return  {
             form: {

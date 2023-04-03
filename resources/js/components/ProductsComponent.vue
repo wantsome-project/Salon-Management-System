@@ -1,28 +1,26 @@
 <template>
-    <div :style="{'background-image': 'url(/assets/img.jpg)'}">
-        <b-container fluid="lg" class="bv-example-row bv-example-row-flex-cols">
-            <h5>Products</h5>
-            <b-row style="justify-content: center">
-                <div v-for="(item, index) in products">
-                    <b-col>
-                        <b-card
-                            :title="item.brand"
-                            img-alt="Image"
-                            :img-src="'assets/products_images/'+ item.photo_name"
-                            img-top
-                            tag="article"
-                            style="max-width: 20rem;"
-                            class="mb-2"
-                        >
-                            <b-card-text>
-                                {{item.type}}
-                            </b-card-text>
-                        </b-card>
-                    </b-col>
-                </div>
-            </b-row>
-        </b-container>
-    </div>
+    <b-container fluid="lg" class="bv-example-row bv-example-row-flex-cols">
+        <h5>Products</h5>
+        <b-row style="justify-content: center">
+            <div v-for="(item, index) in products">
+                <b-col>
+                    <b-card
+                        :title="item.brand"
+                        img-alt="Image"
+                        :img-src="'assets/products_images/'+ item.photo_name"
+                        img-top
+                        tag="article"
+                        style="max-width: 20rem;"
+                        class="mb-2"
+                    >
+                        <b-card-text>
+                            {{item.type}}
+                        </b-card-text>
+                    </b-card>
+                </b-col>
+            </div>
+        </b-row>
+    </b-container>
 </template>
 
 <script>
@@ -33,9 +31,6 @@ export default {
     components: {
         Header,
         Footer
-    },
-    props: {
-
     },
 
     data() {
