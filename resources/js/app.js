@@ -12,6 +12,7 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 import 'bootstrap/dist/css/bootstrap.css'
 import store from './store'
 import axios from "axios";
+import ProductsComponent from './components/ProductsComponent.vue'
 
 require('./bootstrap');
 window.Vue = require('vue');
@@ -40,6 +41,7 @@ axios.defaults.withCredentials = true;
  */
 
 Vue.component('default-layout', require('./components/DefaultLayout.vue').default)
+Vue.component('products-component', ProductsComponent)
 const app = new Vue({
     el: '#app',
     router,

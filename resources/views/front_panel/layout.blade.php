@@ -9,7 +9,7 @@
     </head>
 
     <body>
-        <div style="background-image: url('/assets/img.jpg')">
+        <div style="background-image: url('/assets/img.jpg')" id="app">
             @include("front_panel.layout_topbar")
             @foreach(["success", "warning", "danger"] as $log_status)
                 @if (session()->has($log_status))
