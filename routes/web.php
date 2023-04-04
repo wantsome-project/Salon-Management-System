@@ -32,6 +32,10 @@ Route::get('/', function () {
         ->with('products', $products);
 })->name('home_page');
 
+Route::get('/test', function () {
+    return view('welcome');
+})->name('home_page');
+
 Route::get('/terms-and-conditions', function () {
     return view('front_panel.pages.terms');
 })->name('terms');

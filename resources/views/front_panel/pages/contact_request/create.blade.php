@@ -27,7 +27,7 @@
                 </tr>
                 <tr>
                     <th></th>
-                    <td>Sunday: inchis</td>
+                    <td>Sunday: close</td>
                 </tr>
             </table>
         </div>
@@ -35,10 +35,10 @@
             {!! Form::open(['url' => route('customer_requests.store')]) !!}
             @csrf
             <div class="form-group row">
-                {!! Form::label("customer_request[name]", "Name", ["class" =>"col-sm-2 col-form-label"]) !!}
+                {!! Form::label("name", "Name", ["class" =>"col-sm-2 col-form-label"]) !!}
                 <div class="col-sm-10">
-                    {!! Form::text("customer_request[name]", $value = null, ["class"=>"form-control ".($errors->has("customer_request.name") ? "is-invalid" : "")]) !!}
-                    @error("customer_request.name")
+                    {!! Form::text("name", $value = null, ["class"=>"form-control ".($errors->has("name") ? "is-invalid" : "")]) !!}
+                    @error("name")
                     <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
@@ -46,43 +46,43 @@
 
             <div class="form-group row">
 
-                {!! Form::label("customer_request[email]", "Email", ["class" =>"col-sm-2 col-form-label"]) !!}
+                {!! Form::label("email", "Email", ["class" =>"col-sm-2 col-form-label"]) !!}
                 <div class="col-sm-10">
-                    {!! Form::email("customer_request[email]", $value = null, ["class"=>"form-control ".($errors->has("customer_request.email") ? "is-invalid" : "")]) !!}
-                    @error("customer_request.email")
+                    {!! Form::email("email", $value = null, ["class"=>"form-control ".($errors->has("email") ? "is-invalid" : "")]) !!}
+                    @error("email")
                     <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
             </div>
             <div class="form-group row">
-                {!! Form::label("customer_request[phone]", "Phone", ["class" =>"col-sm-2 col-form-label"]) !!}
+                {!! Form::label("phone", "Phone", ["class" =>"col-sm-2 col-form-label"]) !!}
                 <div class="col-sm-10">
-                    {!! Form::text("customer_request[phone]", null, ["class"=>"form-control ".($errors->has("customer_request.phone") ? "is-invalid" : "")]) !!}
-                    @error("customer_request.phone")
+                    {!! Form::text("phone", null, ["class"=>"form-control ".($errors->has("phone") ? "is-invalid" : "")]) !!}
+                    @error("phone")
                     <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
             </div>
             <div class="form-group row">
-                {!! Form::label("customer_request[subject]", "Subject", ["class" =>"col-sm-2 col-form-label"]) !!}
+                {!! Form::label("subject", "Subject", ["class" =>"col-sm-2 col-form-label"]) !!}
                 <div class="col-sm-10">
-                    {!! Form::text("customer_request[subject]", $value = null, ["class"=>"form-control ".($errors->has("customer_request.subject") ? "is-invalid" : "")]) !!}
-                    @error("customer_request.subject")
+                    {!! Form::text("subject", $value = null, ["class"=>"form-control ".($errors->has("subject") ? "is-invalid" : "")]) !!}
+                    @error("subject")
                     <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
             </div>
             <div class="form-group row">
-                {!! Form::label("customer_request[message]", "Message", ["class" =>"col-sm-2 col-form-label"]) !!}
+                {!! Form::label("message", "Message", ["class" =>"col-sm-2 col-form-label"]) !!}
                 <div class="col-sm-10">
-                    {!! Form::textarea("customer_request[message]", $value = null, ["class"=>"form-control ".($errors->has("customer_request.message") ? "is-invalid" : "")]) !!}
-                    @error("customer_request.message")
+                    {!! Form::textarea("message", $value = null, ["class"=>"form-control ".($errors->has("message") ? "is-invalid" : "")]) !!}
+                    @error("message")
                     <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
             </div>
             <div class="form-group row">
-                <h5><small>By using this contact form you agree to the <a class="text-muted" href="{{ route("terms") }}">terms and conditions</a> </small></h5>
+                <h6><small>By using this contact form you agree to the <a class="text-muted" href="{{ route("terms") }}">terms and conditions</a> </small></h6>
                 <div class="col-sm-10">
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </div>

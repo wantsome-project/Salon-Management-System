@@ -7,12 +7,8 @@ use App\Http\Controllers\Controller;
 use App\Appointment;
 use App\Http\Requests\FrontPanel\Appointment\StoreRequest;
 use App\ServiceType;
-use App\User;
 use App\UserRoles;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Mail;
 
 class AppointmentController extends Controller
 {
@@ -53,8 +49,11 @@ class AppointmentController extends Controller
                 ->toArray();
         }
 
-
-        return view("front_panel.pages.appointments", compact("employees", "service_types", "time_ranges"));
+        if (\request()->wantsJson()) {
+            return response()->json(['employees' => $employees, 'servicesType' => $service_types, 'timeRanges' => $time_ranges]);
+        } else {
+            return view("front_panel.pages.appointments", compact("employees", "service_types", "time_ranges"));
+        }
     }
 
     /**
@@ -73,18 +72,23 @@ class AppointmentController extends Controller
     public function store(StoreRequest $request)
     {
         $appointment = new Appointment;
-        $appointment->employee_id = request("appointment.employee_id");
-        $appointment->service_type_id = request("appointment.service_type_id");
+        $appointment->employee_id = request("employee_id");
+        $appointment->service_type_id = request("service_type_id");
         $appointment->customer_id = auth()->user()->customer->id;
         $appointment->status = Appointment::STATUS_ON_HOLD;
-        $appointment->appointment_time = request("appointment.appointment_time");
-        $appointment->appointment_date = request('appointment.appointment_date');
+        $appointment->appointment_time = request("appointment_time");
+        $appointment->appointment_date = request('appointment_date');
 
         $appointment->save();
 
-        return redirect()
-            ->route('appointment.index')
-            ->with("success", "Appointment created, you will be contacted as soon as possible for confirmation.");;
+        if($request->ajax() || $request->api === true) {
+            return response()->json(['message' => "Appointment created, you will be contacted as soon as possible for confirmation."]);
+        } else {
+            return redirect()
+                ->route('appointment.index')
+                ->with("success", "Appointment created, you will be contacted as soon as possible for confirmation.");
+        }
+
     }
 
     /**

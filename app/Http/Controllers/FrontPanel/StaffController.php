@@ -15,10 +15,16 @@ class StaffController extends Controller
     public function index()
     {
         $employees = Employee::query()
-            ->with(['user'])
+            ->with(['user', 'serviceType'])
             ->paginate(10);
-        return view("front_panel.pages.staff.index")
-            ->with("employees", $employees);
+
+        if (request()->wantsJson()) {
+            return response()->json($employees);
+        } else {
+            return view("front_panel.pages.staff.index")
+                ->with("employees", $employees);
+        }
+
     }
 
     /**
@@ -116,6 +122,12 @@ class StaffController extends Controller
             ->get()
             ->makeHidden(["payroll", "phone"]);
 
-        return $employees;
+        if ($request->wantsJson()) {
+            return response()->json($employees);
+        } else {
+            return $employees;
+        }
+
+
     }
 }

@@ -38,16 +38,20 @@ class CustomerRequestController extends Controller
     public function store(StoreRequest $request)
     {
         $customer_request = new CustomerRequest();
-        $customer_request->name = request('customer_request.name');
-        $customer_request->email = request('customer_request.email');
-        $customer_request->phone = request('customer_request.phone');
-        $customer_request->subject = request('customer_request.subject');
-        $customer_request->message = request('customer_request.message');
+        $customer_request->name = request('name');
+        $customer_request->email = request('email');
+        $customer_request->phone = request('phone');
+        $customer_request->subject = request('subject');
+        $customer_request->message = request('message');
         $customer_request->save();
 
-        return redirect()
+        if($request->ajax() || $request->api === true) {
+            return response()->json(['message' => "Message sent successfully, you will be contacted as soon as possible."]);
+        } else {
+            return redirect()
             ->route("customer_requests.create")
             ->with("success", "Message sent successfully, you will be contacted as soon as possible.");
+        }
 
     }
 

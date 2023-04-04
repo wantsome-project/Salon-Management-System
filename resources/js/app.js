@@ -4,9 +4,26 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-require('./bootstrap');
+import Vue from "vue";
+import router from "./router";
+import {BootstrapVue, IconsPlugin} from "bootstrap-vue";
+import Vuex from 'vuex';
+import 'bootstrap-vue/dist/bootstrap-vue.css'
+import 'bootstrap/dist/css/bootstrap.css'
+import store from './store'
+import axios from "axios";
+import ProductsComponent from './components/ProductsComponent.vue'
 
+require('./bootstrap');
 window.Vue = require('vue');
+Vue.use(router);
+Vue.use(BootstrapVue);
+Vue.use(IconsPlugin);
+Vue.use(Vuex);
+
+axios.defaults.withCredentials = true;
+
+
 
 /**
  * The following block of code may be used to automatically register your
@@ -16,17 +33,17 @@ window.Vue = require('vue');
  * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
  */
 
-// const files = require.context('./', true, /\.vue$/i)
-// files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
-
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
-
+// Vue.component('default-layout', require('./components/DefaultLayout.vue').default)
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+Vue.component('default-layout', require('./components/DefaultLayout.vue').default)
+Vue.component('products-component', ProductsComponent)
 const app = new Vue({
     el: '#app',
+    router,
+    store,
 });

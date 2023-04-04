@@ -14,21 +14,21 @@ class StoreRequest extends FormRequest
     public function rules()
     {
         return [
-            "appointment.employee_id" => [
+            "employee_id" => [
                 "required",
                 "numeric",
                 "exists:employees,id",
             ],
-            "appointment.service_type_id" => [
+            "service_type_id" => [
                 "required",
                 "numeric",
                 "exists:service_types,id",
             ],
-            "appointment.appointment_date" => [
+            "appointment_date" => [
                 "required",
                 "date",
             ],
-            "appointment.appointment_time" => [
+            "appointment_time" => [
                 "required",
                 "string",
                 "max:255",
@@ -39,10 +39,10 @@ class StoreRequest extends FormRequest
     public function attributes()
     {
         return [
-            "appointment.employee_id" => "Employee",
-            "appointment.service_type_id" => "Service type",
-            "appointment.appointment_date" => "Pick a date",
-            "appointment.appointment_time" => "Pick a time",
+            "employee_id" => "Employee",
+            "service_type_id" => "Service type",
+            "appointment_date" => "Pick a date",
+            "appointment_time" => "Pick a time",
         ];
     }
 }
