@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\FrontPanel;
 
+use App\Appointment;
 use App\Employee;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -21,88 +22,6 @@ class StaffController extends Controller
             ->with("employees", $employees);
     }
 
-    /**
-     * Show the form for creating a new resource.
-
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
-
-//    public function getEmployeesByProvidedServiceType(Request $request)
-//    {
-//        $service_type_id = $request->input("service_type_id");
-//        if (is_null($service_type_id)) {
-//            return "empty service type value";
-//        }
-//
-//        $employees = Employee::query()
-//            ->with('user')
-//            ->where('service_type_id', '=', $service_type_id)
-//            ->get()
-//            ->pluck('user.name', 'id')
-//            ->toArray();
-//
-//        return view("front_panel.pages.employees", compact('employees'));
-//    }
     public function getEmployeesByProvidedServiceType(Request $request)
     {
         $service_type_id = $request->input("service_type_id");
@@ -117,5 +36,19 @@ class StaffController extends Controller
             ->makeHidden(["payroll", "phone"]);
 
         return $employees;
+    }
+
+    public function getAppointmentsProvidedByServiceType(Request $request)
+    {
+        $employee_id = $request->input("employee_id");
+        $appointment_date = $request->input("appointment_date");
+        if (is_null($employee_id)) {
+            return "empty service type value";
+        }
+
+        return Appointment::query()
+            ->where('employee_id', '=', $employee_id)
+            ->where('appointment_date', '=', $appointment_date)
+            ->get();
     }
 }

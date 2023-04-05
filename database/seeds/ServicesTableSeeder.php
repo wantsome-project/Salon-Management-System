@@ -71,6 +71,34 @@ class ServicesTableSeeder extends Seeder
         ]);
         $service->save();
 
+        $customer = Customer::query()
+            ->orderBy('id', 'desc')
+            ->first();
+        if (!$customer) {
+            die('Please run customers seed before services seed');
+        }
+        $employee = Employee::query()
+            ->orderBy('id', 'desc')
+            ->first();
+        if (!$employee) {
+            die('Please run employee seed before services seed');
+        }
+
+        $service_type = ServiceType::query()
+            ->orderBy('id', 'desc')
+            ->first();
+
+        if (!$employee) {
+            die('Please run service type seed before services seed');
+        }
+        $service = new Service([
+            'customer_id'  => $customer->id,
+            'employee_id'  => $employee->id,
+            'service_type_id' => $service_type->id,
+            'price' => '100',
+        ]);
+        $service->save();
+
 
     }
 }

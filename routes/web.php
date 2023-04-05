@@ -186,6 +186,8 @@ Route::namespace("FrontPanel")
             ->name('staff');
         Route::get('/staff/employees', 'StaffController@getEmployeesByProvidedServiceType')
             ->name('service_type.employees');
+        Route::get('/staff/appointments', 'StaffController@getAppointmentsProvidedByServiceType')
+            ->name('employee.available_time_ranges');
 
 
         Route::prefix('/contact')
