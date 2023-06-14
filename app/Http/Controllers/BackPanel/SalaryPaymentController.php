@@ -7,7 +7,9 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\BackPanel\SalaryPayment\StoreRequest;
 use App\Http\Requests\BackPanel\SalaryPayment\UpdateRequest;
 use App\SalaryPayment;
+use Exception;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 class SalaryPaymentController extends Controller
@@ -63,20 +65,8 @@ class SalaryPaymentController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  \App\SalaryPayment  $salary_payment
-     * @return \Illuminate\Http\Response
-     */
-    public function show(SalaryPayment $salary_payment)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
-
      */
     public function edit(SalaryPayment $salary_payment)
     {
@@ -87,7 +77,9 @@ class SalaryPaymentController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param UpdateRequest $request
+     * @param SalaryPayment $salary_payment
+     * @return RedirectResponse
      */
     public function update(UpdateRequest $request, SalaryPayment $salary_payment)
     {
@@ -103,8 +95,9 @@ class SalaryPaymentController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\SalaryPayment  $salary_payment
-     *
+     * @param SalaryPayment $salary_payment
+     * @return RedirectResponse
+     * @throws Exception
      */
     public function destroy(SalaryPayment $salary_payment)
     {

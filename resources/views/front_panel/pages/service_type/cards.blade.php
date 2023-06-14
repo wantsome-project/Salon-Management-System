@@ -5,7 +5,7 @@
     @foreach($service_types as $service_type)
         <div class="card">
             @if($service_type->photo_name)
-            <img src="{{ $service_type->getPhotoUrl() }}" class="card-img-top" alt="...">
+            <img src="{{ $service_type->getPhotoUrl() }}" class="card-img-top card-body" alt="...">
             @endif
             <div class="card-body">
                 <h5 class="card-title">{{ $service_type->name }}</h5>

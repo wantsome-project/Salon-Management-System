@@ -4,6 +4,8 @@ namespace App\Http\Controllers\BackPanel;
 
 use App\Customer;
 use App\Http\Controllers\Controller;
+use Exception;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 class CustomerController extends Controller
@@ -77,13 +79,19 @@ class CustomerController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Customer $customer
+     * @return RedirectResponse
+     * @throws Exception
      */
-    public function destroy($id)
+    public function destroy(Customer $customer)
     {
-        //
+        $user = $customer->user;
+        $customer->delete();
+        if (empty($user->customer_id) && empty($user->is_admin)) {
+            $user->delete();
+        }
+        return redirect()
+            ->route("back_panel.customers.index")
+            ->with("success", "Customer ".$user->name." deleted successfully");
     }
 }

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\BackPanel\ServiceType\StoreRequest;
 use App\Http\Requests\BackPanel\ServiceType\UpdateRequest;
 use App\ServiceType;
+use Exception;
 
 class ServiceTypeController extends Controller
 {
@@ -69,6 +70,10 @@ class ServiceTypeController extends Controller
         }
         return redirect()->route("back_panel.service_types.index");
     }
+
+    /**
+     * @throws Exception
+     */
     public function destroy(ServiceType $serviceType)
     {
         $serviceType->delete();

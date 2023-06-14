@@ -2,7 +2,9 @@
 
 use App\Events\NewCustomerHasRegisteredEvent;
 use App\ServiceType;
+use App\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -97,6 +99,8 @@ Route::prefix('back_panel')
             ->group(function () {
                 Route::get('/', 'CustomerController@index')
                     ->name('customers.index');
+                Route::delete('/{customer}', 'CustomerController@destroy')
+                    ->name('customer.destroy');
             });
         Route::prefix('employees')
             ->middleware('can:isAdmin')
@@ -212,9 +216,6 @@ Route::namespace("FrontPanel")
             ->name('appointment.store');
 
     });
-
-
-
 
 
 

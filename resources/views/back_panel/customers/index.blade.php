@@ -17,6 +17,7 @@
                     <th>Name</th>
                     <th>Email</th>
                     <th>Phone</th>
+                    <th></th>
                 </tr>
                 @foreach($customers as $customer)
                     <tr>
@@ -24,6 +25,13 @@
                         <th>{{ $customer->user->name }}</th>
                         <th>{{ $customer->user->email }}</th>
                         <td>{{ $customer->phone }}</td>
+                        <td>
+                            {!! Form::open(['url' => route('back_panel.customer.destroy',[$customer])]) !!}
+                            @csrf
+                            @method("delete")
+                            <button type="submit" class="btn btn-danger btn-sm"><i class="far fa-trash-alt"></i></button>
+                            {!! Form::close() !!}
+                        </td>
                     </tr>
                 @endforeach
             </table>

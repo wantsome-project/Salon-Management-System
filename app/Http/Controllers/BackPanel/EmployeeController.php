@@ -11,6 +11,7 @@ use App\ServiceType;
 use App\User;
 
 use Carbon\Carbon;
+use Exception;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -19,7 +20,6 @@ class EmployeeController extends Controller
 {
     /**
      * Display a listing of the resource.
-     *
      * @return View
      */
 
@@ -42,7 +42,6 @@ class EmployeeController extends Controller
 
     /**
      * Show the form for creating a new resource.
-     *
      * @return View
      */
 
@@ -62,7 +61,7 @@ class EmployeeController extends Controller
 
     /**
      * Store a newly created resource in storage.
-     *
+
      * @param StoreRequest $request Request
      *
      */
@@ -168,7 +167,7 @@ class EmployeeController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-
+     * @throws Exception
      */
     public function destroy(Employee $employee)
     {

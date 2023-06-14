@@ -20,8 +20,8 @@ class PDFController extends Controller
         $data = [
             "customer"     => $service->customer->user->name,
             "employee"     => $service->employee->user->name,
-            "service_type" =>$service->serviceType->name,
-            "amount" =>$service->serviceType->price,
+            "service_type" => $service->serviceType->name,
+            "amount" => $service->serviceType->price,
             ];
 
         $pdf = PDF::loadView('back_panel.myPDF', $data);

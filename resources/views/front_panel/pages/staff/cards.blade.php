@@ -5,7 +5,7 @@
     @foreach($employees as $employee)
         <div class="card">
             @if($employee->photo_name)
-            <img src="{{ $employee->getPhotoUrl() }}" class="card-img-top" alt="...">
+            <img src="{{ $employee->getPhotoUrl() }}" class="card-img-top card-body" alt="...">
             @endif
             <div class="card-body">
                 <h5 class="card-title">{{ $employee->user->name }}</h5>

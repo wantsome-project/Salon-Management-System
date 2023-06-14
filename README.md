@@ -1,7 +1,10 @@
 # Salon Management System Project
 
 
-* A system for managing a hair salon. This system keeps track of employee salaries, inventory and customer data along with billing. This is a fully equipped system that alone manages the entire functioning of a hair salon. It maintains stock of inventory coming in. It also manages individual employee salary. The system is even equipped to manage customer billing and data storage. Moreover the system also allows user to book salon appointment for three slots(stylists). 
+* A system for managing a beauty salon. This system keeps track of employee salaries, inventory and customer data along with billing.
+* This is a fully equipped system that alone manages the entire functioning of a hair salon. It maintains stock of inventory coming in. 
+* It also manages individual employee salary. The system is even equipped to manage customer billing and data storage.
+* Moreover, the system also allows user to book salon appointment for three slots(stylists). 
 
 The system works as follows:
 

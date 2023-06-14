@@ -11,10 +11,17 @@ use App\Http\Requests\BackPanel\Appointment\StoreRequest;
 use App\Http\Requests\BackPanel\Appointment\UpdateRequest;
 use App\ServiceType;
 use Carbon\Carbon;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\View\View;
 
 
 class AppointmentController extends Controller
 {
+    /**
+     * @return Application|Factory|View
+     */
     public function index()
     {
         $appointments = Appointment::paginate();
@@ -22,6 +29,9 @@ class AppointmentController extends Controller
             ->with("appointments", $appointments);
     }
 
+    /**
+     * @return Application|Factory|View
+     */
     public function create()
     {
         {
@@ -74,6 +84,10 @@ class AppointmentController extends Controller
         }
     }
 
+    /**
+     * @param StoreRequest $request
+     * @return RedirectResponse
+     */
     public function store(StoreRequest $request)
     {
         $appointment = new Appointment();
@@ -87,6 +101,10 @@ class AppointmentController extends Controller
             ->with("success", "Appointment for ".$appointment->customer->user->name." created successfully");
     }
 
+    /**
+     * @param $appointment
+     * @return Application|Factory|View
+     */
     public function show($appointment)
     {
         /* @var Customer[]|Collection $customers */
@@ -122,6 +140,10 @@ class AppointmentController extends Controller
             ->with("service_type_names", $service_type_names);
     }
 
+    /**
+     * @param Appointment $appointment
+     * @return Application|Factory|View
+     */
     public function edit(Appointment $appointment)
     {
         /* @var Customer[]|Collection $customers */
@@ -176,6 +198,11 @@ class AppointmentController extends Controller
             ->with("time_appointment", $time_appointment);
     }
 
+    /**
+     * @param UpdateRequest $request
+     * @param Appointment $appointment
+     * @return RedirectResponse
+     */
     public function update(UpdateRequest $request, Appointment $appointment)
     {
 
@@ -205,23 +232,16 @@ class AppointmentController extends Controller
         }
 
         event( new CustomerAppointmentStatusEvent($appointment));
-
-//        Mail::to($customer->user->email)->send( new AppointmentConfirmation($appointment));
-
-//        Mail::send(
-//            "emails.appointment",
-//            $data,
-//            function($message) use ($to_name, $to_email){
-//                $message->to($to_email, $to_name)
-//                    ->subject("Your appointment");
-//                $message->from("sirbuanca2@gmail.com","Beauty salon");
-//            }
-//        );
         $appointment->save();
         return redirect()
             ->route("back_panel.appointment.index");
     }
 
+    /**
+     * @param Appointment $appointment
+     * @return RedirectResponse
+     * @throws \Exception
+     */
     public function destroy(Appointment $appointment)
     {
         $appointment->delete();

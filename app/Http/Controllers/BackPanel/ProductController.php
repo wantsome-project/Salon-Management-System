@@ -6,14 +6,17 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\BackPanel\Product\StoreRequest;
 use App\Http\Requests\BackPanel\Product\UpdateRequest;
 use App\Product;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class ProductController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return Application|Factory|View
      */
     public function index()
     {
@@ -55,17 +58,6 @@ e
         return redirect()
             ->route("back_panel.products.index", $product)
             ->with('success', 'New product successfully added.');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
     }
 
     /**

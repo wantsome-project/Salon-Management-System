@@ -5,7 +5,7 @@
     @foreach($products as $product)
         <div class="card">
             @if($product->photo_name)
-            <img src="{{ $product->getPhotoUrl() }}" class="card-img-top" alt="...">
+            <img src="{{ $product->getPhotoUrl() }}" class="card-img-top card-body" alt="...">
             @endif
             <div class="card-body">
                 <h5 class="card-title">{{ $product->type }}</h5>
