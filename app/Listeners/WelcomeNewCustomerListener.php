@@ -10,15 +10,10 @@ use Illuminate\Support\Facades\Mail;
 
 class WelcomeNewCustomerListener
 {
-    /**
-     * Handle the event.
-     *
-     * @param  object  $event
-     * @return void
-     */
-    public function handle($event)
+
+    public function handle(object $event)
     {
-        $mailable = new \App\Mail\WelcomeNewUserMail($event->user);
+        $mailable = new WelcomeNewUserMail($event->user);
         Mail::send($mailable);
     }
 }

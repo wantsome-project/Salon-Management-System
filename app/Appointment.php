@@ -3,7 +3,10 @@
 namespace App;
 
 use Carbon\Carbon;
+use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Http\Request;
 
 /**
  * Class Appointment
@@ -13,7 +16,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property integer  $service_type_id
  * @property integer  $employee_id
  * @property string   $status
- * @property array|\Illuminate\Contracts\Foundation\Application|\Illuminate\Http\Request|mixed|string appointment_time
+ * @property array|Application|Request|mixed|string appointment_time
  * @property mixed    appointment_date
  */
 class Appointment extends Model
@@ -33,17 +36,17 @@ class Appointment extends Model
         'appointment_date',
     ];
 
-    public function customer()
+    public function customer(): BelongsTo
     {
         return $this->belongsTo(Customer::class, "customer_id", "id");
     }
 
-    public function employee()
+    public function employee(): BelongsTo
     {
         return $this->belongsTo(Employee::class, "employee_id", "id");
     }
 
-    public function serviceType()
+    public function serviceType(): BelongsTo
     {
         return $this->belongsTo(ServiceType::class, "service_type_id", "id");
     }

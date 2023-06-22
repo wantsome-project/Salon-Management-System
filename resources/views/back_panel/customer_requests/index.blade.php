@@ -17,7 +17,7 @@
                     <th>Name</th>
                     <th>Subject</th>
                     <th>Date</th>
-                    <th></th>
+                    <th>Request details</th>
                     <th></th>
                 </tr>
                 @foreach($customer_requests as $customer_request)

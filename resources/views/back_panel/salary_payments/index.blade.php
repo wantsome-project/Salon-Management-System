@@ -21,8 +21,7 @@
                     <th>Payment details</th>
                     <th>Paid at</th>
                     <th>Updated at</th>
-                    <th></th>
-                    <th></th>
+                    <th colspan="2">Actions</th>
                 </tr>
                 @foreach($salary_payments as $salary_payment)
                     <tr>

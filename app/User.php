@@ -2,10 +2,9 @@
 
 namespace App;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use App\UserRoles;
 
 /**
  * Class User
@@ -54,16 +53,11 @@ class User extends Authenticatable
     ];
 
 
-    public function getRole()
-    {
-        return UserRoles::getUserRole($this->role_id);
-    }
-
-    public function employee()
+    public function employee(): BelongsTo
     {
         return $this->belongsTo(Employee::class, "employee_id", "id");
     }
-    public function customer()
+    public function customer(): BelongsTo
     {
         return $this->belongsTo(Customer::class, "customer_id", "id");
     }

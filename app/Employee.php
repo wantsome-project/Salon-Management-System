@@ -3,6 +3,9 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+
 /**
  * Class Employee
  * @package App
@@ -24,12 +27,12 @@ class Employee extends Model
         'service_type_id',
     ];
 
-    public function services()
+    public function services(): HasMany
     {
         return $this->hasMany(Service::class, "employee_id", "id");
     }
 
-    public function serviceType()
+    public function serviceType(): BelongsTo
     {
         return $this->belongsTo(ServiceType::class, "service_type_id", "id");
     }

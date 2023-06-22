@@ -19,9 +19,8 @@
                     <th>Customer </th>
                     <th>Service type</th>
                     <th>Total to be paid</th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
+                    <th>Invoice</th>
+                    <th colspan="2">Actions</th>
                 </tr>
                 @foreach($services as $service)
                     <tr>

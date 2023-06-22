@@ -29,7 +29,7 @@ class Product extends Model
         'quantity',
         'price',
     ];
-    public function getPhotoUrl()
+    public function getPhotoUrl(): string
     {
         return asset("assets/products_images/".$this->photo_name);
     }

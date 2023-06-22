@@ -20,8 +20,7 @@
                     <th>Description</th>
                     <th>Duration</th>
                     <th>Price</th>
-                    <th></th>
-                    <th></th>
+                    <th colspan="2">Actions</th>
                 </tr>
                 @foreach($service_types as $serviceType)
                     <tr>

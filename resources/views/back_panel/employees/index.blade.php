@@ -23,8 +23,7 @@
                     <th>Phone</th>
                     <th>Payroll</th>
                     <th>Payment status for current month</th>
-                    <th></th>
-                    <th></th>
+                    <th colspan="2">Actions</th>
                 </tr>
                 @foreach($employees as $employee)
                     <tr>

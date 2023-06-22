@@ -3,6 +3,9 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+
 /**
  * Class Customer
  * @package App
@@ -19,12 +22,12 @@ class Customer extends Model
         'phone',
     ];
 
-    public function user()
+    public function user(): HasOne
     {
         return $this->hasOne(User::class, "customer_id", "id");
     }
 
-    public function services()
+    public function services(): HasMany
     {
         return $this->hasMany(Service::class, "customer_id", "id");
     }

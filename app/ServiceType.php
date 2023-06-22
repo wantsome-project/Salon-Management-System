@@ -3,6 +3,8 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+
 /**
  * Class ServiceType
  * @package App
@@ -27,16 +29,16 @@ class ServiceType extends Model
         'price',
     ];
 
-    public function services()
+    public function services(): HasMany
     {
         return $this->hasMany(Service::class, "service_type_id", "id");
     }
-    public function employees()
+    public function employees(): HasMany
     {
         return $this->hasMany(Employee::class, "employee_id", "id");
     }
 
-    public function getPhotoUrl()
+    public function getPhotoUrl(): string
     {
         return asset("assets/service_type_images/".$this->photo_name);
     }

@@ -20,8 +20,7 @@
                     <th>Product brand</th>
                     <th>Quantity</th>
                     <th>Price</th>
-                    <th></th>
-                    <th></th>
+                    <th colspan="2">Actions</th>
                 </tr>
                 @foreach($products as $product)
                     <tr>

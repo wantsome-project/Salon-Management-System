@@ -3,6 +3,8 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+
 /**
  * Class Service
  * @package App
@@ -25,17 +27,20 @@ class Service extends Model
         'service_type_id',
     ];
 
-    public function serviceType()
+    /**
+     * @return BelongsTo
+     */
+    public function serviceType(): BelongsTo
     {
         return $this->belongsTo(ServiceType::class, "service_type_id", "id");
     }
 
-    public function employee()
+    public function employee(): BelongsTo
     {
         return $this->belongsTo(Employee::class, "employee_id", "id");
     }
 
-    public function customer()
+    public function customer(): BelongsTo
     {
         return $this->belongsTo(Customer::class, "customer_id", "id");
     }

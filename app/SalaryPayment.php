@@ -4,6 +4,8 @@ namespace App;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+
 /**
  *Class SalaryPayment
  *@property integer  $id
@@ -26,7 +28,7 @@ class SalaryPayment extends Model
         'description',
     ];
 
-    public function employee()
+    public function employee(): BelongsTo
     {
         return $this->belongsTo(Employee::class, "employee_id", "id");
     }

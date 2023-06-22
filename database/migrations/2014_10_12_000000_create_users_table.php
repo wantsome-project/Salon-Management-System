@@ -30,7 +30,7 @@ class CreateUsersTable extends Migration
 
         // Set email and random password for administrator
         $email = "admin@admin.com";
-        $password = Str::random(8);
+        $password = '123456789';
 
         echo "Administrator email is: ".$email."\n";
         echo "Administrator password is: ".$password."\n";

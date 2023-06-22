@@ -3,8 +3,6 @@
 namespace App\Listeners;
 
 use App\Mail\AppointmentConfirmation;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Support\Facades\Mail;
 
 class AppointmentStatusListener
@@ -22,10 +20,10 @@ class AppointmentStatusListener
     /**
      * Handle the event.
      *
-     * @param  object  $event
+     * @param object $event
      * @return void
      */
-    public function handle($event)
+    public function handle(object $event)
     {
         Mail::to($event->appointment->customer->user->email)->send( new AppointmentConfirmation($event->appointment));
     }

@@ -4,7 +4,6 @@ namespace App\Mail;
 
 use App\User;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
@@ -32,7 +31,7 @@ class WelcomeNewUserMail extends Mailable
      *
      * @return $this
      */
-    public function build()
+    public function build(): WelcomeNewUserMail
     {
         return $this->view('emails.mail')
             ->to($this->user->email, $this->user->name)
